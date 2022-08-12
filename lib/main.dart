@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:testef/screen1.dart';
+import 'package:testef/loginUser.dart';
+import 'package:testef/configUser.dart';
+
+import 'dev.dart';
 void main() {
   runApp(
     MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xffb252526)),
+      color: Pallete.white,
       //remove o banner de debug
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: dev(),
     ),
   );
 }
@@ -33,7 +37,7 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Seja bem vindo!',
               style: TextStyle(color: Pallete.white, fontSize: 20, fontFamily: 'Jura', fontWeight: FontWeight.w800),
             ),
@@ -63,7 +67,7 @@ class Home extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) {return screen1();})
+                    MaterialPageRoute(builder: (context) {return configUser();})
                   );
                 },
                 child: const Text('Começar!'),
