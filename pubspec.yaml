@@ -1,4 +1,4 @@
-name: testef
+name: resilience_muscle
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -29,8 +29,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  fl_chart: ^0.55.1
 
 
+  font_awesome_flutter: ^10.2.1
+  flutter_svg: ^1.1.5
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -38,7 +41,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -59,7 +61,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/images/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -76,9 +78,28 @@ flutter:
     - family: Jura
       fonts:
         - asset: assets/fonts/jura/JuraBook.ttf
-        - asset: assets/fonts/jura/JuraDemiBold.ttf
         - asset: assets/fonts/jura/JuraLight.ttf
+
+    - family: JuraDemiBold
+      fonts:
+        - asset: assets/fonts/jura/JuraDemiBold.ttf
+
+    - family: JuraMedium
+      fonts:
         - asset: assets/fonts/jura/JuraMedium.ttf
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/static/Inter-light.ttf
+        - asset: assets/fonts/Inter/static/Inter-Black.ttf
+        - asset: assets/fonts/Inter/static/Inter-Bold.ttf
+        - asset: assets/fonts/Inter/static/Inter-ExtraBold.ttf
+        - asset: assets/fonts/Inter/static/Inter-ExtraLight.ttf
+        - asset: assets/fonts/Inter/static/Inter-Light.ttf
+        - asset: assets/fonts/Inter/static/Inter-Medium.ttf
+        - asset: assets/fonts/Inter/static/Inter-Regular.ttf
+        - asset: assets/fonts/Inter/static/Inter-SemiBold.ttf
+        - asset: assets/fonts/Inter/static/Inter-Thin.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
