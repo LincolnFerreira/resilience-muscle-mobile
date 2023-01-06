@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "914196026754",
+    "project_id": "resilience-muscle",
+    "storage_bucket": "resilience-muscle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914196026754:android:a17702f175412ec0082b9b",
+        "android_client_info": {
+          "package_name": "com.example.testef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914196026754-vfe7gv9s50ok9ifb730aevqmlg1h4nap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjhqRbP1EeBkaQSW2P_yQC43Fwsb8lRwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914196026754-vfe7gv9s50ok9ifb730aevqmlg1h4nap.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "914196026754-jghol5v9659o1q169fbvv9greboes427.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.testef"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
