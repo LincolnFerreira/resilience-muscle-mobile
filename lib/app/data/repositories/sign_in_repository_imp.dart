@@ -1,17 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:resilience_muscle/app/data/datasources/firebase_remote_datasource.dart';
+import 'package:resilience_muscle/app/domain/entities/user_entity.dart';
+
 import '../../domain/repositories/sign_in_repository.dart';
-import '../datasources/remote/firebase/sign_in_datasource_firebase_imp.dart';
 
 class SignInRepositoryImp implements SignInRepository {
-  final SignInDataSourceFirebaseImp signInDataSourceFireBaseImp;
+  final FirebaseRemoteDataSource firebaseRemoteDataSource;
 
   SignInRepositoryImp({
-    required this.signInDataSourceFireBaseImp,
+    required this.firebaseRemoteDataSource,
   });
 
   @override
-  Future<void> signIn(String email, String password) async {
-    print('repository');
-    signInDataSourceFireBaseImp.signIn(email, password);
+  Future<void> call(UserEntity user) async {
+    firebaseRemoteDataSource.signIn(user);
   }
 }

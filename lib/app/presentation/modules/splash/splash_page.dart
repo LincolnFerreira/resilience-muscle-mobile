@@ -4,7 +4,7 @@ import 'package:resilience_muscle/app/presentation/modules/splash/organisms/welc
 import 'package:resilience_muscle/app/presentation/modules/splash/splash_store.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../subs/class/cores.dart';
+import '../../../core/colors.dart';
 import '../../../core/organisms_default/button_organism.dart';
 import '../../../core/atom_default/logo_atom.dart';
 

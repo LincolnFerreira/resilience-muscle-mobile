@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
 import 'package:resilience_muscle/app/presentation/modules/splash/atomic/polygon_atom.dart';
 
-import '../../../../../subs/class/cores.dart';
+import '../../../../core/colors.dart';
 
 class WelcomeLabelOrganism extends StatelessWidget {
   const WelcomeLabelOrganism({super.key});
@@ -21,7 +21,7 @@ class WelcomeLabelOrganism extends StatelessWidget {
             ),
           ],
         ),
-        TextAtom(
+        const TextAtom(
           text: 'Bem vindo(a)!',
           fontFamily: 'Jura',
           textColor: Colors.white,
@@ -36,7 +36,7 @@ class WelcomeLabelOrganism extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.only(left: 10),
-          child: TextAtom(
+          child: const TextAtom(
             text: 'vamos mudar o modo como'
                 '\n vê seus resultados!',
             textColor: Pallete.whiteGrey,

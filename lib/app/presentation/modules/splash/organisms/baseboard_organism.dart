@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../subs/blocked/developerInformation.dart';
-import '../../../../../subs/class/cores.dart';
 import '../../../../core/atom_default/text_atom.dart';
+import '../../../../core/colors.dart';
 
 class BaseboardOrganism extends StatelessWidget {
   const BaseboardOrganism({super.key});
@@ -11,10 +10,10 @@ class BaseboardOrganism extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => dev()),
-        );
+        // Navigator.push(
+        // context,
+        // MaterialPageRoute(builder: (context)),
+        // );
       },
       child: const TextAtom(
         text: 'Todos os direitos reservados © Copyright 2022',

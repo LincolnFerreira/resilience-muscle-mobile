@@ -5,7 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:resilience_muscle/app/core/atom_default/input_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import 'package:resilience_muscle/subs/class/cores.dart';
+
+import '../../../../core/colors.dart';
 
 class FormSignInOrganism extends StatelessWidget {
   final double? spaceBetweenInputOrganism;

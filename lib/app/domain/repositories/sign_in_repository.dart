@@ -1,3 +1,5 @@
+import '../entities/user_entity.dart';
+
 abstract class SignInRepository {
-  Future<void> signIn(String email, String password);
+  Future<void> call(UserEntity user);
 }

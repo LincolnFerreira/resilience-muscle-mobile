@@ -4,16 +4,16 @@ part 'user_entity.g.dart';
 
 @JsonSerializable()
 class UserEntity {
-  final int id;
+  final String uid;
   final String name;
   final String email;
   final String password;
 
   UserEntity({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.password,
+    this.uid = '',
+    this.name = '',
+    this.email = '',
+    this.password = '',
   });
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

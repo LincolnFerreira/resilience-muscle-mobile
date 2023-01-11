@@ -6,11 +6,12 @@ import 'package:resilience_muscle/app/domain/usecases/sign_in/sign_in_usecase.da
 class SignInUseCaseImp implements SignInUseCase {
   final SignInRepository signInRepository;
 
-  SignInUseCaseImp(this.signInRepository);
+  SignInUseCaseImp({
+    required this.signInRepository,
+  });
 
   @override
-  Future<void> call(String email, String password) async {
-    print('usecase');
-    signInRepository.signIn(email, password);
+  Future<void> call(UserEntity user) async {
+    signInRepository(user);
   }
 }
