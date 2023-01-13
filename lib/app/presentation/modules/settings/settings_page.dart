@@ -126,6 +126,7 @@ class SettingsPageState extends State<SettingsPage> {
                         label: const Text('Sair'),
                         onPressed: () {
                           FirebaseAuth.instance.signOut();
+                          Modular.to.navigate('/login/');
                         },
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:resilience_muscle/app/presentation/modules/home_user/atomic/organisms/box_ready_training_organism.dart';
 
 import 'package:resilience_muscle/app/presentation/modules/home_user/atomic/organisms/menu_bottom_navbar_organism.dart';
 import 'package:resilience_muscle/app/presentation/modules/home_user/atomic/organisms/menu_top_navbar_organism.dart';
@@ -9,8 +10,8 @@ import 'package:resilience_muscle/app/presentation/modules/home_user/home_user_s
 import '../../../core/colors.dart';
 
 class HomeUserPage extends StatefulWidget {
-  final String title;
-  const HomeUserPage({Key? key, this.title = 'HomeUserPage'}) : super(key: key);
+  const HomeUserPage({super.key});
+
   @override
   HomeUserPageState createState() => HomeUserPageState();
 }
@@ -66,6 +67,8 @@ class HomeUserPageState extends State<HomeUserPage> {
                 ),
               ),
             ),
+            const SizedBox(height: 25),
+            const BoxReadyTrainingOrganism(),
             // ),
             // Container(
             //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),

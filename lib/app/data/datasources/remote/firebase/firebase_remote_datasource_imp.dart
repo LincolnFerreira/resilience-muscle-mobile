@@ -32,12 +32,12 @@ class FirebaseRemoteDataSourceImp implements FirebaseRemoteDataSource {
 
   @override
   Future<bool> isSignIn() async {
-    return FirebaseAuth.instance.currentUser?.uid != null;
+    return auth.currentUser?.uid != null;
   }
 
   @override
   Future<void> signOut() {
-    return FirebaseAuth.instance.signOut();
+    return auth.signOut();
   }
 
   @override

@@ -35,7 +35,8 @@ class SignInCubit extends Cubit<SignInState> {
       final signIn = await signInUseCase
           .call(UserEntity(email: email, password: password));
 
-      if (await isSignInUseCase()) {
+      final isSignIn = await isSignInUseCase();
+      if (isSignIn) {
         emit(state.copyWith(status: SignInStatus.success));
       } else {
         emit(state.copyWith(status: SignInStatus.failure));
