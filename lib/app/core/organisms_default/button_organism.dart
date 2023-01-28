@@ -56,7 +56,7 @@ class ButtonOrganism extends StatelessWidget {
               textButton,
               style: TextStyle(
                 color: textColor,
-                fontSize: 14,
+                fontSize: textSize ?? 14,
               ),
             ),
       ),

@@ -61,10 +61,12 @@ class InputAtom extends StatelessWidget {
         focusedBorder: focusedBorder,
         focusColor: focusColor,
         labelStyle: TextStyle(color: labelColor ?? Colors.grey),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: prefixIcon,
-        ),
+        prefixIcon: prefixIcon == null
+            ? null
+            : Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: prefixIcon,
+              ),
         suffixIcon: Padding(
           padding: const EdgeInsets.all(20.0),
           child: suffixIcon,

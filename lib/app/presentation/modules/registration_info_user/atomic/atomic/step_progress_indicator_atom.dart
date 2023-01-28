@@ -1,14 +1,28 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import '../../../../../core/atom_default/text_atom.dart';
+import '../../../../../core/colors.dart';
+
 class StepProgressIndicatorAtom extends StatelessWidget {
-  const StepProgressIndicatorAtom({super.key});
+  final int currentStep;
+  const StepProgressIndicatorAtom({super.key, required this.currentStep});
 
   @override
   Widget build(BuildContext context) {
-    return const StepProgressIndicator(
-      totalSteps: 10,
+    return Column(
+      children: [
+        const TextAtom(
+            text: 'Informações básicas', textColor: null, fontSize: 22),
+        const SizedBox(
+          height: 30,
+        ),
+        StepProgressIndicator(
+          selectedColor: Pallete.second,
+          totalSteps: 6,
+          currentStep: currentStep,
+        ),
+      ],
     );
   }
 }

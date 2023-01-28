@@ -36,6 +36,9 @@ dependencies:
   drop_shadow: ^0.0.2+1
   step_progress_indicator: ^1.0.2
   validatorless: ^1.2.3
+  google_fonts: ^3.0.1
+  firebase_messaging: ^14.2.1
+  flutter_local_notifications: ^13.0.0
 
 dev_dependencies:
   flutter_test:
