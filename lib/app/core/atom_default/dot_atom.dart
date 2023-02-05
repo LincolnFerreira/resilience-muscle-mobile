@@ -1,42 +1,20 @@
 import 'package:flutter/cupertino.dart';
-
-import '../colors.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DotAtom extends StatelessWidget {
-  const DotAtom({super.key});
+  final int count;
+  final int activeIndex;
+  const DotAtom({
+    super.key,
+    required this.count,
+    required this.activeIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: SizedBox(
-            width: 200,
-            height: 100,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.all(3.0),
-                  width: 12,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Pallete.white.withOpacity(0.5),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Pallete.white.withOpacity(0.2),
-                          blurRadius: 3,
-                          offset: Offset(-5, 0),
-                          spreadRadius: -10,
-                        )
-                      ]),
-                );
-              },
-            ),
-          ),
-        ),
-      ],
+    return AnimatedSmoothIndicator(
+      count: count,
+      activeIndex: activeIndex,
     );
   }
 }

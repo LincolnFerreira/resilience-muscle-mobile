@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class LogoImageWidget extends StatelessWidget {
+class LogoAtom extends StatelessWidget {
   double? width;
   double? height;
 
-  LogoImageWidget({
+  LogoAtom({
     Key? key,
     this.width,
     this.height,
@@ -12,8 +13,8 @@ class LogoImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/images/logo.png',
+    return SvgPicture.asset(
+      'assets/images/logo-theme-light.svg',
       width: width,
       height: height,
     );

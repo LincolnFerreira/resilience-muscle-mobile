@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resilience_muscle/app/core/atom_default/input_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
 
-import '../../../../core/colors.dart';
+import '../../../../../core/colors.dart';
 
 class FormSignInOrganism extends StatelessWidget {
   final double? spaceBetweenInputOrganism;
@@ -29,40 +29,45 @@ class FormSignInOrganism extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        InputAtom(
-          labelText: 'Email',
-          prefixIcon: const FaIcon(
-            FontAwesomeIcons.solidUser,
-            color: Pallete.whiteGrey,
+        SizedBox(
+          child: InputAtom(
+            labelText: 'Email:',
+            prefixIcon: FaIcon(
+              FontAwesomeIcons.solidUser,
+              color: Pallete.grey80,
+            ),
+            onChanged: onChangedEmail,
+            controller: emailController,
           ),
-          onChanged: onChangedEmail,
-          controller: emailController,
         ),
         SizedBox(height: spaceBetweenInputOrganism ?? 10.0),
         InputAtom(
-          labelText: 'Senha',
-          prefixIcon: const FaIcon(
+          labelText: 'Senha:',
+          prefixIcon: FaIcon(
             FontAwesomeIcons.shield,
-            color: Pallete.whiteGrey,
+            color: Pallete.grey80,
           ),
-          suffixIcon: const FaIcon(
+          suffixIcon: FaIcon(
             FontAwesomeIcons.eyeLowVision,
             size: 15,
-            color: Pallete.whiteGrey,
+            color: Pallete.grey80,
           ),
           obscureText: true,
           onChanged: onChangedPassword,
           controller: passwordController,
         ),
-        Align(
-          alignment: Alignment.topRight,
-          child: GestureDetector(
-            child: const TextAtom(
-              text: 'Esqueceu sua senha?',
-              textColor: Pallete.whiteGrey,
-              fontSize: 13,
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Align(
+            alignment: Alignment.topRight,
+            child: GestureDetector(
+              child: TextAtom(
+                text: 'Esqueceu sua senha?',
+                textColor: Pallete.dark63,
+                fontSize: 13,
+              ),
+              onTap: () => Modular.to.navigate('/forget_password'),
             ),
-            onTap: () => Modular.to.navigate('/forget_password'),
           ),
         )
       ],

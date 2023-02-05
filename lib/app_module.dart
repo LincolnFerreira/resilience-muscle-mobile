@@ -73,6 +73,10 @@ class AppModule extends Module {
         ModuleRoute(
           '/settings',
           module: SettingsModule(),
+        ),
+        ModuleRoute(
+          '/registration_info_user',
+          module: RegistrationInfoUserModule(),
         )
       ];
 }

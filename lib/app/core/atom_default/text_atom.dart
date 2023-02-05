@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../colors.dart';
+
 class TextAtom extends StatelessWidget {
   final String text;
   final Color? textColor;
@@ -27,7 +29,7 @@ class TextAtom extends StatelessWidget {
       text,
       style: style ??
           TextStyle(
-            color: textColor,
+            color: textColor ?? Pallete.dark,
             fontSize: fontSize,
             fontFamily: fontFamily,
             fontWeight: fontWeight,

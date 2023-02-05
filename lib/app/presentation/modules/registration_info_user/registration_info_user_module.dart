@@ -10,6 +10,6 @@ class RegistrationInfoUserModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => RegistrationInfoUserPage()),
+    ChildRoute('/', child: (_, args) => const RegistrationInfoUserPage()),
   ];
 }

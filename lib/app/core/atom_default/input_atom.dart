@@ -1,7 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+
+import '../colors.dart';
 
 class InputAtom extends StatelessWidget {
+  final double? width;
+  final double? height;
   final TextEditingController? controller;
   final Function(String)? onChanged;
   final String? labelText;
@@ -19,6 +25,10 @@ class InputAtom extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
+  final List<TextInputFormatter>? inputFormatter;
+  final TextInputType? keyboardType;
+
   const InputAtom({
     Key? key,
     this.controller,
@@ -26,7 +36,7 @@ class InputAtom extends StatelessWidget {
     required this.labelText,
     this.hintText,
     this.obscureText = false,
-    this.textColor = Colors.white,
+    this.textColor = Pallete.dark,
     this.border,
     this.enabledBorder,
     this.focusedBorder,
@@ -38,41 +48,53 @@ class InputAtom extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.validator,
+    this.width,
+    this.height,
+    this.autovalidateMode,
+    this.inputFormatter,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      onChanged: onChanged,
-      obscureText: obscureText,
-      style: TextStyle(color: textColor),
-      decoration: InputDecoration(
-        // contentPadding: EdgeInsets.all(40),
-        labelText: labelText,
-        hintText: hintText,
-        hintStyle: TextStyle(color: hintColor),
-        border: border ?? const OutlineInputBorder(),
-        filled: filled,
-        fillColor: fillColor ?? Colors.white,
-        enabledBorder: enabledBorder ??
-            const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white)),
-        focusedBorder: focusedBorder,
-        focusColor: focusColor,
-        labelStyle: TextStyle(color: labelColor ?? Colors.grey),
-        prefixIcon: prefixIcon == null
-            ? null
-            : Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: prefixIcon,
-              ),
-        suffixIcon: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: suffixIcon,
+    return SizedBox(
+      height: height ?? 47,
+      width: width,
+      child: TextFormField(
+        keyboardType: keyboardType,
+        controller: controller,
+        onChanged: onChanged,
+        obscureText: obscureText,
+        style: TextStyle(color: textColor),
+        decoration: InputDecoration(
+          // contentPadding: EdgeInsets.all(40),
+          labelText: labelText,
+          hintText: hintText,
+          hintStyle: TextStyle(color: hintColor),
+          border: border ?? const OutlineInputBorder(),
+          filled: filled,
+          fillColor: fillColor ?? Pallete.dark,
+          enabledBorder: enabledBorder ??
+              const OutlineInputBorder(
+                  borderSide: BorderSide(color: Pallete.dark)),
+          focusedBorder: focusedBorder,
+          focusColor: focusColor,
+          labelStyle: TextStyle(color: labelColor ?? Pallete.dark),
+          prefixIcon: prefixIcon == null
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: prefixIcon,
+                ),
+          suffixIcon: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: suffixIcon,
+          ),
         ),
+        validator: validator,
+        autovalidateMode: autovalidateMode,
+        inputFormatters: inputFormatter,
       ),
-      validator: validator,
     );
   }
 }

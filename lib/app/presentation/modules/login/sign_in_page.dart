@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:resilience_muscle/app/presentation/modules/login/organisms/form_sign_in_organism.dart';
+import 'package:resilience_muscle/app/core/atom_default/logo_atom.dart';
+import 'package:resilience_muscle/app/core/atom_default/space_widget_atom.dart';
+import 'package:resilience_muscle/app/presentation/modules/login/atomic/atomics/button_google_atom.dart';
+import 'package:resilience_muscle/app/presentation/modules/login/atomic/atomics/or_atom.dart';
+import 'package:resilience_muscle/app/presentation/modules/login/atomic/organisms/bottom_text_version_screen_organism.dart';
+import 'package:resilience_muscle/app/presentation/modules/login/atomic/organisms/dont_have_an_account_organism.dart';
+import 'package:resilience_muscle/app/presentation/modules/login/atomic/organisms/form_sign_in_organism.dart';
 import 'package:asuka/asuka.dart' as asuka;
 
-import '../../../core/colors.dart';
 import '../../../core/organisms_default/button_organism.dart';
+import 'atomic/organisms/welcome_label_organism.dart';
 import 'cubit/sign_in_cubit.dart';
 import 'cubit/sign_in_state.dart';
 
@@ -43,7 +48,7 @@ class SignInPageState extends State<SignInPage> {
         if (state.status == SignInStatus.success) {
           asuka.AsukaSnackbar.success("sucesso").show();
           Future.delayed(const Duration(seconds: 5),
-              () => Modular.to.navigate('/home_user/'));
+              () => Modular.to.navigate('/registration_info_user/'));
         }
         if (state.status == SignInStatus.failure) {
           asuka.AsukaSnackbar.alert("erro de login").show();
@@ -51,24 +56,17 @@ class SignInPageState extends State<SignInPage> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              color: Pallete.white,
-              onPressed: () {
-                Modular.to.navigate('/');
-              },
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-          ),
+          resizeToAvoidBottomInset: true,
+          backgroundColor: Colors.white,
           body: Container(
             margin: const EdgeInsets.all(30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                LogoAtom(),
+                const WelcomeLabelOrganism(),
                 FormSignInOrganism(
-                  spaceBetweenInputOrganism: 20,
+                  spaceBetweenInputOrganism: 28,
                   onChangedEmail: (emailValue) {
                     email = emailController.text;
                   },
@@ -81,65 +79,27 @@ class SignInPageState extends State<SignInPage> {
                 Column(
                   children: [
                     ButtonOrganism.primary(
-                      width: double.infinity,
+                      width: 232,
                       onPressed: () async {
+                        FocusManager.instance.primaryFocus?.unfocus();
+
                         cubit.submitSignIn(
                           emailController.text,
                           passwordController.text,
                         );
                       },
-                      textButton: 'Confirmar',
+                      textButton: 'Entrar',
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 30,
-                        bottom: 30,
-                      ),
-                      child: SizedBox(
-                        child: Row(
-                          children: const [
-                            Expanded(
-                              child: Divider(
-                                thickness: 1,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            Text(
-                              ' or ',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                thickness: 1,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    ButtonOrganism(
-                      textButton: 'Entrar com Google',
-                      backgroundColor: Colors.red,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          FaIcon(
-                            FontAwesomeIcons.google,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text('Continuar com google'),
-                        ],
-                      ),
-                      onPressed: () {},
-                    ),
+                    const OrAtom(),
+                    const ButtonGoogleAtom(),
+                    const SpaceWidgetAtom(height: 20),
+                    const DontHaveAnAccountOrganism()
                   ],
                 ),
               ],
             ),
           ),
+          bottomNavigationBar: const BottomTextVersionScreenOrganism(),
         );
       },
     );
