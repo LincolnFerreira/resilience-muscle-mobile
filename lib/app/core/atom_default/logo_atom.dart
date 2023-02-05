@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LogoAtom extends StatelessWidget {
-  double? width;
-  double? height;
+  final double? width;
+  final double? height;
 
-  LogoAtom({
+  const LogoAtom({
     Key? key,
     this.width,
     this.height,

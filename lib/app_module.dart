@@ -1,22 +1,22 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
-import 'package:resilience_muscle/app/data/repositories/get_current_uid_repository_imp.dart';
-import 'package:resilience_muscle/app/data/repositories/sign_in_repository_imp.dart';
-import 'package:resilience_muscle/app/data/repositories/sign_out_repository_imp.dart';
-import 'package:resilience_muscle/app/domain/usecases/get_current_uid/get_current_uid_usecase_imp.dart';
-import 'package:resilience_muscle/app/domain/usecases/sign_in/sign_in_usecase_imp.dart';
-import 'package:resilience_muscle/app/domain/usecases/sign_out/sign_out_usecase_imp.dart';
-import 'package:resilience_muscle/app/presentation/modules/forget_password/forget_password_module.dart';
-import 'package:resilience_muscle/app/presentation/modules/home/home_module.dart';
-import 'package:resilience_muscle/app/presentation/modules/registration_info_user/registration_info_user_module.dart';
-import 'package:resilience_muscle/app/presentation/modules/splash/splash_module.dart';
 
-import 'app/data/repositories/is_sign_in_repository_imp.dart';
-import 'app/domain/usecases/is_sign_in/is_sign_in_usecase_imp.dart';
-import 'app/presentation/modules/settings/settings_module.dart';
-import 'app/presentation/modules/home_user/home_user_module.dart';
-import 'app/presentation/modules/login/cubit/sign_in_cubit.dart';
-import 'app/presentation/modules/login/login_module.dart';
+import 'app/modules/forget_password/forget_password_module.dart';
+import 'app/modules/home/home_module.dart';
+import 'app/modules/home_user/home_user_module.dart';
+import 'app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
+import 'app/modules/login/data/repositories/get_current_uid_repository_imp.dart';
+import 'app/modules/login/data/repositories/is_sign_in_repository_imp.dart';
+import 'app/modules/login/data/repositories/sign_in_repository_imp.dart';
+import 'app/modules/login/data/repositories/sign_out_repository_imp.dart';
+import 'app/modules/login/domain/usecases/get_current_uid/get_current_uid_usecase_imp.dart';
+import 'app/modules/login/domain/usecases/is_sign_in/is_sign_in_usecase_imp.dart';
+import 'app/modules/login/domain/usecases/sign_in/sign_in_usecase_imp.dart';
+import 'app/modules/login/domain/usecases/sign_out/sign_out_usecase_imp.dart';
+import 'app/modules/login/login_module.dart';
+import 'app/modules/login/presentation/cubit/sign_in_cubit.dart';
+import 'app/modules/registration_info_user/registration_info_user_module.dart';
+import 'app/modules/settings/settings_module.dart';
+import 'app/modules/splash/splash_module.dart';
 
 class AppModule extends Module {
   @override
