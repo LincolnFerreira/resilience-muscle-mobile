@@ -19,13 +19,15 @@ class SignInCubit extends Cubit<SignInState> {
   final GetCurrentUIdUseCase getCurrentUIdUseCase;
   final SignOutUseCase signOutUseCase;
   // LoginRepository signInRepository;
-  SignInCubit(
+  SignInCubit({
     // this.signInRepository,
-    this.signInUseCase,
-    this.isSignInUseCase,
-    this.getCurrentUIdUseCase,
-    this.signOutUseCase,
-  ) : super(SignInState.initial());
+    required this.signInUseCase,
+    required this.isSignInUseCase,
+    required this.getCurrentUIdUseCase,
+    required this.signOutUseCase,
+  }) : super(
+          SignInState.initial(),
+        );
 
   final Logger logger = Logger();
   void loading() {
@@ -37,16 +39,15 @@ class SignInCubit extends Cubit<SignInState> {
     try {
       final signIn = await signInUseCase
           .call(UserEntity(email: email, password: password));
-
-      final isSignIn = await isSignInUseCase();
-      if (isSignIn) {
-        emit(state.copyWith(status: SignInStatus.success));
-      } else {
-        emit(state.copyWith(status: SignInStatus.failure));
-      }
-    } on SocketException catch (_) {
-      emit(state.copyWith(status: SignInStatus.failure));
-      // print(e);
+      signIn.fold(
+        (failure) {
+          emit(state.copyWith(status: SignInStatus.failure));
+          // print(failure.message);
+        },
+        (right) {
+          emit(state.copyWith(status: SignInStatus.success));
+        },
+      );
     } catch (_) {
       emit(state.copyWith(status: SignInStatus.failure));
     }

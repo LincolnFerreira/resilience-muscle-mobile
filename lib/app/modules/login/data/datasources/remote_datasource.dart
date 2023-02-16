@@ -1,9 +1,12 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure.dart';
 import '../../domain/entities/user_entity.dart';
 
-abstract class FirebaseRemoteDataSource {
+abstract class RemoteDataSource {
   Future<bool> isSignIn();
   Future<void> signUp(UserEntity user);
-  Future<void> signIn(UserEntity user);
+  Future<Either<Failure, void>> signIn(UserEntity user);
   Future<void> signOut();
   Future<String> getCurrentUId();
   Future<void> getCreateCurrentUser(UserEntity user);

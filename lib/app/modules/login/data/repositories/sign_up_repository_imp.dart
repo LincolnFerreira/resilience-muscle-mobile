@@ -1,9 +1,9 @@
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/sign_up_repository.dart';
-import '../datasources/firebase_remote_datasource.dart';
+import '../datasources/remote_datasource.dart';
 
 class SignUpRepositoryImp implements SignUpRepository {
-  final FirebaseRemoteDataSource firebaseRemoteDataSource;
+  final RemoteDataSource firebaseRemoteDataSource;
 
   SignUpRepositoryImp(this.firebaseRemoteDataSource);
   @override

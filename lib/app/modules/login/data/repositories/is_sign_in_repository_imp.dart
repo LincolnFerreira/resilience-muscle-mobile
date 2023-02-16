@@ -1,8 +1,8 @@
 import '../../domain/repositories/is_sign_in_repository.dart';
-import '../datasources/firebase_remote_datasource.dart';
+import '../datasources/remote_datasource.dart';
 
 class IsSignInRepositoryImp implements IsSignInRepository {
-  final FirebaseRemoteDataSource firebaseRemoteDataSource;
+  final RemoteDataSource firebaseRemoteDataSource;
 
   IsSignInRepositoryImp({
     required this.firebaseRemoteDataSource,

@@ -1,13 +1,15 @@
 // ignore_for_file: unused_local_variable, duplicate_ignore
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../../../core/failure.dart';
 import '../../../../domain/entities/user_entity.dart';
 import '../../../models/user_model.dart';
-import '../../firebase_remote_datasource.dart';
+import '../../remote_datasource.dart';
 
-class FirebaseRemoteDataSourceImp implements FirebaseRemoteDataSource {
+class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   late final FirebaseAuth auth = FirebaseAuth.instance;
 
   late final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -18,18 +20,22 @@ class FirebaseRemoteDataSourceImp implements FirebaseRemoteDataSource {
   }
 
   @override
-  Future<void> signIn(UserEntity user) async {
+  Future<Either<Failure, void>> signIn(UserEntity user) async {
     try {
       await auth.signInWithEmailAndPassword(
           email: user.email, password: user.password);
       // print('datasource sucesso');
+      return const Right(null);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
+        return Left(Failure(message: 'Usuário não encontrado!'));
         // print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
+        return Left(Failure(message: 'Senha incorreta!'));
         // print('Wrong password provided for that user.');
       }
     }
+    return const Right(null);
   }
 
   @override

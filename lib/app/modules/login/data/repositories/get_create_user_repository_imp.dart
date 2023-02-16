@@ -1,9 +1,9 @@
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/get_create_current_user_repository.dart';
-import '../datasources/firebase_remote_datasource.dart';
+import '../datasources/remote_datasource.dart';
 
 class GetCurrentUserRepository implements GetCreateCurrentUserRepository {
-  final FirebaseRemoteDataSource firebaseRemoteDataSource;
+  final RemoteDataSource firebaseRemoteDataSource;
 
   GetCurrentUserRepository({
     required this.firebaseRemoteDataSource,

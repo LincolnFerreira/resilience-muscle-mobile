@@ -1,33 +1,27 @@
+import 'package:equatable/equatable.dart';
+
 enum SignInStatus { initial, loading, success, failure }
 
-class SignInState {
-  final String email;
-  final String password;
-  SignInStatus status;
-
-  SignInState({
-    required this.email,
-    required this.password,
-    required this.status,
+class SignInState extends Equatable {
+  const SignInState({
+    this.status = SignInStatus.initial,
   });
 
+  final SignInStatus status;
   SignInState copyWith({
-    String? email,
-    String? password,
     SignInStatus? status,
   }) {
     return SignInState(
-      email: email ?? this.email,
-      password: password ?? this.password,
       status: status ?? this.status,
     );
   }
 
   factory SignInState.initial() {
-    return SignInState(
-      email: '',
-      password: '',
+    return const SignInState(
       status: SignInStatus.initial,
     );
   }
+
+  @override
+  List<Object?> get props => [status];
 }
