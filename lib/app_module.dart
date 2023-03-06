@@ -7,6 +7,7 @@ import 'package:resilience_muscle/app/modules/login/domain/usecases/get_current_
 import 'package:resilience_muscle/app/modules/login/domain/usecases/is_sign_in/is_sign_in_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/sign_out/sign_out_usecase.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/cubit/registration_info_user_cubit.dart';
+import 'package:resilience_muscle/app/modules/splash/splash_module.dart';
 
 import 'app/modules/forget_password/forget_password_module.dart';
 import 'app/modules/home/home_module.dart';
@@ -76,7 +77,7 @@ class AppModule extends Module {
   List<ModuleRoute> get routes => [
         ModuleRoute(
           '/',
-          module: LoginModule(),
+          module: SplashModule(),
           transition: TransitionType.rightToLeft,
           duration: const Duration(milliseconds: 500),
         ),
@@ -109,6 +110,10 @@ class AppModule extends Module {
         ModuleRoute(
           '/registration_info_user',
           module: RegistrationInfoUserModule(),
+        ),
+        ModuleRoute(
+          '/home_user',
+          module: HomeUserModule(),
         )
       ];
 }

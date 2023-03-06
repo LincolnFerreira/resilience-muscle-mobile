@@ -56,7 +56,7 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
                   ),
                   DotAtom(
                     activeIndex: cubit.state.page,
-                    count: 6,
+                    count: 4,
                   ),
                 ],
               ),
@@ -85,11 +85,10 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
                       }
 
                       if (state.page == 3) {
-                        return RegistrationInfoUserWeight(
-                          onPressed: cubit.onTapButton,
-                        );
+                        return RegistrationInfoUserWeight(onPressed: () {
+                          Modular.to.navigate('/home_user');
+                        });
                       }
-
                       return const SizedBox(
                         child: Text('Erro!'),
                       );

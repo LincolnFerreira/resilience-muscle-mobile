@@ -10,10 +10,10 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      builder: Asuka.builder,
       title: 'Resilience Muscle',
+      builder: Asuka.builder,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       // darkTheme: ThemeData(brightness: Brightness.dark),
       theme: ThemeData(
         scaffoldBackgroundColor: Pallete.white,
@@ -26,7 +26,5 @@ class AppWidget extends StatelessWidget {
       routerDelegate: Modular.routerDelegate,
       // color: Pallete.dark,
     );
-    // },
-    // );
   }
 }
