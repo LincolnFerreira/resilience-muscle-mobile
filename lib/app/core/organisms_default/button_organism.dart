@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../../../ui/colors.dart';
 
 class ButtonOrganism extends StatelessWidget {
   final VoidCallback onPressed;
@@ -30,12 +30,12 @@ class ButtonOrganism extends StatelessWidget {
   const ButtonOrganism.primary({
     Key? key,
     required this.onPressed,
-    this.backgroundColor = Pallete.primary,
-    this.foregroundColor = Pallete.primary,
+    this.backgroundColor = ColorsUI.primary,
+    this.foregroundColor = ColorsUI.primary,
     this.width,
     this.heigth,
     required this.textButton,
-    this.textColor = Pallete.white,
+    this.textColor = ColorsUI.white,
     this.child,
     this.textSize,
   }) : super(key: key);

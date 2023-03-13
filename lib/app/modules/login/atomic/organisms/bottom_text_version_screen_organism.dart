@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/colors.dart';
+import '../../../../../ui/colors.dart';
 import '../../../../core/strings.dart';
 
 class BottomTextVersionScreenOrganism extends StatelessWidget {
@@ -14,7 +14,7 @@ class BottomTextVersionScreenOrganism extends StatelessWidget {
       child: Text(
         textAlign: TextAlign.center,
         'Version $versionAppLabel | Powered by Lincoln Ferreira',
-        style: TextStyle(color: Pallete.dark63),
+        style: TextStyle(color: ColorsUI.dark63),
       ),
     );
   }

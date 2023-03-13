@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resilience_muscle/app/core/atom_default/input_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
 
-import '../../../../core/colors.dart';
+import '../../../../../ui/colors.dart';
 
 class FormSignInOrganism extends StatelessWidget {
   final double? spaceBetweenInputOrganism;
@@ -34,7 +34,7 @@ class FormSignInOrganism extends StatelessWidget {
             labelText: 'Email:',
             prefixIcon: FaIcon(
               FontAwesomeIcons.solidUser,
-              color: Pallete.grey80,
+              color: ColorsUI.grey80,
             ),
             onChanged: onChangedEmail,
             controller: emailController,
@@ -45,12 +45,12 @@ class FormSignInOrganism extends StatelessWidget {
           labelText: 'Senha:',
           prefixIcon: FaIcon(
             FontAwesomeIcons.shield,
-            color: Pallete.grey80,
+            color: ColorsUI.grey80,
           ),
           suffixIcon: FaIcon(
             FontAwesomeIcons.eyeLowVision,
             size: 15,
-            color: Pallete.grey80,
+            color: ColorsUI.grey80,
           ),
           obscureText: true,
           onChanged: onChangedPassword,
@@ -63,7 +63,7 @@ class FormSignInOrganism extends StatelessWidget {
             child: GestureDetector(
               child: TextAtom(
                 text: 'Esqueceu sua senha?',
-                textColor: Pallete.dark63,
+                textColor: ColorsUI.dark63,
                 fontSize: 13,
               ),
               onTap: () => Modular.to.navigate('/forget_password'),

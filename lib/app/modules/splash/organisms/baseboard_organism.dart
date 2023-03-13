@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../ui/colors.dart';
 import '../../../core/atom_default/text_atom.dart';
-import '../../../core/colors.dart';
 
 class BaseboardOrganism extends StatelessWidget {
   const BaseboardOrganism({super.key});
@@ -17,7 +17,7 @@ class BaseboardOrganism extends StatelessWidget {
       },
       child: const TextAtom(
         text: 'Todos os direitos reservados © Copyright 2022',
-        textColor: Pallete.white,
+        textColor: ColorsUI.white,
         fontWeight: FontWeight.w300,
         fontSize: 13.5,
         textAlign: TextAlign.center,

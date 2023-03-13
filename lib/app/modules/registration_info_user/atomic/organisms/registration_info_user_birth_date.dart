@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:resilience_muscle/app/core/atom_default/input_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/space_widget_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import 'package:resilience_muscle/app/core/colors.dart';
 
+import '../../../../../ui/colors.dart';
 import '../../../../core/organisms_default/button_organism.dart';
 import '../../../../core/validator_functions.dart';
 
@@ -24,7 +24,7 @@ class RegistrationInfoUserBirthDate extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: TextAtom(
               text: 'Qual sua data de nascimento ?',
-              textColor: Pallete.dark,
+              textColor: ColorsUI.dark,
               fontSize: 22),
         ),
         const SpaceWidgetAtom(height: 20),

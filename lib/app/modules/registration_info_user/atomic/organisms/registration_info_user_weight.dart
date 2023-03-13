@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:horizontal_picker/horizontal_picker.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import 'package:resilience_muscle/app/core/colors.dart';
+import '../../../../../ui/colors.dart';
 
 import '../../../../core/atom_default/space_widget_atom.dart';
 import '../../../../core/organisms_default/button_organism.dart';
@@ -34,7 +34,7 @@ class _RegistrationInfoUserWeightState
             children: [
               const TextAtom(
                 text: 'Qual seu peso?',
-                textColor: Pallete.dark,
+                textColor: ColorsUI.dark,
                 fontSize: 22,
               ),
               const SpaceWidgetAtom(height: 20),
@@ -56,8 +56,8 @@ class _RegistrationInfoUserWeightState
                 initialPosition: InitialPosition.center,
                 showCursor: false,
                 backgroundColor: Colors.white,
-                activeItemTextColor: Pallete.primary,
-                passiveItemsTextColor: Pallete.dark,
+                activeItemTextColor: ColorsUI.primary,
+                passiveItemsTextColor: ColorsUI.dark,
                 onChanged: (value) {
                   setState(() {
                     _currentKilos = value;

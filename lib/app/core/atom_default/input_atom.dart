@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../colors.dart';
+import 'package:resilience_muscle/ui/colors.dart';
 
 class InputAtom extends StatelessWidget {
   final double? width;
@@ -35,7 +34,7 @@ class InputAtom extends StatelessWidget {
     required this.labelText,
     this.hintText,
     this.obscureText = false,
-    this.textColor = Pallete.dark,
+    this.textColor = ColorsUI.dark,
     this.border,
     this.enabledBorder,
     this.focusedBorder,
@@ -72,13 +71,13 @@ class InputAtom extends StatelessWidget {
           hintStyle: TextStyle(color: hintColor),
           border: border ?? const OutlineInputBorder(),
           filled: filled,
-          fillColor: fillColor ?? Pallete.dark,
+          fillColor: fillColor ?? ColorsUI.dark,
           enabledBorder: enabledBorder ??
               const OutlineInputBorder(
-                  borderSide: BorderSide(color: Pallete.dark)),
+                  borderSide: BorderSide(color: ColorsUI.dark)),
           focusedBorder: focusedBorder,
           focusColor: focusColor,
-          labelStyle: TextStyle(color: labelColor ?? Pallete.dark),
+          labelStyle: TextStyle(color: labelColor ?? ColorsUI.dark),
           prefixIcon: prefixIcon == null
               ? null
               : Padding(

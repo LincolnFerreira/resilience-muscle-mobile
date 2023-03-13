@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/colors.dart';
+import '../../../../../ui/colors.dart';
 
 class DontHaveAnAccountOrganism extends StatelessWidget {
   const DontHaveAnAccountOrganism({super.key});
@@ -10,10 +10,10 @@ class DontHaveAnAccountOrganism extends StatelessWidget {
     return RichText(
       text: const TextSpan(
         text: 'Não possui uma conta?',
-        style: TextStyle(color: Pallete.dark),
+        style: TextStyle(color: ColorsUI.dark),
         children: <TextSpan>[
           TextSpan(
-              text: ' Criar conta', style: TextStyle(color: Pallete.primary)),
+              text: ' Criar conta', style: TextStyle(color: ColorsUI.primary)),
         ],
       ),
     );

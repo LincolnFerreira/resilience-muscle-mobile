@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resilience_muscle/app/modules/settings/settings_store.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/colors.dart';
+import '../../../ui/colors.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -22,7 +22,7 @@ class SettingsPageState extends State<SettingsPage> {
         leading: GestureDetector(
           child: IconButton(
               icon: const Icon(Icons.arrow_back),
-              color: Pallete.white,
+              color: ColorsUI.white,
               onPressed: () {
                 Modular.to.navigate('/home_user/');
               }),
@@ -48,7 +48,7 @@ class SettingsPageState extends State<SettingsPage> {
                     child: Text(
                       'Perfil',
                       style: TextStyle(
-                          color: Pallete.white,
+                          color: ColorsUI.white,
                           fontSize: 30,
                           fontWeight: FontWeight.bold),
                     ),
@@ -77,7 +77,7 @@ class SettingsPageState extends State<SettingsPage> {
                     child: Text(
                       '{user.name}',
                       style: TextStyle(
-                        color: Pallete.white,
+                        color: ColorsUI.white,
                       ),
                     ),
                   ),

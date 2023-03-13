@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import 'package:resilience_muscle/app/core/colors.dart';
+import '../../../../../ui/colors.dart';
 
 import '../../../../core/atom_default/dot_atom.dart';
 import '../../../../core/atom_default/space_widget_atom.dart';
@@ -29,7 +29,7 @@ class RegistrationInfoUserTrainingDivision extends StatelessWidget {
                   text: 'Informações de usuário',
                   style: GoogleFonts.roboto(
                     fontSize: 18,
-                    color: Pallete.primary,
+                    color: ColorsUI.primary,
                   ),
                 ),
                 const DotAtom(
@@ -44,7 +44,7 @@ class RegistrationInfoUserTrainingDivision extends StatelessWidget {
               children: const [
                 TextAtom(
                     text: 'Como são divididos seus treinos?',
-                    textColor: Pallete.dark,
+                    textColor: ColorsUI.dark,
                     fontSize: 22),
                 //TODO: semanalmente e sequencialmente widget de seleção
               ],

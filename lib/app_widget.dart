@@ -1,8 +1,7 @@
 import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'app/core/colors.dart';
+import 'package:resilience_muscle/ui/colors.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class AppWidget extends StatelessWidget {
       themeMode: ThemeMode.light,
       // darkTheme: ThemeData(brightness: Brightness.dark),
       theme: ThemeData(
-        scaffoldBackgroundColor: Pallete.white,
+        scaffoldBackgroundColor: ColorsUI.white,
         textTheme: const TextTheme(),
         primaryColor: Colors.red,
         //visualDensity pesquisar sobre
@@ -24,7 +23,7 @@ class AppWidget extends StatelessWidget {
       ),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
-      // color: Pallete.dark,
+      // color: ColorsUI.dark,
     );
   }
 }

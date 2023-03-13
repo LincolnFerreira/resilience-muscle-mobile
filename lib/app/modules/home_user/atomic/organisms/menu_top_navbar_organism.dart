@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resilience_muscle/app/modules/home_user/atomic/atom/rich_text_atom.dart';
-import '../../../../core/colors.dart';
+
+import '../../../../../ui/colors.dart';
 
 class MenuTopNavbarOrganism extends StatelessWidget {
   const MenuTopNavbarOrganism({super.key});
@@ -17,7 +18,7 @@ class MenuTopNavbarOrganism extends StatelessWidget {
         GestureDetector(
           child: const Icon(
             Icons.notifications,
-            color: Pallete.white,
+            color: ColorsUI.white,
             size: 33,
           ),
         ),

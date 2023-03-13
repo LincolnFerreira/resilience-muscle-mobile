@@ -3,7 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../core/colors.dart';
+import '../../../ui/colors.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                   GestureDetector(
                     child: const Icon(
                       Icons.notifications,
-                      color: Pallete.white,
+                      color: ColorsUI.white,
                       size: 33,
                     ),
                   )
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: Pallete.darkless,
+                    color: ColorsUI.darkless,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5),
@@ -69,19 +69,19 @@ class HomePage extends StatelessWidget {
                           // title: 'Frequência',
                           data: '7',
                           fontSize: 40,
-                          colorFont: Pallete.white,
+                          colorFont: ColorsUI.white,
                         ),
                         SizedBoxItem(
                           // title: 'Treino de hoje',
                           data: 'Peito',
                           fontSize: 30,
-                          colorFont: Pallete.green,
+                          colorFont: ColorsUI.green,
                         ),
                         SizedBoxItem(
                           // title: 'Status',
                           data: '😀',
                           fontSize: 30,
-                          colorFont: Pallete.green,
+                          colorFont: ColorsUI.green,
                         ),
                       ],
                     ),
@@ -133,7 +133,7 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         // backgroundColor: Colors.transparent,
         elevation: 0,
-        selectedItemColor: Pallete.white,
+        selectedItemColor: ColorsUI.white,
         // unselectedLabelStyle:
         //     TextStyle(color: Colors.white, backgroundColor: Colors.white),
         unselectedItemColor: Colors.white38,
@@ -218,7 +218,7 @@ class SizedBoxItem extends StatelessWidget {
             title,
             style: const TextStyle(
               fontWeight: FontWeight.w100,
-              color: Pallete.white,
+              color: ColorsUI.white,
             ),
           ),
           Text.rich(

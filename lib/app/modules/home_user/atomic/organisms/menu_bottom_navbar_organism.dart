@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../core/colors.dart';
+import '../../../../../ui/colors.dart';
 
 class MenuBottomNavbarOrganism extends StatelessWidget {
   final double? elevation;
@@ -52,7 +52,7 @@ class MenuBottomNavbarOrganism extends StatelessWidget {
           icon: const FaIcon(
             FontAwesomeIcons.solidSquarePlus,
             size: 36,
-            color: Pallete.green,
+            color: ColorsUI.green,
           ),
           label: "Criar",
         ),

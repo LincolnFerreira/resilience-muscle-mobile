@@ -5,10 +5,10 @@ import 'package:resilience_muscle/app/modules/registration_info_user/cubit/regis
 import 'package:resilience_muscle/app/modules/registration_info_user/registration_info_user_store.dart';
 import 'package:flutter/material.dart';
 
+import '../../../ui/colors.dart';
 import '../../core/atom_default/dot_atom.dart';
 import '../../core/atom_default/space_widget_atom.dart';
 import '../../core/atom_default/text_atom.dart';
-import '../../core/colors.dart';
 import 'atomic/organisms/registration_info_user_birth_date.dart';
 import 'atomic/organisms/registration_info_user_height.dart';
 import 'atomic/organisms/registration_info_user_name.dart';
@@ -51,7 +51,7 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
                     text: 'Informações de usuário',
                     style: GoogleFonts.roboto(
                       fontSize: 18,
-                      color: Pallete.primary,
+                      color: ColorsUI.primary,
                     ),
                   ),
                   DotAtom(

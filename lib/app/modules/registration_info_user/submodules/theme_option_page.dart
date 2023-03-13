@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:resilience_muscle/app/core/atom_default/space_widget_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import 'package:resilience_muscle/app/core/colors.dart';
+import '../../../../../ui/colors.dart';
+
 import 'package:resilience_muscle/app/modules/registration_info_user/registration_strings.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/submodules/atomic/toggle_theme_atom.dart';
 
@@ -19,7 +20,7 @@ class _ThemeOptionPageState extends State<ThemeOptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: light ? Pallete.white : Pallete.dark,
+      backgroundColor: light ? ColorsUI.white : ColorsUI.dark,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,34 +28,34 @@ class _ThemeOptionPageState extends State<ThemeOptionPage> {
           TextAtom(
             text: RegistrationStrings.titleThemeOption,
             fontSize: 26,
-            textColor: light ? Pallete.dark : Pallete.white,
+            textColor: light ? ColorsUI.dark : ColorsUI.white,
           ),
           const SpaceWidgetAtom(height: 40),
           Text(RegistrationStrings.textThemeOption,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
-                color: light ? Pallete.dark : Pallete.white,
+                color: light ? ColorsUI.dark : ColorsUI.white,
               )),
           const SpaceWidgetAtom(height: 118),
           ToggleThemeAtom(
-            color: light ? null : Pallete.dark,
+            color: light ? null : ColorsUI.dark,
             child: Row(
               children: [
                 ToggleThemeAtom(
                   width: 125,
-                  color: light ? Pallete.white : Colors.transparent,
+                  color: light ? ColorsUI.white : Colors.transparent,
                   child: const Center(
                     child: Text(
                       'Claro',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, color: Pallete.dark),
+                      style: TextStyle(fontSize: 20, color: ColorsUI.dark),
                     ),
                   ),
                 ),
                 ToggleThemeAtom(
                   width: 125,
-                  color: light ? Colors.transparent : Pallete.dark,
+                  color: light ? Colors.transparent : ColorsUI.dark,
                   child: Center(
                     child: Text(
                       'Escuro',
@@ -62,8 +63,8 @@ class _ThemeOptionPageState extends State<ThemeOptionPage> {
                       style: TextStyle(
                         fontSize: 20,
                         color: light
-                            ? Pallete.dark.withOpacity(0.5)
-                            : Pallete.white,
+                            ? ColorsUI.dark.withOpacity(0.5)
+                            : ColorsUI.white,
                       ),
                     ),
                   ),

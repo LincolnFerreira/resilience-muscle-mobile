@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../../../../core/colors.dart';
+import '../../../../../ui/colors.dart';
 
 class ToggleThemeAtom extends StatelessWidget {
   final Widget? child;
@@ -22,7 +22,7 @@ class ToggleThemeAtom extends StatelessWidget {
       width: width ?? 250,
       height: height ?? 58,
       decoration: BoxDecoration(
-        color: color ?? Pallete.dark.withOpacity(0.1),
+        color: color ?? ColorsUI.dark.withOpacity(0.1),
         borderRadius: const BorderRadius.all(
           Radius.circular(40),
         ),
