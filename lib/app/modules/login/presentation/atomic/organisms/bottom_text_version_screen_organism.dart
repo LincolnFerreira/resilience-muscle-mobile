@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../ui/colors.dart';
-import '../../../../core/strings.dart';
+import '../../../../../../ui/colors.dart';
+import '../../../../../core/strings.dart';
 
 class BottomTextVersionScreenOrganism extends StatelessWidget {
   const BottomTextVersionScreenOrganism({super.key});

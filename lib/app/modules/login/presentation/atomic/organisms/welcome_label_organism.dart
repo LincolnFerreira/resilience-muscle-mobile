@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:resilience_muscle/ui/typography.dart';
 
-import '../../../../../ui/colors.dart';
-import '../../../../core/atom_default/text_atom.dart';
+import '../../../../../core/atom_default/text_atom.dart';
 
 class WelcomeLabelOrganism extends StatelessWidget {
   const WelcomeLabelOrganism({super.key});
@@ -16,18 +15,14 @@ class WelcomeLabelOrganism extends StatelessWidget {
         children: [
           TextAtom(
             text: 'Bem vindo(a)',
-            style: GoogleFonts.roboto(
-                color: ColorsUI.dark,
-                fontWeight: FontWeight.w400,
-                fontSize: 25),
+            style: heading26Style,
+          ),
+          const Divider(
+            height: 8,
           ),
           TextAtom(
             text: 'Entre para continuar!',
-            style: GoogleFonts.roboto(
-              color: ColorsUI.dark,
-              fontWeight: FontWeight.w300,
-              fontSize: 18,
-            ),
+            style: bodyLight18Style,
           )
         ],
       ),

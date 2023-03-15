@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../ui/colors.dart';
+import '../../../../../../ui/colors.dart';
 
 class DontHaveAnAccountOrganism extends StatelessWidget {
   const DontHaveAnAccountOrganism({super.key});

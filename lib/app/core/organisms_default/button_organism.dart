@@ -62,17 +62,4 @@ class ButtonOrganism extends StatelessWidget {
       ),
     );
   }
-
-  // const ButtonOrganism.icon({
-  //   super.key,
-  //   required this.onPressed,
-  //   this.backgroundColor,
-  //   this.foregroundColor,
-  //   this.width,
-  //   this.heigth,
-  //   required this.textButton,
-  //   this.textColor,
-  //   this.child,
-  //   this.textSize,
-  // });
 }

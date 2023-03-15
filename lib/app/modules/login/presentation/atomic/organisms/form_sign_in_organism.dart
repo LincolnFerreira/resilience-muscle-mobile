@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resilience_muscle/app/core/atom_default/input_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
 
-import '../../../../../ui/colors.dart';
+import '../../../../../../ui/colors.dart';
 
 class FormSignInOrganism extends StatelessWidget {
   final double? spaceBetweenInputOrganism;
@@ -31,6 +31,7 @@ class FormSignInOrganism extends StatelessWidget {
       children: [
         SizedBox(
           child: InputAtom(
+            height: 48,
             labelText: 'Email:',
             prefixIcon: FaIcon(
               FontAwesomeIcons.solidUser,
@@ -42,6 +43,7 @@ class FormSignInOrganism extends StatelessWidget {
         ),
         SizedBox(height: spaceBetweenInputOrganism ?? 10.0),
         InputAtom(
+          height: 48,
           labelText: 'Senha:',
           prefixIcon: FaIcon(
             FontAwesomeIcons.shield,

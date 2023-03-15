@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resilience_muscle/ui/colors.dart';
+import 'package:resilience_muscle/ui/typography.dart';
 
 class InputAtom extends StatelessWidget {
   final double? width;
@@ -56,14 +57,14 @@ class InputAtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height ?? 47,
+      height: height ?? 48,
       width: width,
       child: TextFormField(
         keyboardType: keyboardType,
         controller: controller,
         onChanged: onChanged,
         obscureText: obscureText,
-        style: TextStyle(color: textColor),
+        style: body15Style,
         decoration: InputDecoration(
           // contentPadding: EdgeInsets.all(40),
           labelText: labelText,

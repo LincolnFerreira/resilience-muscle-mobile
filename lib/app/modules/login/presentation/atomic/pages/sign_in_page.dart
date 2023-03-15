@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../core/atom_default/logo_atom.dart';
-import '../../../core/atom_default/space_widget_atom.dart';
-import '../../../core/organisms_default/button_organism.dart';
-import '../atomic/atomics/button_google_atom.dart';
-import '../atomic/atomics/or_atom.dart';
-import '../atomic/organisms/bottom_text_version_screen_organism.dart';
-import '../atomic/organisms/dont_have_an_account_organism.dart';
-import '../atomic/organisms/form_sign_in_organism.dart';
-import '../atomic/organisms/welcome_label_organism.dart';
-import 'cubit/sign_in_cubit.dart';
-import 'cubit/sign_in_state.dart';
+import '../../../../../core/atom_default/logo_atom.dart';
+import '../../../../../core/atom_default/space_widget_atom.dart';
+import '../../../../../core/organisms_default/button_organism.dart';
+import '../../../atomic/atomics/button_google_atom.dart';
+import '../../../atomic/organisms/bottom_text_version_screen_organism.dart';
+import '../../../atomic/organisms/dont_have_an_account_organism.dart';
+import '../../../atomic/organisms/form_sign_in_organism.dart';
+import '../../../atomic/organisms/welcome_label_organism.dart';
+import '../../cubit/sign_in_cubit.dart';
+import '../../cubit/sign_in_state.dart';
+import '../atomics/or_atom.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({
