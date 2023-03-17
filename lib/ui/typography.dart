@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //HEADING
-TextStyle heading32Style = GoogleFonts.roboto(
+TextStyle heading1Style = GoogleFonts.roboto(
   fontSize: 32,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle heading27Style = GoogleFonts.roboto(
+TextStyle heading2Style = GoogleFonts.roboto(
   fontSize: 27,
   fontWeight: FontWeight.normal,
 );
 
-TextStyle heading26Style = GoogleFonts.roboto(
+TextStyle heading3Style = GoogleFonts.roboto(
   fontSize: 26,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle heading30Style = GoogleFonts.roboto(
-  fontSize: 30,
-  fontWeight: FontWeight.w500,
+TextStyle headingStyle = GoogleFonts.roboto(
+  fontSize: 26,
+  fontWeight: FontWeight.w400,
 );
 
 //SUBHEADING
@@ -44,27 +44,22 @@ TextStyle subStyle = GoogleFonts.roboto(
 );
 
 //BODY
-TextStyle body13Style = GoogleFonts.roboto(
+TextStyle body1Style = GoogleFonts.roboto(
   fontSize: 13,
   fontWeight: FontWeight.w500,
 );
 
-TextStyle body16Style = GoogleFonts.roboto(
+TextStyle body2Style = GoogleFonts.roboto(
   fontSize: 16,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.normal,
 );
 
-TextStyle body18Style = GoogleFonts.roboto(
+TextStyle body3Style = GoogleFonts.roboto(
   fontSize: 18,
   fontWeight: FontWeight.w500,
 );
 
-TextStyle bodyLight18Style = GoogleFonts.roboto(
+TextStyle bodyStyle = GoogleFonts.roboto(
   fontSize: 18,
-  fontWeight: FontWeight.w300,
-);
-
-TextStyle body15Style = GoogleFonts.roboto(
-  fontSize: 15,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.normal,
 );
