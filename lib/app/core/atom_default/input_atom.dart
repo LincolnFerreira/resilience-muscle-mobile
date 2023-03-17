@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resilience_muscle/ui/colors.dart';
-import 'package:resilience_muscle/ui/typography.dart';
+
+import '../../../ui/typography.dart';
 
 class InputAtom extends StatelessWidget {
   final double? width;
@@ -64,7 +65,7 @@ class InputAtom extends StatelessWidget {
         controller: controller,
         onChanged: onChanged,
         obscureText: obscureText,
-        style: body15Style,
+        style: bodyStyle,
         decoration: InputDecoration(
           // contentPadding: EdgeInsets.all(40),
           labelText: labelText,

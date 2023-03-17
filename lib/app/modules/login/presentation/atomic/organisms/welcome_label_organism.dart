@@ -15,14 +15,14 @@ class WelcomeLabelOrganism extends StatelessWidget {
         children: [
           TextAtom(
             text: 'Bem vindo(a)',
-            style: heading26Style,
+            style: heading3Style,
           ),
           const Divider(
             height: 8,
           ),
           TextAtom(
             text: 'Entre para continuar!',
-            style: bodyLight18Style,
+            style: bodyStyle,
           )
         ],
       ),

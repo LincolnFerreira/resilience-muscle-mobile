@@ -86,7 +86,7 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
 
                       if (state.page == 3) {
                         return RegistrationInfoUserWeight(onPressed: () {
-                          Modular.to.navigate('/home_user');
+                          Modular.to.navigate('/home_user/');
                         });
                       }
                       return const SizedBox(

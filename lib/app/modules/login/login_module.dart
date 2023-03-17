@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/sign_in_page.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/sign_up_page.dart';
+import 'package:resilience_muscle/app/modules/login/presentation/atomic/pages/sign_in_page.dart';
+import 'package:resilience_muscle/app/modules/login/presentation/atomic/pages/sign_up_page.dart';
 
 class LoginModule extends Module {
   @override
