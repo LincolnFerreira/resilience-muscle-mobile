@@ -1,19 +1,6 @@
-# testef
+# ResilienceMuscle 2.0
 
-A new Flutter project.
+Este projeto tem o intuito de ser util para pessoas que gostam de musculação, e precisam acompanhar seu desenvolvimento, medidas e fichas de treinos.
 
-## notes about colors:
- - 252526 dark theme
- - 42257C primary color
- - 5666F6 second color text
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Tecnologias utilizadas: 
+- Dart/flutter
