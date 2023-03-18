@@ -18,34 +18,34 @@ TextStyle heading3Style = GoogleFonts.roboto(
 );
 
 TextStyle headingStyle = GoogleFonts.roboto(
-  fontSize: 26,
+  fontSize: 25,
   fontWeight: FontWeight.w400,
 );
 
 //SUBHEADING
 TextStyle sub1Style = GoogleFonts.roboto(
-  fontSize: 30,
+  fontSize: 24,
   fontWeight: FontWeight.w500,
 );
 
 TextStyle sub2Style = GoogleFonts.roboto(
-  fontSize: 30,
+  fontSize: 22,
   fontWeight: FontWeight.w500,
 );
 
 TextStyle sub3Style = GoogleFonts.roboto(
-  fontSize: 30,
+  fontSize: 20,
   fontWeight: FontWeight.w500,
 );
 
 TextStyle subStyle = GoogleFonts.roboto(
-  fontSize: 30,
+  fontSize: 18,
   fontWeight: FontWeight.w500,
 );
 
 //BODY
 TextStyle body1Style = GoogleFonts.roboto(
-  fontSize: 13,
+  fontSize: 18,
   fontWeight: FontWeight.w500,
 );
 
@@ -55,11 +55,11 @@ TextStyle body2Style = GoogleFonts.roboto(
 );
 
 TextStyle body3Style = GoogleFonts.roboto(
-  fontSize: 18,
+  fontSize: 15,
   fontWeight: FontWeight.w500,
 );
 
 TextStyle bodyStyle = GoogleFonts.roboto(
-  fontSize: 18,
+  fontSize: 13,
   fontWeight: FontWeight.normal,
 );

@@ -4,9 +4,10 @@ import 'package:resilience_muscle/app/modules/home_user/atomic/organisms/card_to
 import 'package:resilience_muscle/app/modules/home_user/atomic/organisms/navbar_top_user_organism.dart';
 
 import 'package:resilience_muscle/app/modules/home_user/home_user_store.dart';
-import 'package:resilience_muscle/ui/typography.dart';
+import 'package:resilience_muscle/ui/colors.dart';
 
 import '../../../ui/box_text.dart';
+import 'atomic/organisms/bottom_navigation_bar_organism.dart';
 
 class HomeUserPage extends StatefulWidget {
   const HomeUserPage({super.key});
@@ -42,40 +43,52 @@ class HomeUserPageState extends State<HomeUserPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BoxText.headingOne(
+                    BoxText.headingTwo(
                       'Treinos',
                     ),
                     const Divider(
                       height: 21,
                       color: Colors.transparent,
                     ),
-                    const CardTodayTrainingOrganism(
-                      textTrainingDay: 'Hoje',
-                      cardTrainingText: "Peito & Delt.Posterior",
+                    //TODO: criar listbuilder com usecase
+                    CardTodayTrainingOrganism(
+                      textTrainingDay: 'HOJE',
                       urlTraining: "assets/images/training-chest-original.jpg",
                       opacity: 0.4,
+                      boxText: BoxText.heading(
+                        'Peito & Delt.Posterior',
+                        color: ColorsUI.white,
+                      ),
                     ),
                     const Divider(
                       height: 16,
                     ),
                     Row(
-                      children: const [
+                      children: [
                         CardTodayTrainingOrganism(
-                          textTrainingDay: 'Hoje',
-                          cardTrainingText: "Peito & Delt.Posterior",
+                          textTrainingDay: 'AMANHÃ (TREINO B)',
                           urlTraining:
                               "assets/images/training-chest-original.jpg",
                           width: 180,
+                          color: ColorsUI.whiteGrey,
+                          boxText: BoxText.body(
+                            'Costas & Delt. Anterior',
+                            color: ColorsUI.white.withOpacity(0.7),
+                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         CardTodayTrainingOrganism(
-                          textTrainingDay: 'Hoje',
-                          cardTrainingText: "Peito & Delt.Posterior",
+                          textTrainingDay: 'TREINO C',
                           urlTraining:
                               "assets/images/training-chest-original.jpg",
                           width: 180,
+                          color: ColorsUI.whiteGrey,
+                          boxText: BoxText.body(
+                            'Bíceps & Tríceps',
+                            color: ColorsUI.white.withOpacity(0.7),
+                          ),
                         ),
                       ],
                     ),
@@ -83,32 +96,41 @@ class HomeUserPageState extends State<HomeUserPage> {
                       height: 16,
                     ),
                     Row(
-                      children: const [
+                      children: [
                         CardTodayTrainingOrganism(
-                          textTrainingDay: 'Hoje',
-                          cardTrainingText: "Peito & Delt.Posterior",
+                          textTrainingDay: 'TREINO D',
                           urlTraining:
                               "assets/images/training-chest-original.jpg",
                           width: 180,
+                          color: ColorsUI.whiteGrey,
+                          boxText: BoxText.body(
+                            'Quadríceps',
+                            color: ColorsUI.white.withOpacity(0.7),
+                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         CardTodayTrainingOrganism(
-                          textTrainingDay: 'Hoje',
-                          cardTrainingText: "Peito & Delt.Posterior",
+                          textTrainingDay: 'TREINO E',
                           urlTraining:
                               "assets/images/training-chest-original.jpg",
                           width: 180,
                           opacity: 0.6,
+                          color: ColorsUI.whiteGrey,
+                          boxText: BoxText.body(
+                            'Abdômen & Cardio',
+                            color: ColorsUI.white.withOpacity(0.7),
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
+          bottomNavigationBar: const BottomNavigationBarOrganism(),
         );
       },
     );

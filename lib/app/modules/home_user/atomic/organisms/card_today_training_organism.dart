@@ -1,25 +1,26 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:resilience_muscle/ui/box_text.dart';
 import 'package:resilience_muscle/ui/colors.dart';
-import 'package:resilience_muscle/ui/typography.dart';
 
 class CardTodayTrainingOrganism extends StatelessWidget {
   final String textTrainingDay;
   final String urlTraining;
-  final String cardTrainingText;
   final double? width;
   final double? opacity;
   final Function()? onTap;
+  final Color? color;
+  final BoxText? boxText;
 
   const CardTodayTrainingOrganism({
     Key? key,
     required this.textTrainingDay,
     required this.urlTraining,
-    required this.cardTrainingText,
     this.width,
     this.opacity,
     this.onTap,
+    this.color,
+    this.boxText,
   }) : super(key: key);
 
   @override
@@ -29,24 +30,23 @@ class CardTodayTrainingOrganism extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          BoxText.bodyTwo(
             textTrainingDay,
-            style: bodyStyle,
+            color: color ?? ColorsUI.dark,
           ),
           const SizedBox(
             height: 4,
           ),
           Container(
             width: width ?? double.infinity,
-            height: 180,
+            height: 170,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                 image: AssetImage(urlTraining),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                    ColorsUI.dark.withOpacity(opacity ?? 0.6),
-                    BlendMode.darken),
+                    Colors.black.withOpacity(opacity ?? 0.6), BlendMode.darken),
               ),
             ),
             child: Padding(
@@ -55,10 +55,7 @@ class CardTodayTrainingOrganism extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    cardTrainingText,
-                    style: headingStyle,
-                  ),
+                  boxText ?? const Text('Training'),
                 ],
               ),
             ),
