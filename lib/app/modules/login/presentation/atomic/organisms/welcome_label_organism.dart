@@ -19,9 +19,10 @@ class WelcomeLabelOrganism extends StatelessWidget {
           ),
           const Divider(
             height: 8,
+            color: Colors.transparent,
           ),
           TextAtom(
-            text: 'Entre para continuar!',
+            text: 'Entre para continuar',
             style: bodyStyle,
           )
         ],

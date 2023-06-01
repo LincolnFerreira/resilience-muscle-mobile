@@ -42,7 +42,7 @@ class _RegistrationInfoUserWeightState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextAtom(
-                    text: '$_currentKilos Cm',
+                    text: '$_currentKilos Kg',
                     fontSize: 30,
                   ),
                 ],

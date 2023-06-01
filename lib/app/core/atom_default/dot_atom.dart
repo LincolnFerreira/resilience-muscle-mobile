@@ -14,7 +14,7 @@ class DotAtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 20,
-      width: 20,
+      // width: ,
       child: AnimatedSmoothIndicator(
         activeIndex: activeIndex,
         count: count,
