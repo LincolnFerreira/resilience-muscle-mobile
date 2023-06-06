@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: ColorsUI.white,
         textTheme: const TextTheme(),
-        primaryColor: Colors.red,
+        // primaryColor: Colors.red,
         //visualDensity pesquisar sobre
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

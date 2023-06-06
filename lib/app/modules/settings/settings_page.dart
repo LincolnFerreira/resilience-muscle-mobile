@@ -150,12 +150,12 @@ class SettingsPageState extends State<SettingsPage> {
           /*
        Rodape
         */
-          Expanded(
+          const Expanded(
             flex: 1,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Precisa de ajuda ?',
                     style: TextStyle(color: Colors.white, fontSize: 20),

@@ -13,7 +13,7 @@ class SignInUseCaseImp implements SignInUseCase {
   });
 
   @override
-  Future<Either<Failure, void>> call(UserEntity user) async {
+  Future<Either<Failure, UserEntity>> call(UserEntity user) async {
     return signInRepository(user);
   }
 }

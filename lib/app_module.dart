@@ -1,10 +1,16 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hive/hive.dart';
+import 'package:resilience_muscle/app/modules/login/data/repositories/save_current_user_repository_imp.dart';
+import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/get_current_uid_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/is_sign_in_repository.dart';
+import 'package:resilience_muscle/app/modules/login/domain/repositories/save_current_user_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/sign_in_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/sign_out_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/get_current_uid/get_current_uid_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/is_sign_in/is_sign_in_usecase.dart';
+import 'package:resilience_muscle/app/modules/login/domain/usecases/save_user/save_current_usecase.dart';
+import 'package:resilience_muscle/app/modules/login/domain/usecases/save_user/save_current_user_usecase_imp.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/sign_out/sign_out_usecase.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/cubit/registration_info_user_cubit.dart';
 import 'package:resilience_muscle/app/modules/splash/splash_module.dart';
@@ -31,6 +37,10 @@ import 'app/modules/settings/settings_module.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
+        //entity
+        Bind.singleton<UserEntity>((i) => UserEntity()),
+        Bind.lazySingleton<Box<UserEntity>>((i) => Hive.box('user')),
+
         //firebase
         Bind<RemoteDataSource>((i) => FirebaseRemoteDataSourceImp()),
 
@@ -43,11 +53,15 @@ class AppModule extends Module {
             firebaseRemoteDataSource: i<FirebaseRemoteDataSourceImp>())),
         Bind<SignOutRepository>((i) => SignOutRepositoryImp(
             firebaseRemoteDataSource: i<FirebaseRemoteDataSourceImp>())),
+        Bind<SaveCurrentUserRepository>((i) => SaveCurrentUserRepositoryImp()),
 
         //usecase
         Bind(
           (i) => SignInUseCaseImp(signInRepository: i<SignInRepository>()),
         ),
+        Bind((i) => SaveCurrentUserUseCaseImp(
+            repository: i<SaveCurrentUserRepository>())),
+
         Bind.factory(
           (i) =>
               IsSignInUseCaseImp(isSignInRepository: i<IsSignInRepository>()),
@@ -67,8 +81,12 @@ class AppModule extends Module {
             isSignInUseCase: i<IsSignInUseCase>(),
             getCurrentUIdUseCase: i<GetCurrentUIdUseCase>(),
             signOutUseCase: i<SignOutUseCase>(),
+            saveCurrentUserUseCase: i<SaveCurrentUserUseCase>(),
+
+            // userEntity: i<UserEntity>(),
           ),
         ),
+
         Bind.singleton<RegistrationInfoUserCubit>(
             (i) => RegistrationInfoUserCubit()),
       ];

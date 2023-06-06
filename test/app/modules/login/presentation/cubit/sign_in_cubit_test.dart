@@ -38,7 +38,7 @@ void main() {
     );
 
     when(() => signInUseCaseMock(userEntity))
-        .thenAnswer((_) async => const Right(null));
+        .thenAnswer((_) async => Right(userEntity));
   });
 
   group('should call method\'s the [signInCubit]', () {

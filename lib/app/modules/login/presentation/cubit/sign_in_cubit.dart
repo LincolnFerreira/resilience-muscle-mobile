@@ -1,10 +1,11 @@
-// ignore_for_file: unused_local_variable
-
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 
+import 'package:resilience_muscle/app/modules/login/domain/usecases/save_user/save_current_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/cubit/sign_in_state.dart';
 
 import '../../domain/entities/user_entity.dart';
@@ -18,16 +19,18 @@ class SignInCubit extends Cubit<SignInState> {
   final IsSignInUseCase isSignInUseCase;
   final GetCurrentUIdUseCase getCurrentUIdUseCase;
   final SignOutUseCase signOutUseCase;
-  // LoginRepository signInRepository;
+  final SaveCurrentUserUseCase saveCurrentUserUseCase;
+
+  var userEntity = Modular.get<UserEntity>();
+
   SignInCubit({
     // this.signInRepository,
     required this.signInUseCase,
     required this.isSignInUseCase,
     required this.getCurrentUIdUseCase,
     required this.signOutUseCase,
-  }) : super(
-          SignInState.initial(),
-        );
+    required this.saveCurrentUserUseCase,
+  }) : super(SignInState.initial());
 
   final Logger logger = Logger();
   void loading() {
@@ -36,21 +39,31 @@ class SignInCubit extends Cubit<SignInState> {
 
   Future<void> submitSignIn(String email, String password) async {
     emit(state.copyWith(status: SignInStatus.loading));
+
     try {
       final signIn = await signInUseCase
           .call(UserEntity(email: email, password: password));
+
       signIn.fold(
         (failure) {
           emit(state.copyWith(status: SignInStatus.failure));
-          // print(failure.message);
         },
-        (right) {
-          emit(state.copyWith(status: SignInStatus.success));
+        (right) async {
+          emit(state.copyWith(
+            status: SignInStatus.success,
+          ));
+          saveUser(right);
         },
       );
     } catch (_) {
       emit(state.copyWith(status: SignInStatus.failure));
     }
+  }
+
+  Future<void> saveUser(UserEntity currentUser) async {
+    try {
+      await saveCurrentUserUseCase(currentUser);
+    } catch (e) {}
   }
 
   Future<void> appStarted() async {

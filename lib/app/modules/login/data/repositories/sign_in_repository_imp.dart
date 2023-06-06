@@ -13,7 +13,7 @@ class SignInRepositoryImp implements SignInRepository {
   });
 
   @override
-  Future<Either<Failure, void>> call(UserEntity user) async {
+  Future<Either<Failure, UserEntity>> call(UserEntity user) async {
     return firebaseRemoteDataSource.signIn(user);
   }
 }

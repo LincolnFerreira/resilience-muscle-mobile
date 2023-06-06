@@ -20,22 +20,29 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, void>> signIn(UserEntity user) async {
+  Future<Either<Failure, UserEntity>> signIn(UserEntity user) async {
     try {
-      await auth.signInWithEmailAndPassword(
+      final res = await auth.signInWithEmailAndPassword(
           email: user.email, password: user.password);
-      // print('datasource sucesso');
-      return const Right(null);
+
+      final changeUser = UserModel(
+        uid: await getCurrentUId(),
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      );
+
+      user = changeUser;
+      print(changeUser.toJson());
+      return Right(changeUser);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return Left(Failure(message: 'Usuário não encontrado!'));
-        // print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         return Left(Failure(message: 'Senha incorreta!'));
-        // print('Wrong password provided for that user.');
       }
     }
-    return const Right(null);
+    return Left(Failure(message: 'Erro desconhecido'));
   }
 
   @override

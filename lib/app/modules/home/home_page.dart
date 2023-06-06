@@ -56,12 +56,12 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                     color: ColorsUI.darkless,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
+                  child: const Padding(
+                    padding: EdgeInsets.all(5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         SizedBoxItem(
                           // title: 'Frequência',
                           data: '7',

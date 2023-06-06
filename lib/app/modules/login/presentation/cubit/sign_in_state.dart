@@ -1,15 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+
+import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 
 enum SignInStatus { initial, loading, success, failure }
 
 class SignInState extends Equatable {
+  final SignInStatus status;
+
   const SignInState({
     this.status = SignInStatus.initial,
   });
 
-  final SignInStatus status;
   SignInState copyWith({
     SignInStatus? status,
+    UserEntity? userEntity,
   }) {
     return SignInState(
       status: status ?? this.status,
@@ -23,5 +28,7 @@ class SignInState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [status];
+  List<Object?> get props => [
+        status,
+      ];
 }
