@@ -9,10 +9,8 @@ import '../../../ui/colors.dart';
 import '../../core/atom_default/dot_atom.dart';
 import '../../core/atom_default/space_widget_atom.dart';
 import '../../core/atom_default/text_atom.dart';
-import 'atomic/organisms/registration_info_user_birth_date.dart';
-import 'atomic/organisms/registration_info_user_height.dart';
-import 'atomic/organisms/registration_info_user_name.dart';
-import 'atomic/organisms/registration_info_user_weight.dart';
+import 'atomic/organisms/registration_info_user_horizontal_picker.dart';
+import 'atomic/organisms/registration_info_forms.dart';
 
 class RegistrationInfoUserPage extends StatefulWidget {
   const RegistrationInfoUserPage({super.key});
@@ -31,6 +29,12 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
 
   final cubit = Modular.get<RegistrationInfoUserCubit>();
 
+  TextEditingController nameController = TextEditingController();
+  String inputName = '';
+  String inputBirthDate = '';
+  double inputWeight = 0;
+  double inputHeight = 0;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegistrationInfoUserCubit, RegistrationInfoUserState>(
@@ -38,68 +42,96 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
       listener: (context, state) {},
       builder: (context, state) => Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Modular.to.popAndPushNamed('/login/');
+            },
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: SizedBox(
-          child: Padding(
-            padding: const EdgeInsets.all(30),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    TextAtom(
-                      text: 'Informações de usuário',
-                      style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        color: ColorsUI.primary,
+        body: SingleChildScrollView(
+          child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      TextAtom(
+                        text: 'Informações de usuário',
+                        style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          color: ColorsUI.primary,
+                        ),
                       ),
-                    ),
-                    DotAtom(
-                      activeIndex: cubit.state.page,
-                      count: 4,
-                    ),
-                  ],
-                ),
-                const SpaceWidgetAtom(height: 40),
-                Column(
-                  children: [
-                    BlocConsumer<RegistrationInfoUserCubit,
-                        RegistrationInfoUserState>(
-                      bloc: cubit,
-                      listener: (context, state) {},
-                      builder: (context, state) {
-                        if (state.page == 0) {
-                          return RegistrationInfoUserName(
-                            onPressed: cubit.onTapButton,
-                          );
-                        }
-                        if (state.page == 1) {
-                          return RegistrationInfoUserBirthDate(
-                            onPressed: cubit.onTapButton,
-                          );
-                        }
-                        if (state.page == 2) {
-                          return RegistrationInfoUserHeight(
-                            onPressed: cubit.onTapButton,
-                          );
-                        }
+                      DotAtom(
+                        activeIndex: cubit.state.page,
+                        count: 4,
+                      ),
+                    ],
+                  ),
+                  const SpaceWidgetAtom(height: 40),
+                  Column(
+                    children: [
+                      BlocConsumer<RegistrationInfoUserCubit,
+                          RegistrationInfoUserState>(
+                        bloc: cubit,
+                        listener: (context, state) {},
+                        builder: (context, state) {
+                          if (state.page == 0) {
+                            return RegistrationInfoForms(
+                              onPressed: cubit.onTapButtonContinue,
+                              onChangeInput: (e) => {
+                                inputName = e,
+                              },
+                              inputLabelText: 'Nome:',
+                              titleForm: 'Como prefere ser chamado ?',
+                              formSubtitle:
+                                  'Vamos utilizar essa informação para se comunicar melhor com você',
+                              // validator: ,
+                            );
+                          }
+                          if (state.page == 1) {
+                            return RegistrationInfoForms(
+                              formSubtitle: 'Algumas informações a mais...',
+                              inputLabelText: 'Data de nascimento:',
+                              onChangeInput: (e) {},
+                              onPressed: cubit.onTapButtonContinue,
+                            );
+                          }
+                          if (state.page == 2) {
+                            return RegistrationInfoUserHorizontalPicker(
+                              onPressed: cubit.onTapButtonContinue,
+                              onChangeInputHeight: (e) => inputHeight = e,
+                              currentCentimeters: 1.60,
+                              suffix: ' Cm',
+                            );
+                          }
 
-                        if (state.page == 3) {
-                          return RegistrationInfoUserWeight(onPressed: () {
-                            Modular.to.navigate('/home_user/');
-                          });
-                        }
-                        return const SizedBox(
-                          child: Text('Erro!'),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                const SpaceWidgetAtom(height: 54),
-              ],
+                          if (state.page == 3) {
+                            return RegistrationInfoUserHorizontalPicker(
+                              onPressed: cubit.onTapButtonContinue,
+                              onChangeInputHeight: (e) => inputHeight = e,
+                              currentCentimeters: 80.0,
+                              suffix: ' Kg',
+                            );
+                          }
+                          return const SizedBox(
+                            child: Text('Erro!'),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const SpaceWidgetAtom(height: 54),
+                ],
+              ),
             ),
           ),
         ),
@@ -108,29 +140,29 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
   }
 }
 
-Map<String, dynamic> registrationUserParams = {
-  'name': {
-    'status': 'done',
-    // 'registrationPageStep': const RegistrationInfoUserName(),
-    'currentStep': 0,
-    'nextPage': '/birth_date'
-  },
-  'birth_date': {
-    'status': 'done',
-    // 'registrationPageStep': RegistrationInfoUserBirthDate(),
-    'currentStep': 1,
-    'nextPage': 'weigth'
-  },
-  'weigth': {
-    'status': 'done',
-    // 'registrationPageStep': const RegistrationInfoUserWeight(),
-    'currentStep': 2,
-    'nextPage': 'height'
-  },
-  'height': {
-    'status': 'done',
-    // 'registrationPageStep': const RegistrationInfoUserHeight(),
-    'currentStep': 3,
-    'nextPage': '/home_user/'
-  }
-};
+// Map<String, dynamic> registrationUserParams = {
+//   'name': {
+//     'status': 'done',
+//     // 'registrationPageStep': const RegistrationInfoUserName(),
+//     'currentStep': 0,
+//     'nextPage': '/birth_date'
+//   },
+//   'birth_date': {
+//     'status': 'done',
+//     // 'registrationPageStep': RegistrationInfoUserBirthDate(),
+//     'currentStep': 1,
+//     'nextPage': 'weigth'
+//   },
+//   'weigth': {
+//     'status': 'done',
+//     // 'registrationPageStep': const RegistrationInfoUserWeight(),
+//     'currentStep': 2,
+//     'nextPage': 'height'
+//   },
+//   'height': {
+//     'status': 'done',
+//     // 'registrationPageStep': const RegistrationInfoUserHeight(),
+//     'currentStep': 3,
+//     'nextPage': '/home_user/'
+//   }
+// };

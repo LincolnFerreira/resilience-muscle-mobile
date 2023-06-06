@@ -57,44 +57,40 @@ class InputAtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height ?? 48,
-      width: width,
-      child: TextFormField(
-        keyboardType: keyboardType,
-        controller: controller,
-        onChanged: onChanged,
-        obscureText: obscureText,
-        style: bodyStyle,
-        decoration: InputDecoration(
-          // contentPadding: EdgeInsets.all(40),
-          labelText: labelText,
-          hintText: hintText,
-          hintStyle: TextStyle(color: hintColor),
-          border: border ?? const OutlineInputBorder(),
-          filled: filled,
-          fillColor: fillColor ?? ColorsUI.dark,
-          enabledBorder: enabledBorder ??
-              const OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorsUI.dark)),
-          focusedBorder: focusedBorder,
-          focusColor: focusColor,
-          labelStyle: TextStyle(color: labelColor ?? ColorsUI.dark),
-          prefixIcon: prefixIcon == null
-              ? null
-              : Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: prefixIcon,
-                ),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: suffixIcon,
-          ),
+    return TextFormField(
+      keyboardType: keyboardType,
+      controller: controller,
+      onChanged: onChanged,
+      obscureText: obscureText,
+      style: bodyStyle,
+      decoration: InputDecoration(
+        // contentPadding: EdgeInsets.all(40),
+        labelText: labelText,
+        hintText: hintText,
+        hintStyle: TextStyle(color: hintColor),
+        border: border ?? const OutlineInputBorder(),
+        filled: filled,
+        fillColor: fillColor ?? ColorsUI.dark,
+        enabledBorder: enabledBorder ??
+            const OutlineInputBorder(
+                borderSide: BorderSide(color: ColorsUI.dark)),
+        focusedBorder: focusedBorder,
+        focusColor: focusColor,
+        labelStyle: TextStyle(color: labelColor ?? ColorsUI.dark),
+        prefixIcon: prefixIcon == null
+            ? null
+            : Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: prefixIcon,
+              ),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: suffixIcon,
         ),
-        validator: validator,
-        autovalidateMode: autovalidateMode,
-        inputFormatters: inputFormatter,
       ),
+      validator: validator,
+      autovalidateMode: autovalidateMode,
+      inputFormatters: inputFormatter,
     );
   }
 }

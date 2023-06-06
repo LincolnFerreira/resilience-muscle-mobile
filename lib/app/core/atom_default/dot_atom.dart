@@ -13,7 +13,6 @@ class DotAtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 20,
       // width: ,
       child: AnimatedSmoothIndicator(
         activeIndex: activeIndex,

@@ -1,28 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:horizontal_picker/horizontal_picker.dart';
+
+import 'package:resilience_muscle/app/core/atom_default/space_widget_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
 import '../../../../../ui/colors.dart';
 
-import '../../../../core/atom_default/space_widget_atom.dart';
 import '../../../../core/organisms_default/button_organism.dart';
 
-class RegistrationInfoUserWeight extends StatefulWidget {
+class RegistrationInfoUserHorizontalPicker extends StatefulWidget {
   final VoidCallback? onPressed;
-
-  const RegistrationInfoUserWeight({
-    super.key,
+  final Function(double)? onChangeInputHeight;
+  final double currentCentimeters;
+  final String suffix;
+  const RegistrationInfoUserHorizontalPicker({
+    Key? key,
     this.onPressed,
-  });
+    this.onChangeInputHeight,
+    required this.currentCentimeters,
+    required this.suffix, // Parâmetro adicionado
+  }) : super(key: key);
 
   @override
-  State<RegistrationInfoUserWeight> createState() =>
-      _RegistrationInfoUserWeightState();
+  State<RegistrationInfoUserHorizontalPicker> createState() =>
+      _RegistrationInfoUserHorizontalPickerState();
 }
 
-double _currentKilos = 20;
+class _RegistrationInfoUserHorizontalPickerState
+    extends State<RegistrationInfoUserHorizontalPicker> {
+  late double _currentCentimeters; // Variável de estado adicionada
 
-class _RegistrationInfoUserWeightState
-    extends State<RegistrationInfoUserWeight> {
+  @override
+  void initState() {
+    super.initState();
+    _currentCentimeters = widget.currentCentimeters;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,7 +46,7 @@ class _RegistrationInfoUserWeightState
           Column(
             children: [
               const TextAtom(
-                text: 'Qual seu peso?',
+                text: 'Qual sua altura?',
                 textColor: ColorsUI.dark,
                 fontSize: 22,
               ),
@@ -42,7 +55,7 @@ class _RegistrationInfoUserWeightState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextAtom(
-                    text: '$_currentKilos Kg',
+                    text: '$_currentCentimeters ${widget.suffix}',
                     fontSize: 30,
                   ),
                 ],
@@ -52,7 +65,7 @@ class _RegistrationInfoUserWeightState
                 maxValue: 238,
                 divisions: 170,
                 height: 100,
-                suffix: " cm",
+                suffix: widget.suffix,
                 initialPosition: InitialPosition.center,
                 showCursor: false,
                 backgroundColor: Colors.white,
@@ -60,8 +73,9 @@ class _RegistrationInfoUserWeightState
                 passiveItemsTextColor: ColorsUI.dark,
                 onChanged: (value) {
                   setState(() {
-                    _currentKilos = value;
+                    _currentCentimeters = value;
                   });
+                  widget.onChangeInputHeight?.call(value);
                 },
               ),
             ],

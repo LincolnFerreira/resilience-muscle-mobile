@@ -82,7 +82,6 @@ class SignInPageState extends State<SignInPage> {
                       width: 232,
                       onPressed: () async {
                         FocusManager.instance.primaryFocus?.unfocus();
-
                         cubit.submitSignIn(
                           emailController.text,
                           passwordController.text,
@@ -93,7 +92,10 @@ class SignInPageState extends State<SignInPage> {
                     const OrAtom(),
                     const ButtonGoogleAtom(),
                     const SpaceWidgetAtom(height: 20),
-                    const DontHaveAnAccountOrganism()
+                    DontHaveAnAccountOrganism(
+                      onTapSignUp: () =>
+                          Modular.to.navigate('/registration_info_user/'),
+                    )
                   ],
                 ),
               ],
