@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/cubit/registration_info_user_cubit.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/registration_info_user_store.dart';
 import 'package:flutter/material.dart';
 
 import '../../../ui/colors.dart';
@@ -21,7 +20,6 @@ class RegistrationInfoUserPage extends StatefulWidget {
 }
 
 class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
-  final RegistrationInfoUserStore store = Modular.get();
   @override
   void initState() {
     super.initState();

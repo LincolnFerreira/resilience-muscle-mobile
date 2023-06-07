@@ -34,10 +34,10 @@ class HomeUserPageState extends State<HomeUserPage> {
         return LayoutBuilder(
           builder: (context, constraints) {
             return Scaffold(
-              appBar: const PreferredSize(
-                preferredSize: Size.fromHeight(70),
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(70),
                 child: NavbarTopUserOrganism(
-                  nameUser: 'nameUser',
+                  nameUser: cubit.userEntity.name,
                   fraseInteligente: 'fraseInteligente',
                 ),
               ),

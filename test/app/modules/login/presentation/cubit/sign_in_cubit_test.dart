@@ -5,6 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/get_current_uid/get_current_uid_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/is_sign_in/is_sign_in_usecase.dart';
+import 'package:resilience_muscle/app/modules/login/domain/usecases/save_user/save_current_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/sign_in/sign_in_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/sign_out/sign_out_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/cubit/sign_in_cubit.dart';
@@ -19,6 +20,7 @@ void main() {
   late GetCurrentUIdUseCase getCurrentUIdUseCaseMock;
   late SignOutUseCase signOutUseCaseMock;
   late SignInCubit signInCubit;
+  late SaveCurrentUserUseCase saveCurrentUserUseCase;
 
   setUp(() {
     userEntity = UserEntity(
@@ -29,12 +31,14 @@ void main() {
     isSignInUseCaseMock = IsSignInUseCaseMock();
     getCurrentUIdUseCaseMock = GetCurrentIdUseCaseMock();
     signOutUseCaseMock = SignOutUseCaseMock();
+    saveCurrentUserUseCase = SaveCurrentUserUseCaseMock();
 
     signInCubit = SignInCubit(
       signInUseCase: signInUseCaseMock,
       isSignInUseCase: isSignInUseCaseMock,
       getCurrentUIdUseCase: getCurrentUIdUseCaseMock,
       signOutUseCase: signOutUseCaseMock,
+      saveCurrentUserUseCase: saveCurrentUserUseCase,
     );
 
     when(() => signInUseCaseMock(userEntity))

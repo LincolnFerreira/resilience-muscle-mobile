@@ -12,6 +12,8 @@ class UserEntity extends HiveObject {
   late String name;
   @HiveField(2)
   late String email;
+  @HiveField(2)
+  late dynamic image;
   late String password;
 
   UserEntity({
@@ -19,21 +21,8 @@ class UserEntity extends HiveObject {
     this.name = '',
     this.email = '',
     this.password = '',
+    this.image = '',
   });
-
-  UserEntity copyWith({
-    String? uid,
-    String? name,
-    String? email,
-    String? password,
-  }) {
-    return UserEntity(
-      email: uid ?? this.uid,
-      name: name ?? this.name,
-      password: password ?? this.password,
-      uid: uid ?? this.uid,
-    );
-  }
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$UserEntityFromJson(json);

@@ -1,5 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/login/login_store.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -10,8 +8,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class SignUpPageState extends State<SignUpPage> {
-  final LoginStore store = Modular.get();
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold();

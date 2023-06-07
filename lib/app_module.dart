@@ -16,7 +16,6 @@ import 'package:resilience_muscle/app/modules/registration_info_user/cubit/regis
 import 'package:resilience_muscle/app/modules/splash/splash_module.dart';
 
 import 'app/modules/forget_password/forget_password_module.dart';
-import 'app/modules/home/home_module.dart';
 import 'app/modules/home_user/home_user_module.dart';
 import 'app/modules/login/data/datasources/remote_datasource.dart';
 import 'app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
@@ -102,12 +101,6 @@ class AppModule extends Module {
         ModuleRoute(
           '/login',
           module: LoginModule(),
-          transition: TransitionType.fadeIn,
-          duration: const Duration(milliseconds: 500),
-        ),
-        ModuleRoute(
-          '/home',
-          module: HomeModule(),
           transition: TransitionType.fadeIn,
           duration: const Duration(milliseconds: 500),
         ),

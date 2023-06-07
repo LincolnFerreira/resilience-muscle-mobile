@@ -33,7 +33,6 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       );
 
       user = changeUser;
-      print(changeUser.toJson());
       return Right(changeUser);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

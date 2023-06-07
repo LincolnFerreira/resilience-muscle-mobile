@@ -61,9 +61,7 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
   Future<void> saveUser(UserEntity currentUser) async {
-    try {
-      await saveCurrentUserUseCase(currentUser);
-    } catch (e) {}
+    await saveCurrentUserUseCase(currentUser);
   }
 
   Future<void> appStarted() async {
