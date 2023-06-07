@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../ui/box_text.dart';
-import '../../../../../ui/colors.dart';
+import '../../../../../../ui/box_text.dart';
+import '../../../../../../ui/colors.dart';
 
 class ImageWithTextInfoUser extends StatelessWidget {
   final String imageUrl;
   final String nameUser;
   final String emailUser;
+  final VoidCallback onTapImageProfile;
 
   const ImageWithTextInfoUser({
     Key? key,
     required this.imageUrl,
     required this.nameUser,
     required this.emailUser,
+    required this.onTapImageProfile,
   }) : super(key: key);
 
   @override
@@ -21,9 +23,12 @@ class ImageWithTextInfoUser extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(
-          maxRadius: 40,
-          backgroundImage: NetworkImage(imageUrl),
+        InkWell(
+          onTap: onTapImageProfile,
+          child: CircleAvatar(
+            maxRadius: 40,
+            backgroundImage: NetworkImage(imageUrl),
+          ),
         ),
         BoxText.subheadingThree(nameUser),
         BoxText.caption(

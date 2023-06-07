@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:resilience_muscle/app/modules/settings/atomic/molecules/sellect_with_icon.dart';
+import 'package:resilience_muscle/app/modules/settings/presentation/atomic/molecules/sellect_with_icon.dart';
 
-import '../../../../../ui/box_text.dart';
+import '../../../../../../ui/box_text.dart';
 
 class CardSellectWithIcon extends StatelessWidget {
   final List<SelectWithIconParams> listOfSelectWithIconParams;

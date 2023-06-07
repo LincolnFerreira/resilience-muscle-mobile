@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/settings/atomic/templates/settings_template.dart';
+import 'package:resilience_muscle/app/modules/settings/presentation/atomic/templates/settings_template.dart';
 
-import 'cubit/settings_cubit.dart';
+import '../cubit/settings_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -22,6 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
       bloc: cubit,
       builder: (context, state) {
         return SettingsTemplate(
+          onTapImageProfile: cubit.onTapImageProfile,
           onTapEditProfile: () {},
           onTapLogout: () {},
           onTapChangeThemeMode: () {},

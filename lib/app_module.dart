@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:resilience_muscle/app/modules/login/data/repositories/save_current_user_repository_imp.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/get_current_uid_repository.dart';
@@ -27,6 +28,9 @@ import 'main.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
+        // util
+        Bind.lazySingleton<ImagePicker>((i) => ImagePicker()),
+
         //entity
         Bind.lazySingleton<UserEntity>((i) => UserEntity()),
         Bind((i) => Hive.box<UserEntity>(HiveBoxes.userBox)),

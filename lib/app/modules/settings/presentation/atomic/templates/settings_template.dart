@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../ui/box_text.dart';
+import '../../../../../../ui/box_text.dart';
 import '../molecules/image_with_text_info_user_molecules.dart';
 import '../molecules/sellect_with_icon.dart';
 import '../organisms/card_sellect_with_icon.dart';
@@ -17,6 +17,7 @@ class SettingsTemplate extends StatelessWidget {
   final String emailUser;
   final String versionPoweredAuthor;
   final VoidCallback onTapBackPage;
+  final VoidCallback onTapImageProfile;
 
   const SettingsTemplate({
     super.key,
@@ -31,6 +32,7 @@ class SettingsTemplate extends StatelessWidget {
     required this.emailUser,
     required this.versionPoweredAuthor,
     required this.onTapBackPage,
+    required this.onTapImageProfile,
   });
 
   @override
@@ -59,6 +61,7 @@ class SettingsTemplate extends StatelessWidget {
                   imageUrl: imageUrl,
                   nameUser: nameUser,
                   emailUser: emailUser,
+                  onTapImageProfile: onTapImageProfile,
                 ),
               ),
               CardSellectWithIcon(
