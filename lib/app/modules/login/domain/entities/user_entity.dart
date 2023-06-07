@@ -12,7 +12,7 @@ class UserEntity extends HiveObject {
   late String name;
   @HiveField(2)
   late String email;
-  @HiveField(2)
+  @HiveField(3)
   late dynamic image;
   late String password;
 

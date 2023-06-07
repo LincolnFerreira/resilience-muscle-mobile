@@ -9,14 +9,23 @@ import 'app/modules/login/domain/entities/user_entity.dart';
 import 'app_widget.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await initHive();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Hive.initFlutter();
-  Hive.registerAdapter(UserEntityAdapter());
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(ModularApp(
     module: AppModule(),
     child: const AppWidget(),
   ));
+}
+
+class HiveBoxes {
+  static const String userBox = 'user';
+}
+
+Future<void> initHive() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserEntityAdapter());
+  await Hive.openBox<UserEntity>(HiveBoxes.userBox);
 }

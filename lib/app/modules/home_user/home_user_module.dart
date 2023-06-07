@@ -6,7 +6,8 @@ import 'home_user_page.dart';
 class HomeUserModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind.lazySingleton<HomeUserCubit>((i) => HomeUserCubit()),
+        Bind.lazySingleton<HomeUserCubit>(
+            (i) => HomeUserCubit(userEntityBox: i())),
       ];
 
   @override

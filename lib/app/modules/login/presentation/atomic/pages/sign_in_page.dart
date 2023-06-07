@@ -47,7 +47,7 @@ class SignInPageState extends State<SignInPage> {
         }
         if (state.status == SignInStatus.success) {
           asuka.AsukaSnackbar.success("sucesso").show();
-          Future.delayed(const Duration(seconds: 3),
+          Future.delayed(const Duration(seconds: 1),
               () => Modular.to.navigate('/home_user/'));
         }
         if (state.status == SignInStatus.failure) {

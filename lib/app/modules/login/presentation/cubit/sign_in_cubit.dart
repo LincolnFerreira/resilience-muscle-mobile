@@ -21,8 +21,6 @@ class SignInCubit extends Cubit<SignInState> {
   final SignOutUseCase signOutUseCase;
   final SaveCurrentUserUseCase saveCurrentUserUseCase;
 
-  var userEntity = Modular.get<UserEntity>();
-
   SignInCubit({
     // this.signInRepository,
     required this.signInUseCase,

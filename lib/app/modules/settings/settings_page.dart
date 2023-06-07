@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resilience_muscle/app/modules/settings/atomic/templates/settings_template.dart';
+
+import 'cubit/settings_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -8,20 +12,31 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
+final cubit = Modular.get<SettingsCubit>();
+
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return const SettingsTemplate(
-      onTapEditProfile: onTapEditProfile,
-      onTapLogout: onTapLogout,
-      onTapChangeThemeMode: onTapChangeThemeMode,
-      onTapToggleNotifications: onTapToggleNotifications,
-      onTapContact: onTapContact,
-      onTapSuggestions: onTapSuggestions,
-      imageUrl: imageUrl,
-      nameUser: nameUser,
-      emailUser: emailUser,
-      versionPoweredAuthor: versionPoweredAuthor,
+    return BlocConsumer<SettingsCubit, SettingsState>(
+      listener: (context, state) {},
+      bloc: cubit,
+      builder: (context, state) {
+        return SettingsTemplate(
+          onTapEditProfile: () {},
+          onTapLogout: () {},
+          onTapChangeThemeMode: () {},
+          onTapToggleNotifications: () {},
+          onTapContact: () {},
+          onTapSuggestions: () {},
+          imageUrl: cubit.userEntity.image,
+          nameUser: cubit.userEntity.name,
+          emailUser: cubit.userEntity.email,
+          versionPoweredAuthor: 'versionPoweredAuthor',
+          onTapBackPage: () {
+            Modular.to.navigate('/home_user/');
+          },
+        );
+      },
     );
   }
 }

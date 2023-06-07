@@ -20,7 +20,7 @@ class BottomNavigationBarOrganism extends StatelessWidget {
         BottomNavigationBarItem(
           icon: InkWell(
             onTap: () {
-              Modular.to.navigate('settings');
+              Modular.to.navigate('/home_user/');
             },
             child: SvgPicture.asset(
               'assets/appIcons/dumble.svg',

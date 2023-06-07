@@ -16,6 +16,7 @@ class SettingsTemplate extends StatelessWidget {
   final String nameUser;
   final String emailUser;
   final String versionPoweredAuthor;
+  final VoidCallback onTapBackPage;
 
   const SettingsTemplate({
     super.key,
@@ -29,6 +30,7 @@ class SettingsTemplate extends StatelessWidget {
     required this.nameUser,
     required this.emailUser,
     required this.versionPoweredAuthor,
+    required this.onTapBackPage,
   });
 
   @override
@@ -42,9 +44,7 @@ class SettingsTemplate extends StatelessWidget {
             Icons.arrow_back,
             color: Colors.black,
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: onTapBackPage,
         ),
       ),
       body: Padding(

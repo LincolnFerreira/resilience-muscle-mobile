@@ -4,10 +4,14 @@ import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.
 import '../../domain/repositories/save_current_user_repository.dart';
 
 class SaveCurrentUserRepositoryImp implements SaveCurrentUserRepository {
+  final Box<UserEntity> userEntityBox;
+
+  SaveCurrentUserRepositoryImp({
+    required this.userEntityBox,
+  });
+
   @override
   Future<void> saveUser(UserEntity user) async {
-    final Box userBox = await Hive.openBox('user');
-
     //TODO: verificar boas práticas e utilização de criptografica para uid
     UserEntity newUser = UserEntity(
       email: user.email,
@@ -16,6 +20,7 @@ class SaveCurrentUserRepositoryImp implements SaveCurrentUserRepository {
       uid: user.uid,
     );
 
-    userBox.put('user', newUser);
+    userEntityBox.put('user', newUser);
+    print(userEntityBox);
   }
 }
