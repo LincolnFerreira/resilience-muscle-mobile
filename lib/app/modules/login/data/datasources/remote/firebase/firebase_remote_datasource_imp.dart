@@ -55,28 +55,36 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   }
 
   @override
-  Future<void> getCreateCurrentUser(UserEntity user) async {
+  Future<UserEntity> getCreateCurrentUser(String uid) async {
     final userCollectionRef = firestore.collection('users');
-
-    final uid = await userCollectionRef.doc(user.uid).get().then((value) async {
+    final userEntity = UserEntity();
+    final userdb = await userCollectionRef.doc(uid).get().then((value) async {
       final newUser = UserModel(
         uid: await getCurrentUId(),
-        name: user.name,
-        email: user.email,
-        password: user.password,
+        name: userEntity.name,
+        email: userEntity.email,
+        password: userEntity.password,
       );
       if (!value.exists) {
         await userCollectionRef.doc(newUser.uid).set({
           newUser.uid: await getCurrentUId(),
-          newUser.name: user.name,
-          newUser.email: user.email,
-          newUser.password: user.password,
+          newUser.name: userEntity.name,
+          newUser.email: userEntity.email,
+          newUser.password: userEntity.password,
         });
+        return userEntity;
       }
-      return;
     });
+    return userEntity;
   }
 
   @override
   Future<String> getCurrentUId() async => auth.currentUser!.uid;
+
+  Future<UserEntity> getCurrentUser(String uid) async {
+    final userCollectionRef = firestore.collection('user');
+
+    final currentUser = await userCollectionRef.doc(uid).collection('treino');
+    return currentUser;
+  }
 }

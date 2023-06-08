@@ -13,6 +13,7 @@ import '../../domain/usecases/get_current_uid/get_current_uid_usecase.dart';
 import '../../domain/usecases/is_sign_in/is_sign_in_usecase.dart';
 import '../../domain/usecases/sign_in/sign_in_usecase.dart';
 import '../../domain/usecases/sign_out/sign_out_usecase.dart';
+import '../usecase/get_current_user_usecase.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   final SignInUseCase signInUseCase;
@@ -20,6 +21,7 @@ class SignInCubit extends Cubit<SignInState> {
   final GetCurrentUIdUseCase getCurrentUIdUseCase;
   final SignOutUseCase signOutUseCase;
   final SaveCurrentUserUseCase saveCurrentUserUseCase;
+  final GetCurrentUserUsecase getCurrentUserUsecase;
 
   SignInCubit({
     // this.signInRepository,
@@ -28,6 +30,7 @@ class SignInCubit extends Cubit<SignInState> {
     required this.getCurrentUIdUseCase,
     required this.signOutUseCase,
     required this.saveCurrentUserUseCase,
+    required this.getCurrentUserUsecase,
   }) : super(SignInState.initial());
 
   final Logger logger = Logger();
@@ -58,8 +61,14 @@ class SignInCubit extends Cubit<SignInState> {
     }
   }
 
+  Future<void> getCurrentUser() async {
+    final getCurrentUser = await getCurrentUserUsecase();
+    print("getCurrent:" + getCurrentUser);
+  }
+
   Future<void> saveUser(UserEntity currentUser) async {
     await saveCurrentUserUseCase(currentUser);
+    await getCurrentUser();
   }
 
   Future<void> appStarted() async {

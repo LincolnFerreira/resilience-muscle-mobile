@@ -56,12 +56,16 @@ class SettingsTemplate extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Center(
-                child: ImageWithTextInfoUser(
-                  imageUrl: imageUrl,
-                  nameUser: nameUser,
-                  emailUser: emailUser,
-                  onTapImageProfile: onTapImageProfile,
+              //TODO: verificar como preencher a tela sem precisar disso
+              SizedBox(
+                height: 200,
+                child: Center(
+                  child: ImageWithTextInfoUser(
+                    imageUrl: imageUrl,
+                    nameUser: nameUser,
+                    emailUser: emailUser,
+                    onTapImageProfile: onTapImageProfile,
+                  ),
                 ),
               ),
               CardSellectWithIcon(

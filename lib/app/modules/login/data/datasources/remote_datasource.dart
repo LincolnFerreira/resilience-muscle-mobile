@@ -9,5 +9,5 @@ abstract class RemoteDataSource {
   Future<Either<Failure, UserEntity>> signIn(UserEntity user);
   Future<void> signOut();
   Future<String> getCurrentUId();
-  Future<void> getCreateCurrentUser(UserEntity user);
+  Future<void> getCreateCurrentUser(String uid);
 }
