@@ -10,4 +10,5 @@ abstract class RemoteDataSource {
   Future<void> signOut();
   Future<String> getCurrentUId();
   Future<UserEntity> getCurrentUser(String uid);
+  Future<bool> isEmailDuplicate(String email);
 }

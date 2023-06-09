@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_email_duplicate_usecase.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/cubit/registration_info_user_state.dart';
 
 class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
@@ -19,20 +20,16 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
   bool isValidateConfirmPassword = false;
   void onTapNameButton() {}
 
-  void submitSignUp({
+  Future<void> submitSignUp({
     required String name,
     required String birthDate,
     required double height,
     required double weight,
     required String email,
     required String password,
-  }) {
-    print(name);
-    print(birthDate);
-    print(height);
-    print(weight);
-    print(email);
-    print(password);
+  }) async {
+    // final res = await isEmailDuplicateUsecase.isEmailDuplicate(email);
+    // print(res);
   }
 
   String? validateName(String? value) {

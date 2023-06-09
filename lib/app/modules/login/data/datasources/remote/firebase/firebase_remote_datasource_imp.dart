@@ -12,7 +12,7 @@ import '../../remote_datasource.dart';
 class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   late final FirebaseAuth auth = FirebaseAuth.instance;
 
-  late final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  late final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   @override
   Future<void> signUp(UserEntity user) async {
     auth.createUserWithEmailAndPassword(
@@ -85,5 +85,19 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
     }
     print('snapshot: ${tableSnapshot.data()}');
     return userEntity;
+  }
+
+  @override
+  Future<bool> isEmailDuplicate(String email) async {
+    try {
+      final List<String> signInMethods =
+          await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+      if (signInMethods.isEmpty) {
+        return false;
+      }
+      return true;
+    } catch (e) {
+      return true;
+    }
   }
 }
