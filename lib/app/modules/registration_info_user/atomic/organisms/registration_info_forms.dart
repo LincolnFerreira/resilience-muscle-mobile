@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +18,8 @@ class RegistrationInfoForms extends StatelessWidget {
   final String inputLabelText;
   final String? Function(String?)? validator;
   final String? textButton;
+  final List<TextInputFormatter>? inputFormatter;
+  final TextInputType? keyboardType;
 
   RegistrationInfoForms({
     Key? key,
@@ -27,6 +30,8 @@ class RegistrationInfoForms extends StatelessWidget {
     required this.inputLabelText,
     this.validator,
     this.textButton,
+    this.inputFormatter,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
@@ -56,6 +61,8 @@ class RegistrationInfoForms extends StatelessWidget {
             Form(
               key: formKey,
               child: InputAtom(
+                inputFormatter: inputFormatter,
+                keyboardType: keyboardType,
                 labelText: inputLabelText,
                 prefixIcon: const FaIcon(Icons.person),
                 onChanged: onChangeInput,

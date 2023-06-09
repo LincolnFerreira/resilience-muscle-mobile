@@ -9,7 +9,6 @@ import 'package:resilience_muscle/app/modules/login/presentation/usecase/get_cur
 import 'data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
 import 'data/repositories/get_current_user_repository_imp.dart';
 import 'data/repositories/sign_in_repository_imp.dart';
-import 'domain/entities/user_entity.dart';
 import 'domain/repositories/get_current_user_repository.dart';
 import 'domain/repositories/sign_in_repository.dart';
 import 'domain/usecases/get_current_uid/get_current_uid_usecase.dart';

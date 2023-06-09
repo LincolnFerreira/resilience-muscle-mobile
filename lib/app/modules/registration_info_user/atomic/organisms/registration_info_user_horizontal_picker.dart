@@ -11,16 +11,19 @@ import '../../../../core/organisms_default/button_organism.dart';
 class RegistrationInfoUserHorizontalPicker extends StatefulWidget {
   final VoidCallback? onPressed;
   final Function(double)? onChangeInputHeight;
-  final double currentCentimeters;
+  double currentValueHorizontalPicker;
   final String suffix;
   final String? textButton;
-  const RegistrationInfoUserHorizontalPicker({
+  final String? titleInfo;
+
+  RegistrationInfoUserHorizontalPicker({
     Key? key,
     this.onPressed,
     this.onChangeInputHeight,
     this.textButton,
-    required this.currentCentimeters,
-    required this.suffix, // Parâmetro adicionado
+    required this.currentValueHorizontalPicker,
+    required this.suffix,
+    this.titleInfo, // Parâmetro adicionado
   }) : super(key: key);
 
   @override
@@ -30,12 +33,9 @@ class RegistrationInfoUserHorizontalPicker extends StatefulWidget {
 
 class _RegistrationInfoUserHorizontalPickerState
     extends State<RegistrationInfoUserHorizontalPicker> {
-  late double _currentCentimeters; // Variável de estado adicionada
-
   @override
   void initState() {
     super.initState();
-    _currentCentimeters = widget.currentCentimeters;
   }
 
   @override
@@ -47,8 +47,8 @@ class _RegistrationInfoUserHorizontalPickerState
           const SpaceWidgetAtom(height: 40),
           Column(
             children: [
-              const TextAtom(
-                text: 'Qual sua altura?',
+              TextAtom(
+                text: widget.titleInfo ?? 'Qual sua altura?',
                 textColor: ColorsUI.dark,
                 fontSize: 22,
               ),
@@ -57,7 +57,8 @@ class _RegistrationInfoUserHorizontalPickerState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextAtom(
-                    text: '$_currentCentimeters ${widget.suffix}',
+                    text:
+                        '${widget.currentValueHorizontalPicker} ${widget.suffix}',
                     fontSize: 30,
                   ),
                 ],
@@ -65,17 +66,17 @@ class _RegistrationInfoUserHorizontalPickerState
               HorizontalPicker(
                 minValue: 60,
                 maxValue: 238,
-                divisions: 170,
+                divisions: 356,
                 height: 100,
                 suffix: widget.suffix,
-                initialPosition: InitialPosition.center,
+                initialPosition: InitialPosition.start,
                 showCursor: false,
                 backgroundColor: Colors.white,
                 activeItemTextColor: ColorsUI.primary,
                 passiveItemsTextColor: ColorsUI.dark,
                 onChanged: (value) {
                   setState(() {
-                    _currentCentimeters = value;
+                    widget.currentValueHorizontalPicker = value;
                   });
                   widget.onChangeInputHeight?.call(value);
                 },

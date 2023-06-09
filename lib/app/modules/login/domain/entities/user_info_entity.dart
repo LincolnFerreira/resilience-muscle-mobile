@@ -1,5 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
 class UserInfoEntity {
   final Map<String, bool>
       isCompleted; // saber se ele já completou as informações

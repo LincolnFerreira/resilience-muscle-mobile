@@ -1,8 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-part 'registration_info_user_state.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/cubit/registration_info_user_state.dart';
 
 class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
   RegistrationInfoUserCubit()
@@ -15,9 +13,10 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
   }
 
   void onTapButtonContinue() {
-    emit(RegistrationInfoUserSuccess(page: state.page + 1));
+    emit(RegistrationInfoUserSuccess(newPage: state.page + 1));
   }
 
+  bool isValidateConfirmPassword = false;
   void onTapNameButton() {}
 
   void submitSignUp({
@@ -42,12 +41,10 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
     }
 
     final nameRegExp = RegExp(r'^[a-zA-Z ]+$');
-    if (!nameRegExp.hasMatch(value)) {
+    if (!nameRegExp.hasMatch(value) || value.length < 3) {
       return 'Por favor, insira um nome válido.';
     }
-    if (value.length < 3) {
-      return 'Por favor, insira um nome válido.';
-    }
+
     onTapButton();
     return null;
   }
@@ -101,17 +98,20 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
     return null; // Retorna null se o valor for válido
   }
 
-  bool validateConfirmPassword(String? password, String? confirmPassword) {
+  String? validateConfirmPassword(
+      {required String? password, required String? confirmPassword}) {
     if (password == null ||
         confirmPassword == null ||
         confirmPassword.isEmpty) {
-      return false;
+      return 'Por favor, confirme sua senha.';
     }
 
     if (password != confirmPassword) {
-      return false;
+      return 'As senhas não coincidem.';
     }
-
-    return true; // Retorna null se o valor for válido
+    emit(RegistrationInfoUserSuccess(
+      isValidateConfirmPassword: true,
+    ));
+    return null; // Retorna null se o valor for válido
   }
 }

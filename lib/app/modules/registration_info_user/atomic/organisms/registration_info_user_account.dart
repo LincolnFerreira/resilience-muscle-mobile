@@ -9,6 +9,7 @@ import '../../../../core/organisms_default/button_organism.dart';
 
 class RegistrationInfoUserAccount extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
+  final passwordController = TextEditingController();
   final VoidCallback? onPressed;
   final Function(String)? onChangeInputEmail;
   final Function(String)? onChangeInputPassword;
@@ -19,7 +20,6 @@ class RegistrationInfoUserAccount extends StatelessWidget {
   final String inputLabelTextConfirmPassword;
   final String? Function(String?)? validatorEmail;
   final String? Function(String?)? validatorPassword;
-  final bool validatorConfirmPassword;
   final String? textButton;
 
   RegistrationInfoUserAccount({
@@ -34,12 +34,12 @@ class RegistrationInfoUserAccount extends StatelessWidget {
     required this.inputLabelTextConfirmPassword,
     this.validatorEmail,
     this.validatorPassword,
-    this.validatorConfirmPassword = false,
     this.textButton,
   });
 
   @override
   Widget build(BuildContext context) {
+    bool isValidateConfirmPassword = false;
     return Padding(
       padding: const EdgeInsets.all(30),
       child: Column(
@@ -69,12 +69,25 @@ class RegistrationInfoUserAccount extends StatelessWidget {
                       prefixIcon: const FaIcon(Icons.key),
                       onChanged: onChangeInputPassword,
                       validator: validatorPassword,
+                      controller: passwordController,
+                      obscureText: true,
                     ),
                     const SpaceWidgetAtom(height: 20),
                     InputAtom(
+                      obscureText: true,
                       labelText: inputLabelTextConfirmPassword,
                       prefixIcon: const FaIcon(Icons.key),
                       onChanged: onChangeInputConfirmPassword,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor, insira a confirmação de senha.';
+                        }
+                        if (value != passwordController.text) {
+                          return 'As senhas não coincidem.';
+                        }
+                        isValidateConfirmPassword = true;
+                        return null;
+                      },
                     ),
                   ],
                 ),
@@ -86,7 +99,7 @@ class RegistrationInfoUserAccount extends StatelessWidget {
             textButton: textButton ?? 'Confirmar',
             onPressed: () {
               if (formKey.currentState?.validate() == true ||
-                  validatorConfirmPassword == true) {
+                  isValidateConfirmPassword == true) {
                 onPressed?.call();
               }
             },

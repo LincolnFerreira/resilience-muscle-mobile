@@ -27,8 +27,6 @@ class SettingsCubit extends Cubit<SettingsState> {
     final XFile? newImageProfile = await getImage();
     if (newImageProfile != null) {
       return;
-    } else {
-      print("não escolheu");
-    }
+    } else {}
   }
 }
