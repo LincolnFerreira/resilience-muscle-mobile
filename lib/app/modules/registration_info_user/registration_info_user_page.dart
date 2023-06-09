@@ -8,6 +8,7 @@ import '../../../ui/colors.dart';
 import '../../core/atom_default/dot_atom.dart';
 import '../../core/atom_default/space_widget_atom.dart';
 import '../../core/atom_default/text_atom.dart';
+import 'atomic/organisms/registration_info_user_account.dart';
 import 'atomic/organisms/registration_info_user_horizontal_picker.dart';
 import 'atomic/organisms/registration_info_forms.dart';
 
@@ -32,6 +33,9 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
   String inputBirthDate = '';
   double inputWeight = 0;
   double inputHeight = 0;
+  String inputEmail = '';
+  String inputPassword = '';
+  String inputConfirmPassword = '';
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +74,7 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
                       ),
                       DotAtom(
                         activeIndex: cubit.state.page,
-                        count: 4,
+                        count: 5,
                       ),
                     ],
                   ),
@@ -92,15 +96,18 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
                               titleForm: 'Como prefere ser chamado ?',
                               formSubtitle:
                                   'Vamos utilizar essa informação para se comunicar melhor com você',
-                              // validator: ,
+                              validator: cubit.validateName,
+                              textButton: 'Continuar ${state.page} /4',
                             );
                           }
                           if (state.page == 1) {
                             return RegistrationInfoForms(
                               formSubtitle: 'Algumas informações a mais...',
                               inputLabelText: 'Data de nascimento:',
-                              onChangeInput: (e) {},
+                              onChangeInput: (e) => inputBirthDate = e,
                               onPressed: cubit.onTapButtonContinue,
+                              validator: cubit.validateBirthDate,
+                              textButton: 'Continuar ${state.page} /4',
                             );
                           }
                           if (state.page == 2) {
@@ -109,15 +116,42 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
                               onChangeInputHeight: (e) => inputHeight = e,
                               currentCentimeters: 1.60,
                               suffix: ' Cm',
+                              textButton: 'Continuar ${state.page} /4',
                             );
                           }
 
                           if (state.page == 3) {
                             return RegistrationInfoUserHorizontalPicker(
                               onPressed: cubit.onTapButtonContinue,
-                              onChangeInputHeight: (e) => inputHeight = e,
+                              onChangeInputHeight: (e) => inputWeight = e,
                               currentCentimeters: 80.0,
                               suffix: ' Kg',
+                              textButton: 'Continuar ${state.page} /4',
+                            );
+                          }
+                          if (state.page == 4) {
+                            return RegistrationInfoUserAccount(
+                              onPressed: () => cubit.submitSignUp(
+                                  birthDate: inputBirthDate,
+                                  email: inputEmail,
+                                  height: inputHeight,
+                                  name: inputName,
+                                  password: inputPassword,
+                                  weight: inputWeight),
+                              onChangeInputEmail: (e) => inputEmail = e,
+                              onChangeInputPassword: (e) => inputPassword = e,
+                              onChangeInputConfirmPassword: (e) =>
+                                  inputConfirmPassword = e,
+                              titleForm: 'Informações da conta',
+                              inputLabelTextEmail: 'Email:',
+                              inputLabelTextConfirmPassword: "Confirma Senha",
+                              inputLabelTextPassword: "Senha",
+                              validatorEmail: cubit.validateEmail,
+                              validatorPassword: cubit.validatePassword,
+                              validatorConfirmPassword:
+                                  cubit.validateConfirmPassword(
+                                      inputPassword, inputConfirmPassword),
+                              textButton: 'Finalizar ${state.page} /4',
                             );
                           }
                           return const SizedBox(

@@ -8,10 +8,18 @@ import '../../domain/repositories/get_current_user_repository.dart';
 
 class GetCurrentUserRepositoryImp implements GetCurrentUserRepository {
   final FirebaseRemoteDataSourceImp firebaseRemoteDataSourceImp;
+
   GetCurrentUserRepositoryImp({
     required this.firebaseRemoteDataSourceImp,
   });
-  Future<Either<Failure, UserEntity>> getCurrentUser(String uid) {
-    return firebaseRemoteDataSourceImp.getCurrentUser(uid);
+
+  @override
+  Future<Either<Failure, UserEntity>> getCurrentUser(String uid) async {
+    try {
+      final currentUser = await firebaseRemoteDataSourceImp.getCurrentUser(uid);
+      return Right(currentUser);
+    } catch (e) {
+      return Left(Failure(message: "Failed to get current user."));
+    }
   }
 }

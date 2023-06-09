@@ -21,7 +21,7 @@ class UpgradeImageUserRepositoryImp extends UpgradeImageUserRepository {
       XFile imageUserProfile) async {
     if (localDataSource.get('user')?.image == null) {
       localDataSource.put('image', UserEntity()..image = imageUserProfile);
-      return Right(null); // Image profile upgraded successfully
+      return const Right(null); // Image profile upgraded successfully
     } else {
       return Left(Failure(
         message: 'Image profile already exists',

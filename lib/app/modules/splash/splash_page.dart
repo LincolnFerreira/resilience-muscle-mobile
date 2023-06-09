@@ -14,7 +14,7 @@ class SplashPage extends StatelessWidget {
         repeat: false,
         onLoaded: (p0) => Future.delayed(
           const Duration(seconds: 2),
-          () => Modular.to.navigate('login/'),
+          () => Modular.to.navigate('/login/'),
         ),
       ),
       nextScreen: const Text('Loading...'),

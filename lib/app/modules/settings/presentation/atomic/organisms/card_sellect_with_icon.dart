@@ -25,7 +25,7 @@ class CardSellectWithIcon extends StatelessWidget {
         ),
         ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: listOfSelectWithIconParams.length,
           itemBuilder: (context, index) {
             SelectWithIconParams selectWithIconParams =

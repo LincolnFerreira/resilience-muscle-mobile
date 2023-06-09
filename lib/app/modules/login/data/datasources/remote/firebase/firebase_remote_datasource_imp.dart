@@ -55,36 +55,35 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   }
 
   @override
-  Future<UserEntity> getCreateCurrentUser(String uid) async {
-    final userCollectionRef = firestore.collection('users');
-    final userEntity = UserEntity();
-    final userdb = await userCollectionRef.doc(uid).get().then((value) async {
-      final newUser = UserModel(
-        uid: await getCurrentUId(),
-        name: userEntity.name,
-        email: userEntity.email,
-        password: userEntity.password,
-      );
-      if (!value.exists) {
-        await userCollectionRef.doc(newUser.uid).set({
-          newUser.uid: await getCurrentUId(),
-          newUser.name: userEntity.name,
-          newUser.email: userEntity.email,
-          newUser.password: userEntity.password,
-        });
-        return userEntity;
-      }
-    });
-    return userEntity;
-  }
-
-  @override
   Future<String> getCurrentUId() async => auth.currentUser!.uid;
 
+  @override
   Future<UserEntity> getCurrentUser(String uid) async {
-    final userCollectionRef = firestore.collection('user');
+    final userEntity = UserEntity();
+    final tableReference =
+        FirebaseFirestore.instance.collection('users').doc(uid);
 
-    final currentUser = await userCollectionRef.doc(uid).collection('treino');
-    return currentUser;
+    final tableSnapshot = await tableReference.get();
+    DateTime data = DateTime.now();
+    Timestamp timestamp = Timestamp.fromDate(data);
+    if (!tableSnapshot.exists) {
+      await tableReference.set({
+        'date_of_birth': timestamp,
+        'heigth': 1.63,
+        'name': "Lincoln Ferreira",
+        'width': 88,
+        // adicione os campos e valores necessários para criar a tabela
+      });
+    } else {
+      await tableReference.set({
+        'date_of_birth': timestamp,
+        'heigth': 1.63,
+        'name': "Lincoln Ferreira",
+        'width': 88,
+        // adicione os campos e valores necessários para criar a tabela
+      });
+    }
+    print('snapshot: ${tableSnapshot.data()}');
+    return userEntity;
   }
 }

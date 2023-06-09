@@ -56,10 +56,11 @@ class RegistrationInfoForms extends StatelessWidget {
             Form(
               key: formKey,
               child: InputAtom(
-                  labelText: inputLabelText,
-                  prefixIcon: const FaIcon(Icons.person),
-                  onChanged: onChangeInput,
-                  validator: validator),
+                labelText: inputLabelText,
+                prefixIcon: const FaIcon(Icons.person),
+                onChanged: onChangeInput,
+                validator: validator,
+              ),
             ),
           ],
         ),

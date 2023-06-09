@@ -14,8 +14,6 @@ class HomeUserCubit extends Cubit<HomeUserState> {
   }) : super(HomeUserInitial());
 
   Future<void> getUser() async {
-    // final box = await Hive.openBox('user');
-    // final UserEntity userEntityBox = box.get('user');
     print('cache: ${userEntityBox.get('user')?.toJson()}');
   }
 

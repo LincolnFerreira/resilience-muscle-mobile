@@ -13,10 +13,12 @@ class RegistrationInfoUserHorizontalPicker extends StatefulWidget {
   final Function(double)? onChangeInputHeight;
   final double currentCentimeters;
   final String suffix;
+  final String? textButton;
   const RegistrationInfoUserHorizontalPicker({
     Key? key,
     this.onPressed,
     this.onChangeInputHeight,
+    this.textButton,
     required this.currentCentimeters,
     required this.suffix, // Parâmetro adicionado
   }) : super(key: key);
@@ -82,7 +84,7 @@ class _RegistrationInfoUserHorizontalPickerState
           ),
           const SpaceWidgetAtom(height: 54),
           ButtonOrganism.primary(
-            textButton: 'Confirmar',
+            textButton: widget.textButton ?? 'Confirmar',
             onPressed: widget.onPressed!,
             width: 232,
           )

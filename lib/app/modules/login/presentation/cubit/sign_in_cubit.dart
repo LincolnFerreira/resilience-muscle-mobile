@@ -2,7 +2,6 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 
 import 'package:resilience_muscle/app/modules/login/domain/usecases/save_user/save_current_usecase.dart';
@@ -54,6 +53,7 @@ class SignInCubit extends Cubit<SignInState> {
             status: SignInStatus.success,
           ));
           saveUser(right);
+          getCurrentUser(right.uid);
         },
       );
     } catch (_) {
@@ -61,14 +61,13 @@ class SignInCubit extends Cubit<SignInState> {
     }
   }
 
-  Future<void> getCurrentUser() async {
-    final getCurrentUser = await getCurrentUserUsecase();
-    print("getCurrent:" + getCurrentUser);
+  Future<void> getCurrentUser(String uid) async {
+    final getCurrentUser = await getCurrentUserUsecase(uid);
+    print(getCurrentUser);
   }
 
   Future<void> saveUser(UserEntity currentUser) async {
     await saveCurrentUserUseCase(currentUser);
-    await getCurrentUser();
   }
 
   Future<void> appStarted() async {
