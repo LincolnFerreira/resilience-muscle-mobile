@@ -1,3 +1,7 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure.dart';
+
 abstract class SignOutRepository {
-  Future<void> call();
+  Future<Either<Failure, void>> call();
 }

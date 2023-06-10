@@ -1,3 +1,6 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure.dart';
 import '../../domain/repositories/is_sign_in_repository.dart';
 import '../datasources/remote_datasource.dart';
 
@@ -9,7 +12,7 @@ class IsSignInRepositoryImp implements IsSignInRepository {
   });
 
   @override
-  Future<bool> call() {
+  Future<Either<Failure, bool>> call() {
     return firebaseRemoteDataSource.isSignIn();
   }
 }

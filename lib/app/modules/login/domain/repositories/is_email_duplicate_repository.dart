@@ -1,3 +1,7 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure.dart';
+
 abstract class IsEmailDuplicateRepository {
-  Future<bool> isEmailDuplicate(String email);
+  Future<Either<Failure, bool>> isEmailDuplicate(String email);
 }

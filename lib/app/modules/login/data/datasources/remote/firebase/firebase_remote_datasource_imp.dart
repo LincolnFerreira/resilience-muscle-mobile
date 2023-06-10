@@ -1,5 +1,3 @@
-// ignore_for_file: unused_local_variable, duplicate_ignore
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,19 +9,28 @@ import '../../remote_datasource.dart';
 
 class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   late final FirebaseAuth auth = FirebaseAuth.instance;
-
   late final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   @override
-  Future<void> signUp(UserEntity user) async {
-    auth.createUserWithEmailAndPassword(
-        email: user.email, password: user.password);
+  Future<Either<Failure, void>> signUp(UserEntity user) async {
+    try {
+      await auth.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+      return const Right(null);
+    } catch (e) {
+      return Left(Failure(message: 'Erro durante o cadastro: $e'));
+    }
   }
 
   @override
   Future<Either<Failure, UserEntity>> signIn(UserEntity user) async {
     try {
-      final res = await auth.signInWithEmailAndPassword(
-          email: user.email, password: user.password);
+      await auth.signInWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
 
       final changeUser = UserModel(
         uid: await getCurrentUId(),
@@ -40,63 +47,83 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       } else if (e.code == 'wrong-password') {
         return Left(Failure(message: 'Senha incorreta!'));
       }
+      return Left(Failure(message: 'Erro durante o login: $e'));
+    } catch (e) {
+      return Left(Failure(message: 'Erro durante o login: $e'));
     }
-    return Left(Failure(message: 'Erro desconhecido'));
   }
 
   @override
-  Future<bool> isSignIn() async {
-    return auth.currentUser?.uid != null;
-  }
-
-  @override
-  Future<void> signOut() {
-    return auth.signOut();
-  }
-
-  @override
-  Future<String> getCurrentUId() async => auth.currentUser!.uid;
-
-  @override
-  Future<UserEntity> getCurrentUser(String uid) async {
-    final userEntity = UserEntity();
-    final tableReference =
-        FirebaseFirestore.instance.collection('users').doc(uid);
-
-    final tableSnapshot = await tableReference.get();
-    DateTime data = DateTime.now();
-    Timestamp timestamp = Timestamp.fromDate(data);
-    if (!tableSnapshot.exists) {
-      await tableReference.set({
-        'date_of_birth': timestamp,
-        'heigth': 1.63,
-        'name': "Lincoln Ferreira",
-        'width': 88,
-        // adicione os campos e valores necessários para criar a tabela
-      });
-    } else {
-      await tableReference.set({
-        'date_of_birth': timestamp,
-        'heigth': 1.63,
-        'name': "Lincoln Ferreira",
-        'width': 88,
-        // adicione os campos e valores necessários para criar a tabela
-      });
+  Future<Either<Failure, bool>> isSignIn() async {
+    try {
+      return Right(auth.currentUser?.uid != null);
+    } catch (e) {
+      return Left(Failure(message: 'Erro ao verificar status de login: $e'));
     }
-    print('snapshot: ${tableSnapshot.data()}');
-    return userEntity;
   }
 
   @override
-  Future<bool> isEmailDuplicate(String email) async {
+  Future<Either<Failure, void>> signOut() async {
+    try {
+      await auth.signOut();
+      return const Right(null);
+    } catch (e) {
+      return Left(Failure(message: 'Erro ao tentar sair da conta: $e'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getCurrentUId() async {
+    try {
+      return Right(auth.currentUser!.uid);
+    } catch (e) {
+      return Left(Failure(message: 'Erro ao obter o ID do usuário: $e'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> getCurrentUser(String uid) async {
+    try {
+      final userEntity = UserEntity();
+      final tableReference =
+          FirebaseFirestore.instance.collection('users').doc(uid);
+
+      final tableSnapshot = await tableReference.get();
+      DateTime data = DateTime.now();
+      Timestamp timestamp = Timestamp.fromDate(data);
+      if (!tableSnapshot.exists) {
+        await tableReference.set({
+          'date_of_birth': timestamp,
+          'heigth': 1.63,
+          'name': "Lincoln Ferreira",
+          'width': 88,
+          // adicione os campos e valores necessários para criar a tabela
+        });
+      } else {
+        await tableReference.set({
+          'date_of_birth': timestamp,
+          'heigth': 1.63,
+          'name': "Lincoln Ferreira",
+          'width': 88,
+          // adicione os campos e valores necessários para criar a tabela
+        });
+      }
+      return Right(userEntity);
+    } catch (e) {
+      return Left(Failure(message: 'Erro ao obter usuário atual: $e'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> isEmailDuplicate(String email) async {
     try {
       final List<String> signInMethods =
           await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
 
       if (signInMethods.isEmpty) {
-        return false;
+        return const Right(false);
       } else {
-        return true;
+        return const Right(true);
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {
@@ -106,11 +133,11 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
         // Outro erro relacionado ao Firebase Authentication
         print('Erro ao verificar o email: ${e.message}');
       }
-      return true;
+      return const Right(true);
     } catch (e) {
       // Outros erros
       print('Erro ao verificar o email: $e');
-      return true;
+      return const Right(true);
     }
   }
 
@@ -120,11 +147,13 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
     required String password,
   }) async {
     try {
-      final res = await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return const Right(true);
     } catch (e) {
-      return Left(Failure(message: e.toString()));
+      return Left(Failure(message: 'Erro ao criar novo usuário: $e'));
     }
   }
 
@@ -158,12 +187,10 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
           'weight': weight,
         });
       }
-      print('Dados criados com sucesso...');
-      print('snapshot: ${tableSnapshot.data()}');
       return const Right(true);
     } catch (e) {
-      print('Dados não foram criados...');
-      return Left(Failure(message: e.toString()));
+      return Left(Failure(
+          message: 'Erro ao criar coleções de informações do usuário: $e'));
     }
   }
 }

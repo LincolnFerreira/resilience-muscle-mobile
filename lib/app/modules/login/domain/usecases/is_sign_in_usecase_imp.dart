@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import '../../repositories/is_sign_in_repository.dart';
-import 'is_sign_in_usecase.dart';
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure.dart';
+import '../../presentation/usecase/is_sign_in_usecase.dart';
+import '../repositories/is_sign_in_repository.dart';
 
 class IsSignInUseCaseImp implements IsSignInUseCase {
   final IsSignInRepository isSignInRepository;
@@ -10,7 +13,7 @@ class IsSignInUseCaseImp implements IsSignInUseCase {
   });
 
   @override
-  Future<bool> call() {
+  Future<Either<Failure, bool>> call() {
     return isSignInRepository.call();
   }
 }

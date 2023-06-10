@@ -36,9 +36,12 @@ class HomeUserPageState extends State<HomeUserPage> {
             return Scaffold(
               appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(70),
-                child: NavbarTopUserOrganism(
-                  nameUser: cubit.userEntityBox.name,
-                  fraseInteligente: 'fraseInteligente',
+                child: InkWell(
+                  onTap: cubit.getUser,
+                  child: NavbarTopUserOrganism(
+                    nameUser: cubit.userEntityBox.name,
+                    fraseInteligente: 'fraseInteligente',
+                  ),
                 ),
               ),
               body: Column(

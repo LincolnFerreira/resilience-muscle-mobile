@@ -53,7 +53,7 @@ class ButtonOrganism extends StatelessWidget {
         width: width,
         height: heigth,
         child:
-            CircularProgressIndicator(), // Exemplo de botão customizado para quando o loading está ativo
+            const CircularProgressIndicator(), // Exemplo de botão customizado para quando o loading está ativo
       );
     } else if (disabled == true) {
       return SizedBox(

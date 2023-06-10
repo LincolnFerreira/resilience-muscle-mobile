@@ -15,11 +15,6 @@ class GetCurrentUserRepositoryImp implements GetCurrentUserRepository {
 
   @override
   Future<Either<Failure, UserEntity>> getCurrentUser(String uid) async {
-    try {
-      final currentUser = await firebaseRemoteDataSourceImp.getCurrentUser(uid);
-      return Right(currentUser);
-    } catch (e) {
-      return Left(Failure(message: "Failed to get current user."));
-    }
+    return await firebaseRemoteDataSourceImp.getCurrentUser(uid);
   }
 }

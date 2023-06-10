@@ -4,13 +4,13 @@ import '../../../../core/failure.dart';
 import '../../domain/entities/user_entity.dart';
 
 abstract class RemoteDataSource {
-  Future<bool> isSignIn();
-  Future<void> signUp(UserEntity user);
+  Future<Either<Failure, bool>> isSignIn();
+  Future<Either<Failure, void>> signUp(UserEntity user);
   Future<Either<Failure, UserEntity>> signIn(UserEntity user);
-  Future<void> signOut();
-  Future<String> getCurrentUId();
-  Future<UserEntity> getCurrentUser(String uid);
-  Future<bool> isEmailDuplicate(String email);
+  Future<Either<Failure, void>> signOut();
+  Future<Either<Failure, String>> getCurrentUId();
+  Future<Either<Failure, UserEntity>> getCurrentUser(String uid);
+  Future<Either<Failure, bool>> isEmailDuplicate(String email);
   Future<Either<Failure, bool>> createNewUserWithEmail(
       {required String email, required String password});
   Future<Either<Failure, bool>> createCollectionsInfoUser({

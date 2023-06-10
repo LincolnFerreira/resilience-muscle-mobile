@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/failure.dart';
-import '../entities/user_entity.dart';
+import '../../domain/entities/user_entity.dart';
 
-abstract class SignUpRepository {
+abstract class SignUpUseCase {
   Future<Either<Failure, void>> call(UserEntity user);
 }

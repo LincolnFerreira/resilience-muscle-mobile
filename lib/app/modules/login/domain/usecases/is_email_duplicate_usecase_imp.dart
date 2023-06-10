@@ -9,12 +9,8 @@ class IsEmailDuplicateUsecaseImp implements IsEmailDuplicateUsecase {
 
   IsEmailDuplicateUsecaseImp({required this.repository});
 
+  @override
   Future<Either<Failure, bool>> isEmailDuplicate(String email) async {
-    try {
-      final isDuplicate = await repository.isEmailDuplicate(email);
-      return Right(isDuplicate);
-    } catch (e) {
-      return Left(Failure(message: "Failed to check email duplication"));
-    }
+    return await repository.isEmailDuplicate(email);
   }
 }

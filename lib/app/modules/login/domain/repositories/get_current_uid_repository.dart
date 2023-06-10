@@ -1,3 +1,7 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure.dart';
+
 abstract class GetCurrentUIdRepository {
-  Future<String> call();
+  Future<Either<Failure, String>> call();
 }

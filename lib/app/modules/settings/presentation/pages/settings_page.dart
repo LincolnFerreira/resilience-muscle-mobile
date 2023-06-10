@@ -23,12 +23,12 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (context, state) {
         return SettingsTemplate(
           onTapImageProfile: cubit.onTapImageProfile,
-          onTapEditProfile: () {},
-          onTapLogout: () {},
-          onTapChangeThemeMode: () {},
-          onTapToggleNotifications: () {},
-          onTapContact: () {},
-          onTapSuggestions: () {},
+          onTapEditProfile: cubit.onTapEditProfile,
+          onTapLogout: cubit.onTapLogout,
+          onTapChangeThemeMode: cubit.onTapChangeThemeMode,
+          onTapToggleNotifications: cubit.onTapToggleNotifications,
+          onTapContact: cubit.onTapContact,
+          onTapSuggestions: cubit.onTapSuggestions,
           imageUrl: cubit.userEntity.image,
           nameUser: cubit.userEntity.name,
           emailUser: cubit.userEntity.email,

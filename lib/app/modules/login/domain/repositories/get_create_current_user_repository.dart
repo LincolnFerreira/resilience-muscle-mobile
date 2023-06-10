@@ -1,3 +1,7 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure.dart';
+
 abstract class GetCreateCurrentUserRepository {
-  Future<void> call(String uid);
+  Future<Either<Failure, void>> call(String uid);
 }

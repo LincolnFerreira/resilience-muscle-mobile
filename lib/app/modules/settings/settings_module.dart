@@ -25,6 +25,7 @@ class SettingsModule extends Module {
               userEntity: i(),
               imagePicker: i(),
               upgradeImageUserUsecase: i(),
+              signOutUsecase: i(),
             )),
       ];
 
