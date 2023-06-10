@@ -74,44 +74,44 @@ class AppModule extends Module {
         ModuleRoute(
           '/',
           module: SplashModule(),
-          transition: TransitionType.rightToLeft,
-          duration: const Duration(milliseconds: 500),
+          transition: TransitionType.defaultTransition,
+          duration: const Duration(milliseconds: 300),
         ),
         ModuleRoute(
           '/login',
           module: LoginModule(),
-          transition: TransitionType.fadeIn,
-          duration: const Duration(milliseconds: 500),
+          transition: TransitionType.defaultTransition,
+          duration: const Duration(milliseconds: 300),
         ),
         ModuleRoute(
           '/home_user',
           module: HomeUserModule(),
-          transition: TransitionType.fadeIn,
-          duration: const Duration(milliseconds: 500),
+          transition: TransitionType.defaultTransition,
+          duration: const Duration(milliseconds: 300),
         ),
         ModuleRoute(
           '/forget_password',
           module: ForgetPasswordModule(),
-          transition: TransitionType.fadeIn,
-          duration: const Duration(milliseconds: 500),
+          transition: TransitionType.defaultTransition,
+          duration: const Duration(milliseconds: 300),
         ),
         ModuleRoute(
           '/settings',
           module: SettingsModule(),
-          transition: TransitionType.fadeIn,
-          duration: const Duration(milliseconds: 500),
+          transition: TransitionType.defaultTransition,
+          duration: const Duration(milliseconds: 300),
         ),
         ModuleRoute(
           '/registration_info_user',
           module: RegistrationInfoUserModule(),
-          transition: TransitionType.fadeIn,
-          duration: const Duration(milliseconds: 500),
+          transition: TransitionType.defaultTransition,
+          duration: const Duration(milliseconds: 300),
         ),
         ModuleRoute(
           '/home_user',
           module: HomeUserModule(),
-          transition: TransitionType.fadeIn,
-          duration: const Duration(milliseconds: 500),
+          transition: TransitionType.defaultTransition,
+          duration: const Duration(milliseconds: 300),
         )
       ];
 }

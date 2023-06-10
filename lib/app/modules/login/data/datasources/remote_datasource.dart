@@ -11,4 +11,6 @@ abstract class RemoteDataSource {
   Future<String> getCurrentUId();
   Future<UserEntity> getCurrentUser(String uid);
   Future<bool> isEmailDuplicate(String email);
+  Future<Either<Failure, bool>> createNewUserWithEmail(
+      {required String email, required String password});
 }

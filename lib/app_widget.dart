@@ -17,8 +17,13 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: ColorsUI.white,
         textTheme: const TextTheme(),
-        // primaryColor: Colors.red,
-        //visualDensity pesquisar sobre
+        inputDecorationTheme: const InputDecorationTheme(
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: ColorsUI.primary,
+            ), // Defina a cor desejada para a borda
+          ),
+        ), //visualDensity pesquisar sobre
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routeInformationParser: Modular.routeInformationParser,

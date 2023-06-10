@@ -13,6 +13,8 @@ class ButtonOrganism extends StatelessWidget {
   final Color? textColor;
   final Widget? child;
   final double? textSize;
+  final bool? disabled;
+  final bool? loading;
 
   const ButtonOrganism({
     Key? key,
@@ -25,6 +27,8 @@ class ButtonOrganism extends StatelessWidget {
     this.textColor,
     this.child,
     this.textSize,
+    this.disabled = false,
+    this.loading = false,
   }) : super(key: key);
 
   const ButtonOrganism.primary({
@@ -38,28 +42,60 @@ class ButtonOrganism extends StatelessWidget {
     this.textColor = ColorsUI.white,
     this.child,
     this.textSize,
+    this.disabled = false,
+    this.loading = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: heigth,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: foregroundColor,
-        ),
-        onPressed: onPressed,
-        child: child ??
-            Text(
-              textButton,
-              style: TextStyle(
-                color: textColor,
-                fontSize: textSize ?? 14,
+    if (loading == true) {
+      return SizedBox(
+        width: width,
+        height: heigth,
+        child:
+            CircularProgressIndicator(), // Exemplo de botão customizado para quando o loading está ativo
+      );
+    } else if (disabled == true) {
+      return SizedBox(
+        width: width,
+        height: heigth,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: Colors
+                .grey, // Exemplo de botão customizado para quando está desabilitado
+            foregroundColor: Colors.black,
+          ),
+          onPressed: null,
+          child: child ??
+              Text(
+                textButton,
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: textSize ?? 14,
+                ),
               ),
-            ),
-      ),
-    );
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: width,
+        height: heigth,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: backgroundColor,
+            foregroundColor: foregroundColor,
+          ),
+          onPressed: onPressed,
+          child: child ??
+              Text(
+                textButton,
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: textSize ?? 14,
+                ),
+              ),
+        ),
+      );
+    }
   }
 }

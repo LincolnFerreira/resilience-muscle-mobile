@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/atomic/template/registration_info_user_template.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/cubit/registration_info_user_cubit.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/template/registration_info_user_template.dart';
 import 'package:flutter/material.dart';
 
-import 'cubit/registration_info_user_state.dart';
+import '../cubits/registration_info_user_cubit.dart';
+import '../cubits/registration_info_user_state.dart';
 
 class RegistrationInfoUserPage extends StatefulWidget {
   const RegistrationInfoUserPage({super.key});
@@ -29,8 +29,14 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegistrationInfoUserCubit, RegistrationInfoUserState>(
+    return BlocConsumer<RegistrationInfoUserCubit, RegistrationInfoUserState>(
       bloc: cubit,
+      listener: (context, state) => {
+        if (state.createdNewUser == true)
+          {
+            Modular.to.popAndPushNamed('/login/'),
+          }
+      },
       builder: (context, state) => RegistrationInfoUserTemplate(
         onPressedBackPage: () {
           Modular.to.popAndPushNamed('/login/');

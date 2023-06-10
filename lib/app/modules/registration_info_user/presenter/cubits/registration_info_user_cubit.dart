@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_email_duplicate_usecase.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/cubit/registration_info_user_state.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/cubits/registration_info_user_state.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/usecases/create_new_user_with_email_usecase.dart';
 
 class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
-  RegistrationInfoUserCubit()
-      : super(const RegistrationInfoUserInitial(page: 0));
+  final IsEmailDuplicateUsecase isEmailDuplicateUsecase;
+  final CreateNewUserWithEmailUsecase createNewUserWithEmail;
+
+  RegistrationInfoUserCubit({
+    required this.createNewUserWithEmail,
+    required this.isEmailDuplicateUsecase,
+  }) : super(const RegistrationInfoUserInitial(page: 0));
 
   final TextEditingController textController = TextEditingController();
-
-  void onTapButton() {
-    // emit(RegistrationInfoUserSuccess(page: state.page + 1));
-  }
 
   void onTapButtonContinue() {
     emit(RegistrationInfoUserSuccess(newPage: state.page + 1));
   }
 
   bool isValidateConfirmPassword = false;
-  void onTapNameButton() {}
+  String? externalError;
 
   Future<void> submitSignUp({
     required String name,
@@ -28,8 +30,22 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
     required String email,
     required String password,
   }) async {
-    // final res = await isEmailDuplicateUsecase.isEmailDuplicate(email);
-    // print(res);
+    final resEmail = await isEmailDuplicateUsecase.isEmailDuplicate(email);
+    resEmail.fold(
+      (failure) => {
+        externalError = 'Email já utilizado.',
+        validateEmail(email),
+      },
+      (response) => {
+        if (response == false)
+          {
+            externalError = null,
+          }
+      },
+    );
+    final resSignUp = await createNewUserWithEmail(email, password);
+    resSignUp.fold((failure) {},
+        (signUp) => emit(RegistrationInfoUserSuccess(createdNewUser: true)));
   }
 
   String? validateName(String? value) {
@@ -42,7 +58,6 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
       return 'Por favor, insira um nome válido.';
     }
 
-    onTapButton();
     return null;
   }
 
@@ -81,7 +96,12 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
     if (!emailRegExp.hasMatch(value)) {
       return 'Por favor, insira um e-mail válido.';
     }
-
+    if (externalError != null) {
+      return externalError;
+    }
+    if (externalError == null) {
+      return null;
+    }
     return null; // Retorna null se o valor for válido
   }
 

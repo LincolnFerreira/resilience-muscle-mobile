@@ -4,9 +4,9 @@ import 'package:horizontal_picker/horizontal_picker.dart';
 
 import 'package:resilience_muscle/app/core/atom_default/space_widget_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import '../../../../../ui/colors.dart';
+import '../../../../../../ui/colors.dart';
 
-import '../../../../core/organisms_default/button_organism.dart';
+import '../../../../../core/organisms_default/button_organism.dart';
 
 class RegistrationInfoUserHorizontalPicker extends StatefulWidget {
   final VoidCallback? onPressed;
@@ -66,10 +66,10 @@ class _RegistrationInfoUserHorizontalPickerState
               HorizontalPicker(
                 minValue: 60,
                 maxValue: 238,
-                divisions: 356,
+                divisions: 170,
                 height: 100,
                 suffix: widget.suffix,
-                initialPosition: InitialPosition.start,
+                initialPosition: InitialPosition.center,
                 showCursor: false,
                 backgroundColor: Colors.white,
                 activeItemTextColor: ColorsUI.primary,

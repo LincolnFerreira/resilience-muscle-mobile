@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import '../../../../../ui/colors.dart';
+import '../../../../../../ui/colors.dart';
 
-import '../../../../core/atom_default/dot_atom.dart';
-import '../../../../core/atom_default/space_widget_atom.dart';
-import '../../../../core/organisms_default/button_organism.dart';
+import '../../../../../core/atom_default/dot_atom.dart';
+import '../../../../../core/atom_default/space_widget_atom.dart';
+import '../../../../../core/organisms_default/button_organism.dart';
 
 class RegistrationInfoUserTrainingDivision extends StatelessWidget {
   const RegistrationInfoUserTrainingDivision({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import '../../../../../ui/colors.dart';
-import '../../../../core/atom_default/text_atom.dart';
+import '../../../../../../ui/colors.dart';
+import '../../../../../core/atom_default/text_atom.dart';
 
 class StepProgressIndicatorAtom extends StatelessWidget {
   final int currentStep;

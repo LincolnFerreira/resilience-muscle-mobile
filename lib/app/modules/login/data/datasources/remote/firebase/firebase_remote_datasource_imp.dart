@@ -92,12 +92,39 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
     try {
       final List<String> signInMethods =
           await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+
       if (signInMethods.isEmpty) {
         return false;
+      } else {
+        return true;
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        // O formato do email é inválido
+        print('Formato de email inválido.');
+      } else {
+        // Outro erro relacionado ao Firebase Authentication
+        print('Erro ao verificar o email: ${e.message}');
       }
       return true;
     } catch (e) {
+      // Outros erros
+      print('Erro ao verificar o email: $e');
       return true;
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> createNewUserWithEmail({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final res = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return const Right(true);
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
     }
   }
 }

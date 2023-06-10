@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../ui/colors.dart';
-import '../../../../core/atom_default/dot_atom.dart';
-import '../../../../core/atom_default/space_widget_atom.dart';
-import '../../../../core/atom_default/text_atom.dart';
-import '../../../../core/validator_functions.dart';
+import '../../../../../../ui/colors.dart';
+import '../../../../../core/atom_default/dot_atom.dart';
+import '../../../../../core/atom_default/space_widget_atom.dart';
+import '../../../../../core/atom_default/text_atom.dart';
+import '../../../../../core/validator_functions.dart';
 import '../organisms/registration_info_forms.dart';
 import '../organisms/registration_info_user_account.dart';
 import '../organisms/registration_info_user_horizontal_picker.dart';
@@ -41,7 +41,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             icon: const Icon(
-              Icons.arrow_back,
+              Icons.arrow_back_ios,
               color: Colors.black,
             ),
             onPressed: onPressedBackPage),
@@ -81,7 +81,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       formSubtitle:
                           'Vamos utilizar essa informação para se comunicar melhor com você',
                       validator: validatorName,
-                      textButton: 'Continuar $currentPage /4',
+                      textButton: 'Continuar ${currentPage + 1} /5',
                       keyboardType: TextInputType.name,
                     )
                   else if (currentPage == 1)
@@ -91,7 +91,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       onChangeInput: (e) => inputValues['birthDate'] = e,
                       onPressed: onTapButtonContinue,
                       validator: validatorBirthDate,
-                      textButton: 'Continuar $currentPage /4',
+                      textButton: 'Continuar ${currentPage + 1} /5',
                       inputFormatter: [maskFormatter],
                       keyboardType: TextInputType.datetime,
                     )
@@ -101,7 +101,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       onChangeInputHeight: (e) => inputValues['height'] = e,
                       currentValueHorizontalPicker: 1.65,
                       suffix: ' Cm',
-                      textButton: 'Continuar $currentPage /4',
+                      textButton: 'Continuar ${currentPage + 1} /5',
                     )
                   else if (currentPage == 3)
                     RegistrationInfoUserHorizontalPicker(
@@ -110,21 +110,22 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       currentValueHorizontalPicker: 80.0,
                       suffix: ' Kg',
                       titleInfo: 'Qual o seu peso?',
-                      textButton: 'Continuar $currentPage /4',
+                      textButton: 'Continuar ${currentPage + 1} /5',
                     )
                   else if (currentPage == 4)
                     RegistrationInfoUserAccount(
-                        onChangeInputEmail: (e) => inputValues['name'] = e,
-                        onChangeInputPassword: (e) => inputValues['name'] = e,
+                        onChangeInputEmail: (e) => inputValues['email'] = e,
+                        onChangeInputPassword: (e) =>
+                            inputValues['password'] = e,
                         onChangeInputConfirmPassword: (e) =>
-                            inputValues['name'] = e,
+                            inputValues['confirmPassword'] = e,
                         titleForm: 'Informações da conta',
                         inputLabelTextEmail: 'Email:',
                         inputLabelTextConfirmPassword: "Confirma Senha",
                         inputLabelTextPassword: "Senha",
                         validatorEmail: validatorEmail,
                         validatorPassword: validatorPassword,
-                        textButton: 'Finalizar $currentPage /4',
+                        textButton: 'Finalizar ${currentPage + 1} /5',
                         onPressed: onPressedSubmitSignUp)
                   else
                     const SizedBox(
