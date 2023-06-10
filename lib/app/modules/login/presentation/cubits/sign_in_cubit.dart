@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
 import 'package:resilience_muscle/app/modules/login/domain/usecases/save_user/save_current_usecase.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/cubit/sign_in_state.dart';
+import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_in_state.dart';
 
 import '../../domain/entities/user_entity.dart';
 import '../../domain/usecases/get_current_uid/get_current_uid_usecase.dart';

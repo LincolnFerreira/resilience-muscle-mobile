@@ -13,4 +13,11 @@ abstract class RemoteDataSource {
   Future<bool> isEmailDuplicate(String email);
   Future<Either<Failure, bool>> createNewUserWithEmail(
       {required String email, required String password});
+  Future<Either<Failure, bool>> createCollectionsInfoUser({
+    required String name,
+    required DateTime birthDate,
+    required double height,
+    required double weight,
+    required String uid,
+  });
 }

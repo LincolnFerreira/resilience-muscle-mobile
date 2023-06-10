@@ -127,4 +127,43 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> createCollectionsInfoUser({
+    required String name,
+    required DateTime birthDate,
+    required double height,
+    required double weight,
+    required String uid,
+  }) async {
+    try {
+      final userEntity = UserEntity();
+      final tableReference =
+          FirebaseFirestore.instance.collection('users').doc(uid);
+      final tableSnapshot = await tableReference.get();
+      DateTime data = DateTime.now();
+      Timestamp timestamp = Timestamp.fromDate(data);
+      if (!tableSnapshot.exists) {
+        await tableReference.set({
+          'date_of_birth': timestamp,
+          'height': 1.63,
+          'name': "Lincoln Ferreira",
+          'weight': 88,
+        });
+      } else {
+        await tableReference.set({
+          'date_of_birth': birthDate,
+          'height': height,
+          'name': name,
+          'weight': weight,
+        });
+      }
+      print('Dados criados com sucesso...');
+      print('snapshot: ${tableSnapshot.data()}');
+      return const Right(true);
+    } catch (e) {
+      print('Dados não foram criados...');
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

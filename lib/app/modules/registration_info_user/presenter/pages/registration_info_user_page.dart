@@ -44,18 +44,14 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
         currentPage: state.page,
         inputValues: inputValues,
         onTapButtonContinue: cubit.onTapButtonContinue,
-        onPressedSubmitSignUp: () => cubit.submitSignUp(
+        onPressedRegisterInfoUser: () => cubit.registerInfoUser(
           birthDate: inputValues['birthDate'],
-          email: inputValues['email'],
           height: 0.0,
           name: inputValues['name'],
-          password: inputValues['password'],
           weight: 0.0,
         ),
         validatorName: cubit.validateName,
         validatorBirthDate: cubit.validateBirthDate,
-        validatorEmail: cubit.validateEmail,
-        validatorPassword: cubit.validatePassword,
       ),
     );
   }

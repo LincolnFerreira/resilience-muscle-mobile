@@ -7,7 +7,6 @@ import '../../../../../core/atom_default/space_widget_atom.dart';
 import '../../../../../core/atom_default/text_atom.dart';
 import '../../../../../core/validator_functions.dart';
 import '../organisms/registration_info_forms.dart';
-import '../organisms/registration_info_user_account.dart';
 import '../organisms/registration_info_user_horizontal_picker.dart';
 
 class RegistrationInfoUserTemplate extends StatelessWidget {
@@ -16,11 +15,10 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
   final int totalPage = 5;
   final Map<String, dynamic> inputValues;
   final VoidCallback onTapButtonContinue;
-  final String? Function(String?)? validatorEmail;
   final String? Function(String?)? validatorName;
   final String? Function(String?)? validatorPassword;
   final String? Function(String?)? validatorBirthDate;
-  final VoidCallback onPressedSubmitSignUp;
+  final VoidCallback onPressedRegisterInfoUser;
 
   const RegistrationInfoUserTemplate({
     super.key,
@@ -28,11 +26,10 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
     required this.currentPage,
     required this.inputValues,
     required this.onTapButtonContinue,
-    this.validatorEmail,
     this.validatorName,
     this.validatorPassword,
     this.validatorBirthDate,
-    required this.onPressedSubmitSignUp,
+    required this.onPressedRegisterInfoUser,
   });
 
   @override
@@ -112,21 +109,6 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       titleInfo: 'Qual o seu peso?',
                       textButton: 'Continuar ${currentPage + 1} /5',
                     )
-                  else if (currentPage == 4)
-                    RegistrationInfoUserAccount(
-                        onChangeInputEmail: (e) => inputValues['email'] = e,
-                        onChangeInputPassword: (e) =>
-                            inputValues['password'] = e,
-                        onChangeInputConfirmPassword: (e) =>
-                            inputValues['confirmPassword'] = e,
-                        titleForm: 'Informações da conta',
-                        inputLabelTextEmail: 'Email:',
-                        inputLabelTextConfirmPassword: "Confirma Senha",
-                        inputLabelTextPassword: "Senha",
-                        validatorEmail: validatorEmail,
-                        validatorPassword: validatorPassword,
-                        textButton: 'Finalizar ${currentPage + 1} /5',
-                        onPressed: onPressedSubmitSignUp)
                   else
                     const SizedBox(
                       child: Text('Erro!'),

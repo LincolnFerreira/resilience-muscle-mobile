@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:resilience_muscle/app/core/atom_default/space_widget_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import '../../../../../../ui/colors.dart';
+import '../../../../../../../ui/colors.dart';
 
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/registration_strings.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/submodules/atomic/toggle_theme_atom.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/pages/submodules/atomic/toggle_theme_atom.dart';
 
 class ThemeOptionPage extends StatefulWidget {
   const ThemeOptionPage({super.key});
