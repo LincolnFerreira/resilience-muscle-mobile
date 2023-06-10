@@ -14,6 +14,6 @@ class SignInRepositoryImp implements SignInRepository {
 
   @override
   Future<Either<Failure, UserEntity>> call(UserEntity user) async {
-    return firebaseRemoteDataSource.signIn(user);
+    return await firebaseRemoteDataSource.signIn(user);
   }
 }

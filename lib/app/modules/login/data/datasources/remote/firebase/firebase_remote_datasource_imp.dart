@@ -27,13 +27,13 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, UserEntity>> signIn(UserEntity user) async {
     try {
-      await auth.signInWithEmailAndPassword(
+      final res = await auth.signInWithEmailAndPassword(
         email: user.email,
         password: user.password,
       );
 
       final changeUser = UserModel(
-        uid: await getCurrentUId(),
+        uid: res.user?.uid,
         name: user.name,
         email: user.email,
         password: user.password,
