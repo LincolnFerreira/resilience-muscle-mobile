@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 
 import '../../../../../../core/failure.dart';
 import '../../../../domain/entities/user_entity.dart';
@@ -89,25 +90,7 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
           FirebaseFirestore.instance.collection('users').doc(uid);
 
       final tableSnapshot = await tableReference.get();
-      DateTime data = DateTime.now();
-      Timestamp timestamp = Timestamp.fromDate(data);
-      if (!tableSnapshot.exists) {
-        await tableReference.set({
-          'date_of_birth': timestamp,
-          'heigth': 1.63,
-          'name': "Lincoln Ferreira",
-          'width': 88,
-          // adicione os campos e valores necessários para criar a tabela
-        });
-      } else {
-        await tableReference.set({
-          'date_of_birth': timestamp,
-          'heigth': 1.63,
-          'name': "Lincoln Ferreira",
-          'width': 88,
-          // adicione os campos e valores necessários para criar a tabela
-        });
-      }
+
       return Right(userEntity);
     } catch (e) {
       return Left(Failure(message: 'Erro ao obter usuário atual: $e'));
@@ -159,38 +142,37 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
 
   @override
   Future<Either<Failure, bool>> createCollectionsInfoUser({
-    required String name,
-    required DateTime birthDate,
-    required double height,
-    required double weight,
+    required UserInfoEntity userInfoEntity,
     required String uid,
   }) async {
     try {
-      final userEntity = UserEntity();
       final tableReference =
           FirebaseFirestore.instance.collection('users').doc(uid);
       final tableSnapshot = await tableReference.get();
-      DateTime data = DateTime.now();
-      Timestamp timestamp = Timestamp.fromDate(data);
+
       if (!tableSnapshot.exists) {
         await tableReference.set({
-          'date_of_birth': timestamp,
-          'height': 1.63,
-          'name': "Lincoln Ferreira",
-          'weight': 88,
-        });
-      } else {
-        await tableReference.set({
-          'date_of_birth': birthDate,
-          'height': height,
-          'name': name,
-          'weight': weight,
+          'date_of_birth': userInfoEntity.birthDate,
+          'height': userInfoEntity.height,
+          'name': userInfoEntity.name,
+          'weight': userInfoEntity.weight,
+          'training_division': userInfoEntity.trainingDivision,
+          'fitness_goal': userInfoEntity.fitnessGoals
         });
       }
       return const Right(true);
     } catch (e) {
-      return Left(Failure(
-          message: 'Erro ao criar coleções de informações do usuário: $e'));
+      return Left(
+        Failure(
+            message: 'Erro ao criar coleções de informações do usuário: $e'),
+      );
     }
+  }
+
+  @override
+  Future<Either<Failure, bool>> updateCollectionsInfoUser(
+      {required UserInfoEntity userInfoEntity, required String uid}) {
+    // TODO: implement updateCollectionsInfoUser
+    throw UnimplementedError();
   }
 }
