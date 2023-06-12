@@ -76,6 +76,7 @@ class LoginModule extends Module {
         signOutUseCase: i<SignOutUsecase>(),
         saveCurrentUserUseCase: i<SaveCurrentUserUseCase>(),
         getCurrentUserUsecase: i<GetCurrentUserUsecase>(),
+        collectionsInfoUserUsecase: i(),
       ),
     ),
     Bind.singleton<SignUpCubit>(

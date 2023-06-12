@@ -159,8 +159,9 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
           'training_division': userInfoEntity.trainingDivision,
           'fitness_goal': userInfoEntity.fitnessGoals
         });
+        return const Right(true);
       }
-      return const Right(true);
+      return const Right(false);
     } catch (e) {
       return Left(
         Failure(

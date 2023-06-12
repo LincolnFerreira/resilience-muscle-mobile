@@ -2,14 +2,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
 import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_in_state.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/usecases/create_collections_info_user_usecase.dart';
 
 import '../../domain/entities/user_entity.dart';
 import '../usecase/get_current_uid_usecase.dart';
+import '../usecase/get_current_user_usecase.dart';
 import '../usecase/is_sign_in_usecase.dart';
 import '../usecase/save_current_usecase.dart';
 import '../usecase/sign_in_usecase.dart';
 import '../usecase/sign_out_usecase.dart';
-import '../usecase/get_current_user_usecase.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   final SignInUseCase signInUseCase;
@@ -18,6 +19,7 @@ class SignInCubit extends Cubit<SignInState> {
   final SignOutUsecase signOutUseCase;
   final SaveCurrentUserUseCase saveCurrentUserUseCase;
   final GetCurrentUserUsecase getCurrentUserUsecase;
+  final CreateCollectionsInfoUserUsecase collectionsInfoUserUsecase;
 
   SignInCubit({
     // this.signInRepository,
@@ -27,6 +29,7 @@ class SignInCubit extends Cubit<SignInState> {
     required this.signOutUseCase,
     required this.saveCurrentUserUseCase,
     required this.getCurrentUserUsecase,
+    required this.collectionsInfoUserUsecase,
   }) : super(SignInState.initial());
 
   final Logger logger = Logger();
@@ -80,5 +83,11 @@ class SignInCubit extends Cubit<SignInState> {
     //     logger.i('deslogado catch');
     //   }
     // }
+  }
+
+  Future<void> createdCollumnsInfoUser() async {
+    try {
+      await collectionsInfoUserUsecase();
+    } catch (e) {}
   }
 }
