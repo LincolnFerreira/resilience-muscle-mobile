@@ -18,8 +18,5 @@ abstract class RemoteDataSource {
     required UserInfoEntity userInfoEntity,
     required String uid,
   });
-  Future<Either<Failure, bool>> updateCollectionsInfoUser({
-    required UserInfoEntity userInfoEntity,
-    required String uid,
-  });
+  Future<Either<Failure, bool>> isInfoUserCollectionsExists(String uid);
 }

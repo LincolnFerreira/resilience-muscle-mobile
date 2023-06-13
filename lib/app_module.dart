@@ -7,6 +7,7 @@ import 'package:resilience_muscle/app/modules/login/domain/repositories/get_curr
 import 'package:resilience_muscle/app/modules/login/domain/repositories/is_sign_in_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/save_current_user_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/sign_out_repository.dart';
+import 'package:resilience_muscle/app/modules/login/presentation/cubits/user_cubit.dart';
 import 'package:resilience_muscle/app/modules/splash/splash_module.dart';
 
 import 'app/modules/forget_password/forget_password_module.dart';
@@ -32,7 +33,7 @@ class AppModule extends Module {
         Bind.lazySingleton<ImagePicker>((i) => ImagePicker()),
 
         //entity
-        Bind.lazySingleton<UserEntity>((i) => UserEntity()),
+        // Bind.lazySingleton<UserEntity>((i) => UserEntity()),
         Bind((i) => Hive.box<UserEntity>(HiveBoxes.userBox)),
 
         //firebase
@@ -79,6 +80,9 @@ class AppModule extends Module {
         ),
 
         //cubit
+        Bind(
+          (i) => UserCubit(),
+        ),
       ];
 
   @override

@@ -17,7 +17,7 @@ class HomeUserModule extends Module {
           (i) => GetCurrentUserUsecaseImp(
               repository: i<GetCurrentUserRepository>()),
         ),
-        Bind.lazySingleton<HomeUserCubit>(
+        Bind.singleton<HomeUserCubit>(
           (i) => HomeUserCubit(
             userEntityBox: i(),
             getCurrentUserUsecase: i<GetCurrentUserUsecase>(),

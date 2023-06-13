@@ -171,9 +171,20 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, bool>> updateCollectionsInfoUser(
-      {required UserInfoEntity userInfoEntity, required String uid}) {
-    // TODO: implement updateCollectionsInfoUser
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> isInfoUserCollectionsExists(String uid) async {
+    try {
+      final tableReferenceUser =
+          FirebaseFirestore.instance.collection('users').doc(uid);
+      final tableReferenceInfo =
+          tableReferenceUser.collection('information').doc(uid);
+      final tableSnapshot = await tableReferenceInfo.get();
+
+      return await Right(tableSnapshot.exists);
+    } catch (e) {
+      return Left(
+        Failure(
+            message: 'Erro ao criar coleções de informações do usuário: $e'),
+      );
+    }
   }
 }

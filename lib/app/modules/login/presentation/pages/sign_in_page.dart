@@ -42,15 +42,20 @@ class SignInPageState extends State<SignInPage> {
     return BlocConsumer<SignInCubit, SignInState>(
       bloc: cubit,
       listener: (context, state) {
-        if (state.status == SignInStatus.loading) {
+        if (state is SignInLoading) {
           asuka.AsukaSnackbar.message("verificando...").show();
         }
-        if (state.status == SignInStatus.success) {
+        //  if (state is SignUpSuccess && state.createdNewUser == true) {
+        //   Modular.to.popAndPushNamed('/login/');
+        // }
+        if (state is SignInSuccess) {
           asuka.AsukaSnackbar.success("sucesso").show();
-          Future.delayed(const Duration(seconds: 1),
-              () => Modular.to.navigate('/home_user/'));
+          Future.delayed(
+            const Duration(seconds: 1),
+            // () => Modular.to.navigate('/home_user/')
+          );
         }
-        if (state.status == SignInStatus.failure) {
+        if (state is SignInFailure) {
           asuka.AsukaSnackbar.alert("erro de login").show();
         }
       },
