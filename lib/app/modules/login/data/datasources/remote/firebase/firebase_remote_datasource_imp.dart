@@ -179,7 +179,7 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
           tableReferenceUser.collection('information').doc(uid);
       final tableSnapshot = await tableReferenceInfo.get();
 
-      return await Right(tableSnapshot.exists);
+      return Right(tableSnapshot.exists);
     } catch (e) {
       return Left(
         Failure(

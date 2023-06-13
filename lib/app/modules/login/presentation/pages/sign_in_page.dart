@@ -45,16 +45,15 @@ class SignInPageState extends State<SignInPage> {
         if (state is SignInLoading) {
           asuka.AsukaSnackbar.message("verificando...").show();
         }
-        //  if (state is SignUpSuccess && state.createdNewUser == true) {
-        //   Modular.to.popAndPushNamed('/login/');
-        // }
+
         if (state is SignInSuccess) {
           asuka.AsukaSnackbar.success("sucesso").show();
-          Future.delayed(
-            const Duration(seconds: 1),
-            // () => Modular.to.navigate('/home_user/')
-          );
+          print(state.isInfoUserCollectionsExistsUsecase);
+          state.isInfoUserCollectionsExistsUsecase
+              ? Modular.to.navigate('/home_user/')
+              : Modular.to.navigate('/registration_info_user/');
         }
+
         if (state is SignInFailure) {
           asuka.AsukaSnackbar.alert("erro de login").show();
         }
