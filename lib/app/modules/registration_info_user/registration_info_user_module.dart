@@ -1,4 +1,6 @@
+import 'package:hive/hive.dart';
 import 'package:resilience_muscle/app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
+import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/is_email_duplicate_usecase_imp.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/cubits/registration_info_user_cubit.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/pages/registration_info_user_page.dart';
@@ -33,6 +35,7 @@ class RegistrationInfoUserModule extends Module {
         isEmailDuplicateUsecase: i<IsEmailDuplicateUsecaseImp>(),
         createNewUserWithEmail: i<CreateNewUserWithEmailUsecase>(),
         createCollectionsInfoUserUsecase: i<CreateCollectionsInfoUserUsecase>(),
+        userEntityBox: i<Box<UserEntity>>(),
       ),
     ),
   ];

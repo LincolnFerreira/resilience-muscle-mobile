@@ -12,7 +12,7 @@ import '../organisms/registration_info_user_horizontal_picker.dart';
 class RegistrationInfoUserTemplate extends StatelessWidget {
   final VoidCallback onPressedBackPage;
   final int currentPage;
-  final int totalPage = 5;
+  final int totalPage = 4;
   final Map<String, dynamic> inputValues;
   final VoidCallback onTapButtonContinue;
   final String? Function(String?)? validatorName;
@@ -78,7 +78,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       formSubtitle:
                           'Vamos utilizar essa informação para se comunicar melhor com você',
                       validator: validatorName,
-                      textButton: 'Continuar ${currentPage + 1} /5',
+                      textButton: 'Continuar ${currentPage + 1} /4',
                       keyboardType: TextInputType.name,
                     )
                   else if (currentPage == 1)
@@ -88,7 +88,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       onChangeInput: (e) => inputValues['birthDate'] = e,
                       onPressed: onTapButtonContinue,
                       validator: validatorBirthDate,
-                      textButton: 'Continuar ${currentPage + 1} /5',
+                      textButton: 'Continuar ${currentPage + 1} /4',
                       inputFormatter: [maskFormatter],
                       keyboardType: TextInputType.datetime,
                     )
@@ -98,16 +98,16 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       onChangeInputHeight: (e) => inputValues['height'] = e,
                       currentValueHorizontalPicker: 1.65,
                       suffix: ' Cm',
-                      textButton: 'Continuar ${currentPage + 1} /5',
+                      textButton: 'Continuar ${currentPage + 1} /4',
                     )
                   else if (currentPage == 3)
                     RegistrationInfoUserHorizontalPicker(
-                      onPressed: onTapButtonContinue,
+                      onPressed: onPressedRegisterInfoUser,
                       onChangeInputHeight: (e) => inputValues['weight'] = e,
                       currentValueHorizontalPicker: 80.0,
                       suffix: ' Kg',
                       titleInfo: 'Qual o seu peso?',
-                      textButton: 'Continuar ${currentPage + 1} /5',
+                      textButton: 'Continuar ${currentPage + 1} /4',
                     )
                   else
                     const SizedBox(

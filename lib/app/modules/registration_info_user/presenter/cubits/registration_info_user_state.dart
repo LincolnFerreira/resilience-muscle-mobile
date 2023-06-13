@@ -1,68 +1,89 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 abstract class RegistrationInfoUserState extends Equatable {
-  final int page;
-  final bool? isValidateConfirmPassword;
-  final bool? createdNewUser;
+  final int? page;
+  final bool? createdNewCollumns;
 
   const RegistrationInfoUserState({
-    required this.page,
-    this.isValidateConfirmPassword,
-    this.createdNewUser,
+    this.page,
+    this.createdNewCollumns,
   });
 
   @override
   List<Object?> get props => [
         page,
-        isValidateConfirmPassword,
-        createdNewUser,
+        createdNewCollumns,
       ];
+
+  RegistrationInfoUserState copyWith({
+    int? page,
+    bool? createdNewColumns,
+  });
 }
 
 class RegistrationInfoUserInitial extends RegistrationInfoUserState {
+  final int pageInitial;
+
   const RegistrationInfoUserInitial({
-    required int page,
-    bool? isValidateConfirmPassword,
-    bool? createdNewUser,
-  }) : super(
-          page: page,
-          isValidateConfirmPassword: isValidateConfirmPassword,
-          createdNewUser: createdNewUser,
-        );
+    required this.pageInitial,
+  }) : super(page: pageInitial);
+
+  @override
+  RegistrationInfoUserState copyWith({
+    int? page,
+    bool? createdNewColumns,
+  }) {
+    return RegistrationInfoUserInitial(
+      pageInitial: page ?? pageInitial,
+    );
+  }
 }
 
 class RegistrationInfoUserLoading extends RegistrationInfoUserState {
-  const RegistrationInfoUserLoading({
-    required int page,
-    bool? isValidateConfirmPassword,
-    bool? createdNewUser,
-  }) : super(
-          page: page,
-          isValidateConfirmPassword: isValidateConfirmPassword,
-          createdNewUser: createdNewUser,
-        );
+  const RegistrationInfoUserLoading() : super();
+
+  @override
+  RegistrationInfoUserState copyWith({
+    int? page,
+    bool? createdNewColumns,
+  }) {
+    return const RegistrationInfoUserLoading();
+  }
 }
 
 class RegistrationInfoUserSuccess extends RegistrationInfoUserState {
+  final int? page;
+  final bool? createdNewColumns;
+
   const RegistrationInfoUserSuccess({
-    int? newPage,
-    bool? isValidateConfirmPassword,
-    bool? createdNewUser,
+    this.page = 4,
+    this.createdNewColumns,
   }) : super(
-          page: newPage ?? 4,
-          isValidateConfirmPassword: isValidateConfirmPassword,
-          createdNewUser: createdNewUser,
+          page: page,
+          createdNewCollumns: createdNewColumns,
         );
+
+  @override
+  RegistrationInfoUserState copyWith({
+    int? page,
+    bool? createdNewColumns,
+  }) {
+    return RegistrationInfoUserSuccess(
+      page: page ?? page,
+      createdNewColumns: createdNewColumns ?? this.createdNewColumns,
+    );
+  }
 }
 
 class RegistrationInfoUserFailure extends RegistrationInfoUserState {
-  const RegistrationInfoUserFailure({
-    required int page,
-    bool? isValidateConfirmPassword,
-    bool? createdNewUser,
-  }) : super(
-          page: page,
-          isValidateConfirmPassword: isValidateConfirmPassword,
-          createdNewUser: createdNewUser,
-        );
+  const RegistrationInfoUserFailure() : super();
+
+  @override
+  RegistrationInfoUserState copyWith({
+    int? page,
+    bool? createdNewColumns,
+  }) {
+    return const RegistrationInfoUserFailure();
+  }
 }

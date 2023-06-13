@@ -21,8 +21,8 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
     'name': '',
     'birthDate': '',
     'email': '',
-    'height': 0,
-    'weight': 0,
+    'height': 0.0,
+    'weight': 0.0,
     'password': '',
     'confirmPassword': '',
   };
@@ -32,7 +32,7 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
     return BlocConsumer<RegistrationInfoUserCubit, RegistrationInfoUserState>(
       bloc: cubit,
       listener: (context, state) => {
-        if (state.createdNewUser == true)
+        if (state.createdNewCollumns == true)
           {
             Modular.to.popAndPushNamed('/login/'),
           }
@@ -41,14 +41,14 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
         onPressedBackPage: () {
           Modular.to.popAndPushNamed('/login/');
         },
-        currentPage: state.page,
+        currentPage: state.page!,
         inputValues: inputValues,
         onTapButtonContinue: cubit.onTapButtonContinue,
         onPressedRegisterInfoUser: () => cubit.registerInfoUser(
           birthDate: inputValues['birthDate'],
-          height: 0.0,
+          height: inputValues['height'],
           name: inputValues['name'],
-          weight: 0.0,
+          weight: inputValues['weight'],
         ),
         validatorName: cubit.validateName,
         validatorBirthDate: cubit.validateBirthDate,

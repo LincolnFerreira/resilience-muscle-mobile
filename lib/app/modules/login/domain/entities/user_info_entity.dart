@@ -16,9 +16,14 @@ class UserInfoEntity {
     required this.birthDate,
     required this.height,
     required this.weight,
-    required this.trainingDivision,
-    required this.fitnessGoals,
+    this.trainingDivision,
+    this.fitnessGoals,
   });
+
+  @override
+  String toString() {
+    return 'UserInfoEntity(name: $name, birthDate: $birthDate, height: $height, weight: $weight, trainingDivision: $trainingDivision, fitnessGoals: $fitnessGoals)';
+  }
 }
 
 enum TrainingDivision {
