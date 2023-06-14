@@ -15,8 +15,8 @@ class ForgetPasswordPageState extends State<ForgetPasswordPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: const Column(
-        children: <Widget>[],
+      body: Column(
+        children: const <Widget>[],
       ),
     );
   }

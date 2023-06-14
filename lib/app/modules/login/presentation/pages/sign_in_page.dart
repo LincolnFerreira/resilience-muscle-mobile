@@ -48,11 +48,12 @@ class SignInPageState extends State<SignInPage> {
 
         if (state is SignInSuccess) {
           asuka.AsukaSnackbar.success("sucesso").show();
-          state.isInfoUserCollectionsExistsUsecase
-              ? Modular.to.navigate('/home_user/')
-              : Modular.to.navigate('/registration_info_user/');
+          if (state.newIsInfoUserCollectionsExistsUsecase == true) {
+            Modular.to.navigate('/home_user/');
+          } else {
+            Modular.to.navigate('/registration_info_user/');
+          }
         }
-
         if (state is SignInFailure) {
           asuka.AsukaSnackbar.alert("erro de login").show();
         }

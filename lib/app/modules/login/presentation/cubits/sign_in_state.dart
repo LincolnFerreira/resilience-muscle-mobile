@@ -16,12 +16,6 @@ abstract class SignInState extends Equatable {
     this.isInfoUserCollectionsExistsUsecase = false,
   });
 
-  SignInState copyWith({
-    SignInStatus? status,
-    UserEntity? userEntity,
-    bool? isInfoUserCollectionsExistsUsecase,
-  });
-
   @override
   List<Object?> get props => [
         status,
@@ -30,58 +24,22 @@ abstract class SignInState extends Equatable {
       ];
 }
 
-class SignInInitial extends SignInState {
-  @override
-  SignInState copyWith({
-    SignInStatus? status,
-    UserEntity? userEntity,
-    bool? isInfoUserCollectionsExistsUsecase,
-  }) {
-    return SignInInitial();
-  }
-}
+class SignInInitial extends SignInState {}
 
-class SignInLoading extends SignInState {
-  @override
-  SignInState copyWith({
-    SignInStatus? status,
-    UserEntity? userEntity,
-    bool? isInfoUserCollectionsExistsUsecase,
-  }) {
-    return SignInLoading();
-  }
-}
+class SignInLoading extends SignInState {}
 
 class SignInSuccess extends SignInState {
   final UserEntity? newUserEntity;
-  final bool? newIsInfoUserCollectionsExistsUsecase;
+  final bool newIsInfoUserCollectionsExistsUsecase;
 
   const SignInSuccess({
     this.newUserEntity,
-    this.newIsInfoUserCollectionsExistsUsecase,
-  }) : super();
-
-  @override
-  SignInSuccess copyWith({
-    SignInStatus? status,
-    UserEntity? userEntity,
-    bool? isInfoUserCollectionsExistsUsecase,
-  }) {
-    return SignInSuccess(
-      newUserEntity: newUserEntity,
-      newIsInfoUserCollectionsExistsUsecase:
-          newIsInfoUserCollectionsExistsUsecase,
-    );
-  }
+    this.newIsInfoUserCollectionsExistsUsecase = false,
+  }) : super(
+          isInfoUserCollectionsExistsUsecase:
+              newIsInfoUserCollectionsExistsUsecase,
+          userEntity: newUserEntity,
+        );
 }
 
-class SignInFailure extends SignInState {
-  @override
-  SignInState copyWith({
-    SignInStatus? status,
-    UserEntity? userEntity,
-    bool? isInfoUserCollectionsExistsUsecase,
-  }) {
-    return SignInFailure();
-  }
-}
+class SignInFailure extends SignInState {}

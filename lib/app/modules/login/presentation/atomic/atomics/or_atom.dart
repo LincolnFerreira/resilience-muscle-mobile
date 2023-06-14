@@ -5,14 +5,14 @@ class OrAtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(
+    return Padding(
+      padding: const EdgeInsets.only(
         top: 30,
         bottom: 30,
       ),
       child: SizedBox(
         child: Row(
-          children: [
+          children: const [
             Expanded(
               child: Divider(
                 thickness: 1,

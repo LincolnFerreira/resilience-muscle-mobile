@@ -39,10 +39,10 @@ class RegistrationInfoUserTrainingDivision extends StatelessWidget {
               ],
             ),
             const SpaceWidgetAtom(height: 40),
-            const Column(
+            Column(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                TextAtom(
+                const TextAtom(
                     text: 'Como são divididos seus treinos?',
                     textColor: ColorsUI.dark,
                     fontSize: 22),

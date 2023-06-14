@@ -61,7 +61,7 @@ class SignInCubit extends Cubit<SignInState> {
         },
       );
     } catch (_) {
-      emit(state.copyWith(status: SignInStatus.failure));
+      emit(SignInFailure());
     }
   }
 
@@ -118,6 +118,7 @@ class SignInCubit extends Cubit<SignInState> {
         )),
       );
       print('res: $res');
+      print('resState: ${state.isInfoUserCollectionsExistsUsecase}');
     } catch (e) {}
   }
 }
