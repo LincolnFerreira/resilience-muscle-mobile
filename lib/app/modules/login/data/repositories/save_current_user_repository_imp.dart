@@ -15,8 +15,6 @@ class SaveCurrentUserRepositoryImp implements SaveCurrentUserRepository {
     //TODO: verificar boas práticas e utilização de criptografica para uid
     UserEntity newUser = UserEntity(
       email: user.email,
-      name: user.name,
-      password: '',
       uid: user.uid,
     );
 

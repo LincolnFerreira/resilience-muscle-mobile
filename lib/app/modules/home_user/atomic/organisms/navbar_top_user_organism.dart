@@ -19,6 +19,7 @@ class NavbarTopUserOrganism extends StatelessWidget {
     return AppBar(
       backgroundColor: ColorsUI.white,
       elevation: 0.1,
+      automaticallyImplyLeading: false,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

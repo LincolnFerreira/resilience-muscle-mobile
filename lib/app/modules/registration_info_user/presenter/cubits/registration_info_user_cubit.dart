@@ -81,6 +81,7 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
       birthDate: convertStringToDate,
       height: height,
       weight: weight,
+      image: null,
     );
 
     if (userEntityBox.get('user')?.uid == null) {
@@ -100,6 +101,7 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
           print('createCollections: $createCollections');
           emit(RegistrationInfoUserSuccess(
             createdNewColumns: createCollections,
+            page: 4,
           ));
         },
       );

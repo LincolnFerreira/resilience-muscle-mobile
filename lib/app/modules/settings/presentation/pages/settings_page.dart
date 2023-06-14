@@ -29,8 +29,8 @@ class _SettingsPageState extends State<SettingsPage> {
           onTapToggleNotifications: cubit.onTapToggleNotifications,
           onTapContact: cubit.onTapContact,
           onTapSuggestions: cubit.onTapSuggestions,
-          imageUrl: cubit.userEntity.image,
-          nameUser: cubit.userEntity.name,
+          imageUrl: cubit.userInfoEntity.image,
+          nameUser: cubit.userInfoEntity.name!,
           emailUser: cubit.userEntity.email,
           versionPoweredAuthor: 'versionPoweredAuthor',
           onTapBackPage: () {

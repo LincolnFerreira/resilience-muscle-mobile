@@ -9,19 +9,14 @@ class UserEntity extends HiveObject {
   @HiveField(0)
   late String uid;
   @HiveField(1)
-  late String name;
-  @HiveField(2)
   late String email;
-  @HiveField(3)
-  late dynamic image;
+
   late String password;
 
   UserEntity({
     this.uid = '',
-    this.name = '',
     this.email = '',
     this.password = '',
-    this.image = '',
   });
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

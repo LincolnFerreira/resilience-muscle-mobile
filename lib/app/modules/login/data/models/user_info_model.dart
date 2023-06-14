@@ -12,6 +12,7 @@ class UserInfoModel extends UserInfoEntity {
     required double weight,
     required TrainingDivision? trainingDivision,
     required FitnessGoals? fitnessGoals,
+    required dynamic? image,
   }) : super(
           name: name,
           birthDate: birthDate,
@@ -19,5 +20,6 @@ class UserInfoModel extends UserInfoEntity {
           weight: weight,
           trainingDivision: trainingDivision,
           fitnessGoals: fitnessGoals,
+          image: image,
         );
 }

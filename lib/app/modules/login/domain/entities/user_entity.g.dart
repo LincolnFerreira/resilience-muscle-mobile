@@ -18,24 +18,18 @@ class UserEntityAdapter extends TypeAdapter<UserEntity> {
     };
     return UserEntity(
       uid: fields[0] as String,
-      name: fields[1] as String,
-      email: fields[2] as String,
-      image: fields[3] as dynamic,
+      email: fields[1] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserEntity obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.uid)
       ..writeByte(1)
-      ..write(obj.name)
-      ..writeByte(2)
-      ..write(obj.email)
-      ..writeByte(3)
-      ..write(obj.image);
+      ..write(obj.email);
   }
 
   @override
@@ -55,17 +49,13 @@ class UserEntityAdapter extends TypeAdapter<UserEntity> {
 
 UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       uid: json['uid'] as String? ?? '',
-      name: json['name'] as String? ?? '',
       email: json['email'] as String? ?? '',
       password: json['password'] as String? ?? '',
-      image: json['image'] ?? '',
     );
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
     <String, dynamic>{
       'uid': instance.uid,
-      'name': instance.name,
       'email': instance.email,
-      'image': instance.image,
       'password': instance.password,
     };

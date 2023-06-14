@@ -16,16 +16,18 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
           _$TrainingDivisionEnumMap, json['trainingDivision']),
       fitnessGoals:
           $enumDecodeNullable(_$FitnessGoalsEnumMap, json['fitnessGoals']),
+      image: json['image'],
     );
 
 Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'birthDate': instance.birthDate.toIso8601String(),
+      'birthDate': instance.birthDate?.toIso8601String(),
       'height': instance.height,
       'weight': instance.weight,
       'trainingDivision': _$TrainingDivisionEnumMap[instance.trainingDivision],
       'fitnessGoals': _$FitnessGoalsEnumMap[instance.fitnessGoals],
+      'image': instance.image,
     };
 
 const _$TrainingDivisionEnumMap = {

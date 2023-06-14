@@ -1,15 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_info_entity.g.dart';
 
+@HiveType(typeId: 1)
 @JsonSerializable()
 class UserInfoEntity {
-  final String name;
-  final DateTime birthDate;
-  final double height;
-  final double weight;
+  @HiveField(0)
+  final String? name;
+  @HiveField(1)
+  final DateTime? birthDate;
+  @HiveField(2)
+  final double? height;
+  @HiveField(3)
+  final double? weight;
+  @HiveField(4)
   final TrainingDivision? trainingDivision;
+  @HiveField(5)
   final FitnessGoals? fitnessGoals;
+  @HiveField(6)
+  late dynamic image;
 
   UserInfoEntity({
     required this.name,
@@ -18,7 +29,28 @@ class UserInfoEntity {
     required this.weight,
     this.trainingDivision,
     this.fitnessGoals,
+    required this.image,
   });
+
+  UserInfoEntity copyWith({
+    String? name,
+    DateTime? birthDate,
+    double? height,
+    double? weight,
+    TrainingDivision? trainingDivision,
+    FitnessGoals? fitnessGoals,
+    dynamic image,
+  }) {
+    return UserInfoEntity(
+      name: name ?? this.name,
+      birthDate: birthDate ?? this.birthDate,
+      height: height ?? this.height,
+      weight: weight ?? this.weight,
+      trainingDivision: trainingDivision ?? this.trainingDivision,
+      fitnessGoals: fitnessGoals ?? this.fitnessGoals,
+      image: image ?? this.image,
+    );
+  }
 
   @override
   String toString() {

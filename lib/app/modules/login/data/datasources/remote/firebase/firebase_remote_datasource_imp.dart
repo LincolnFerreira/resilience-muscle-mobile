@@ -35,7 +35,6 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
 
       final changeUser = UserModel(
         uid: res.user?.uid,
-        name: user.name,
         email: user.email,
         password: user.password,
       );
@@ -146,12 +145,14 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
     required String uid,
   }) async {
     try {
-      final tableReference =
+      final tableReferenceUser =
           FirebaseFirestore.instance.collection('users').doc(uid);
-      final tableSnapshot = await tableReference.get();
+      final tableReferenceInfo =
+          tableReferenceUser.collection('information').doc(uid);
+      final tableSnapshot = await tableReferenceInfo.get();
 
       if (!tableSnapshot.exists) {
-        await tableReference.set({
+        await tableReferenceInfo.set({
           'date_of_birth': userInfoEntity.birthDate,
           'height': userInfoEntity.height,
           'name': userInfoEntity.name,

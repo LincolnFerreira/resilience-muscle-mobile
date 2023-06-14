@@ -32,16 +32,17 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
     return BlocConsumer<RegistrationInfoUserCubit, RegistrationInfoUserState>(
       bloc: cubit,
       listener: (context, state) => {
-        if (state.createdNewCollumns == true)
+        if (state is RegistrationInfoUserSuccess &&
+            state.createdNewCollumns == true)
           {
-            Modular.to.popAndPushNamed('/login/'),
+            Modular.to.popAndPushNamed('/home_user/'),
           }
       },
       builder: (context, state) => RegistrationInfoUserTemplate(
         onPressedBackPage: () {
           Modular.to.popAndPushNamed('/login/');
         },
-        currentPage: state.page!,
+        currentPage: state.page ?? 3,
         inputValues: inputValues,
         onTapButtonContinue: cubit.onTapButtonContinue,
         onPressedRegisterInfoUser: () => cubit.registerInfoUser(

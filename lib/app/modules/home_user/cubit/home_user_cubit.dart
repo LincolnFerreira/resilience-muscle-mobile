@@ -19,6 +19,10 @@ class HomeUserCubit extends Cubit<HomeUserState> {
           HomeUserInitial(),
         );
 
+  void init() {
+    getUser();
+  }
+
   Future<void> getUser() async {
     final String? uid = userEntityBox.get('user')?.uid;
     if (uid == null) {
@@ -27,13 +31,8 @@ class HomeUserCubit extends Cubit<HomeUserState> {
     }
     try {
       final res = getCurrentUserUsecase(uid);
-      print('response current user $res');
     } catch (e) {
       print(e);
     }
-  }
-
-  void init() {
-    getUser();
   }
 }

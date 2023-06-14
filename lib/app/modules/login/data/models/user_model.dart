@@ -13,7 +13,6 @@ class UserModel extends UserEntity {
     password,
   }) : super(
           uid: uid,
-          name: name,
           email: email,
           password: password,
         );
