@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 
 import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_in_state.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/cubits/user_cubit.dart';
@@ -53,11 +52,10 @@ class SignInCubit extends Cubit<SignInState> {
           emit(SignInFailure());
         },
         (right) async {
-          emit(SignInSuccess(newUserEntity: right));
           saveUser(right);
           getCurrentUser(right.uid);
           userCubit.updateUser(right);
-          isCreatedCollumnsInfoUser(right.uid);
+          await isCreatedCollumnsInfoUser(right.uid);
         },
       );
     } catch (_) {
@@ -89,36 +87,37 @@ class SignInCubit extends Cubit<SignInState> {
     // }
   }
 
-  Future<void> createdCollumnsInfoUser(UserInfoEntity userInfoEntity) async {
-    try {
-      if (state.userEntity?.uid == null) {
-        return;
-      }
-      final res = await collectionsInfoUserUsecase(
-        uid: state.userEntity!.uid,
-        userInfoEntity: userInfoEntity,
-      );
-      res.fold(
-        (failure) {},
-        (createdCollumns) {
-          print('createdCollumns: $createdCollumns');
-        },
-      );
-    } catch (e) {}
-  }
+  // Future<void> createCollumnsInfoUser(UserInfoEntity userInfoEntity) async {
+  //   try {
+  //     if (state.userEntity?.uid == null) {
+  //       return;
+  //     }
+  //     final res = await collectionsInfoUserUsecase(
+  //       uid: state.userEntity!.uid,
+  //       userInfoEntity: userInfoEntity,
+  //     );
+  //     res.fold(
+  //       (failure) {},
+  //       (createdCollumns) {
+  //         print('createdCollumns: $createdCollumns');
+  //       },
+  //     );
+  //   } catch (e) {}
+  // }
 
   Future<void> isCreatedCollumnsInfoUser(String uid) async {
     try {
       final res = await isInfoUserCollectionsExistsUsecase(uid: uid);
       res.fold(
         (failure) => null,
-        (isInfoUserCollectionsExistsUsecase) => emit(SignInSuccess(
-          newIsInfoUserCollectionsExistsUsecase:
-              isInfoUserCollectionsExistsUsecase,
-        )),
+        (isInfoUserCollectionsExistsUsecase) => {
+          emit(
+            SignInSuccess(
+              isCreatedCollumnsInfoUser: isInfoUserCollectionsExistsUsecase,
+            ),
+          ),
+        },
       );
-      print('res: $res');
-      print('resState: ${state.isInfoUserCollectionsExistsUsecase}');
     } catch (e) {}
   }
 }

@@ -19,4 +19,6 @@ abstract class RemoteDataSource {
     required String uid,
   });
   Future<Either<Failure, bool>> isInfoUserCollectionsExists(String uid);
+
+  Future<Either<Failure, UserInfoEntity>> getInfoUser(String uid);
 }

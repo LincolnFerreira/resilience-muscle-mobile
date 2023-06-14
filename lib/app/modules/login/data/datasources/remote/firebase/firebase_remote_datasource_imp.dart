@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:resilience_muscle/app/modules/login/data/models/user_info_model.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 
 import '../../../../../../core/failure.dart';
@@ -186,6 +187,32 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
         Failure(
             message: 'Erro ao criar coleções de informações do usuário: $e'),
       );
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserInfoEntity>> getInfoUser(String uid) async {
+    try {
+      final tableReferenceUser =
+          FirebaseFirestore.instance.collection('users').doc(uid);
+      final tableReferenceInfo =
+          tableReferenceUser.collection('information').doc(uid);
+      final tableSnapshot = await tableReferenceInfo.get();
+
+      final data = tableSnapshot.data() as Map<String, dynamic>;
+      final userInfo = UserInfoModel(
+        birthDate: data['birth_date'],
+        fitnessGoals: data['fitness_goals'],
+        height: data['height'],
+        image: data['image'],
+        name: data['name'],
+        trainingDivision: data['training_division'],
+        weight: data['weight'],
+      );
+      return Right(userInfo);
+    } catch (e) {
+      return Left(
+          Failure(message: 'Erro ao tentar pegar infomações de usuário'));
     }
   }
 }
