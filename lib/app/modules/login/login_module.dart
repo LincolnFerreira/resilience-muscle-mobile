@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/get_current_user_usecase_imp.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_in_cubit.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_up_cubit.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/cubits/user_cubit.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/pages/sign_in_page.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/pages/sign_up_page.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/get_current_uid_usecase.dart';
@@ -103,7 +102,6 @@ class LoginModule extends Module {
         saveCurrentUserUseCase: i<SaveCurrentUserUseCase>(),
         getCurrentUserUsecase: i<GetCurrentUserUsecase>(),
         collectionsInfoUserUsecase: i<CreateCollectionsInfoUserUsecase>(),
-        userCubit: i<UserCubit>(),
         isInfoUserCollectionsExistsUsecase:
             i<IsInfoUserCollectionsExistsUsecase>(),
       ),

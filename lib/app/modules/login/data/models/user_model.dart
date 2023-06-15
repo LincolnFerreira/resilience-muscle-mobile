@@ -8,7 +8,6 @@ part 'user_model.g.dart';
 class UserModel extends UserEntity {
   UserModel({
     uid,
-    name,
     email,
     password,
   }) : super(

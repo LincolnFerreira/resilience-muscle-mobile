@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
 import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_in_state.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/cubits/user_cubit.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/usecases/create_collections_info_user_usecase.dart';
 
 import '../../domain/entities/user_entity.dart';
@@ -23,7 +22,6 @@ class SignInCubit extends Cubit<SignInState> {
   final SaveCurrentUserUseCase saveCurrentUserUseCase;
   final GetCurrentUserUsecase getCurrentUserUsecase;
   final CreateCollectionsInfoUserUsecase collectionsInfoUserUsecase;
-  final UserCubit userCubit;
   final IsInfoUserCollectionsExistsUsecase isInfoUserCollectionsExistsUsecase;
 
   SignInCubit({
@@ -34,7 +32,6 @@ class SignInCubit extends Cubit<SignInState> {
     required this.saveCurrentUserUseCase,
     required this.getCurrentUserUsecase,
     required this.collectionsInfoUserUsecase,
-    required this.userCubit,
     required this.isInfoUserCollectionsExistsUsecase,
   }) : super(SignInInitial());
 
@@ -54,7 +51,6 @@ class SignInCubit extends Cubit<SignInState> {
         (right) async {
           saveUser(right);
           getCurrentUser(right.uid);
-          userCubit.updateUser(right);
           await isCreatedCollumnsInfoUser(right.uid);
         },
       );

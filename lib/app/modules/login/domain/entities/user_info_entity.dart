@@ -23,13 +23,13 @@ class UserInfoEntity {
   late dynamic image;
 
   UserInfoEntity({
-    required this.name,
-    required this.birthDate,
-    required this.height,
-    required this.weight,
+    this.name,
+    this.birthDate,
+    this.height,
+    this.weight,
     this.trainingDivision,
     this.fitnessGoals,
-    required this.image,
+    this.image,
   });
 
   UserInfoEntity copyWith({

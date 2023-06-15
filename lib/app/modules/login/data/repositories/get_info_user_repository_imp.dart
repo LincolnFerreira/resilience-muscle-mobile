@@ -9,11 +9,9 @@ import 'package:resilience_muscle/app/modules/login/domain/repositories/get_info
 
 class GetInfoUserRepositoryImp implements GetInfoUserRepository {
   final RemoteDataSource remoteDataSource;
-  final Box<UserInfoEntity> boxUserInfoEntity;
 
   GetInfoUserRepositoryImp({
     required this.remoteDataSource,
-    required this.boxUserInfoEntity,
   });
 
   @override

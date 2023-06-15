@@ -3,12 +3,13 @@ import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:resilience_muscle/app/modules/login/data/repositories/save_current_user_repository_imp.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
+import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/get_current_uid_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/is_sign_in_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/save_current_user_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/sign_out_repository.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/cubits/user_cubit.dart';
 import 'package:resilience_muscle/app/modules/splash/splash_module.dart';
+import 'package:resilience_muscle/app_cubit.dart';
 
 import 'app/modules/forget_password/forget_password_module.dart';
 import 'app/modules/home_user/home_user_module.dart';
@@ -32,9 +33,9 @@ class AppModule extends Module {
         // util
         Bind.lazySingleton<ImagePicker>((i) => ImagePicker()),
 
-        //entity
-        // Bind.lazySingleton<UserEntity>((i) => UserEntity()),
+        //hive
         Bind((i) => Hive.box<UserEntity>(HiveBoxes.userBox)),
+        Bind((i) => Hive.box<UserInfoEntity>(HiveBoxes.infoUserBox)),
 
         //firebase
         Bind<RemoteDataSource>(
@@ -80,8 +81,9 @@ class AppModule extends Module {
         ),
 
         //cubit
+
         Bind(
-          (i) => UserCubit(),
+          (i) => AppCubit(),
         ),
       ];
 
