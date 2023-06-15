@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../../../../ui/colors.dart';
 
 class DontHaveAnAccountOrganism extends StatelessWidget {
-  final VoidCallback onTapSignUp;
+  final VoidCallback onTapCreateSignUp;
   const DontHaveAnAccountOrganism({
-    required this.onTapSignUp,
+    required this.onTapCreateSignUp,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTapSignUp,
+      onTap: onTapCreateSignUp,
       child: RichText(
         text: const TextSpan(
           text: 'Não possui uma conta?',

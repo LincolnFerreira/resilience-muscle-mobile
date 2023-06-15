@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/atomic/templates/sign_up_template.dart';
 
-import '../cubits/sign_up_cubit.dart';
+import '../../cubits/sign_up_cubit.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

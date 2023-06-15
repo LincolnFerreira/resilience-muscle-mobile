@@ -21,7 +21,7 @@ class WelcomeLabelOrganism extends StatelessWidget {
             color: Colors.transparent,
           ),
           TextAtom(
-            text: 'Entre para continuar',
+            text: 'Vamos continuar nossa jornada!',
             style: bodyStyle,
           )
         ],
