@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/atom_default/logo_atom.dart';
-import '../../../../core/atom_default/space_widget_atom.dart';
 import '../../../../core/organisms_default/button_organism.dart';
 import '../atomic/atomics/button_google_atom.dart';
 import '../atomic/atomics/or_atom.dart';
@@ -61,47 +60,68 @@ class SignInPageState extends State<SignInPage> {
         return Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          body: Container(
-            margin: const EdgeInsets.all(30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                const LogoAtom(),
-                const WelcomeLabelOrganism(),
-                FormSignInOrganism(
-                  spaceBetweenInputOrganism: 28,
-                  onChangedEmail: (emailValue) {
-                    email = emailController.text;
-                  },
-                  onChangedPassword: (passwordValue) {
-                    password = passwordController.text;
-                  },
-                  emailController: emailController,
-                  passwordController: passwordController,
-                ),
-                Column(
-                  children: [
-                    ButtonOrganism.primary(
-                      width: 232,
-                      onPressed: () async {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        cubit.submitSignIn(
-                          emailController.text,
-                          passwordController.text,
-                        );
-                      },
-                      textButton: 'Entrar',
-                    ),
-                    const OrAtom(),
-                    const ButtonGoogleAtom(),
-                    const SpaceWidgetAtom(height: 20),
-                    DontHaveAnAccountOrganism(
-                      onTapSignUp: () =>
-                          Modular.to.popAndPushNamed('/login/sign_up'),
-                    )
-                  ],
-                ),
-              ],
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(30.0),
+            child: SizedBox(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const Divider(
+                    height: 40,
+                    color: Colors.transparent,
+                  ),
+                  const LogoAtom(),
+                  const Divider(
+                    height: 64,
+                    color: Colors.transparent,
+                  ),
+                  const WelcomeLabelOrganism(),
+                  const Divider(
+                    height: 56,
+                    color: Colors.transparent,
+                  ),
+                  FormSignInOrganism(
+                    spaceBetweenInputOrganism: 32,
+                    onChangedEmail: (emailValue) {
+                      email = emailController.text;
+                    },
+                    onChangedPassword: (passwordValue) {
+                      password = passwordController.text;
+                    },
+                    emailController: emailController,
+                    passwordController: passwordController,
+                  ),
+                  const Divider(
+                    height: 70,
+                    color: Colors.transparent,
+                  ),
+                  Column(
+                    children: [
+                      ButtonOrganism.primary(
+                        width: 232,
+                        onPressed: () async {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          cubit.submitSignIn(
+                            emailController.text,
+                            passwordController.text,
+                          );
+                        },
+                        textButton: 'Entrar',
+                      ),
+                      const OrAtom(),
+                      const ButtonGoogleAtom(),
+                      const Divider(
+                        height: 20,
+                        color: Colors.transparent,
+                      ),
+                      DontHaveAnAccountOrganism(
+                        onTapSignUp: () =>
+                            Modular.to.popAndPushNamed('/login/sign_up'),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           bottomNavigationBar: const BottomTextVersionScreenOrganism(),

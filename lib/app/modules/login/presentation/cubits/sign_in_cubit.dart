@@ -61,7 +61,6 @@ class SignInCubit extends Cubit<SignInState> {
 
   Future<void> getCurrentUser(String uid) async {
     final getCurrentUser = await getCurrentUserUsecase(uid);
-    print(getCurrentUser);
   }
 
   Future<void> saveUser(UserEntity currentUser) async {

@@ -90,7 +90,6 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
           FirebaseFirestore.instance.collection('users').doc(uid);
 
       final tableSnapshot = await tableReference.get();
-      print('getCurrentUser: $tableSnapshot.data');
       return Right(userEntity);
     } catch (e) {
       return Left(Failure(message: 'Erro ao obter usuário atual: $e'));

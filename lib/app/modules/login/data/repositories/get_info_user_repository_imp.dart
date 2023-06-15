@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-import 'package:hive/hive.dart';
 
 import 'package:resilience_muscle/app/core/failure.dart';
 import 'package:resilience_muscle/app/modules/login/data/datasources/remote_datasource.dart';

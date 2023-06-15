@@ -38,7 +38,6 @@ class HomeUserCubit extends Cubit<HomeUserState> {
   Future<void> init() async {
     getInfoUser();
     getUser();
-    print('userInfo: $userInfoEntity');
   }
 
   Future<void> getUser() async {
@@ -49,9 +48,7 @@ class HomeUserCubit extends Cubit<HomeUserState> {
     // }
     try {
       final res = getCurrentUserUsecase(uid);
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   Future<void> getInfoUser() async {
@@ -64,10 +61,7 @@ class HomeUserCubit extends Cubit<HomeUserState> {
       final res = await getInfoUserUsecase(uid);
       res.fold((failure) {}, (infoUser) {
         boxUserInfoEntity.put('infoUser', infoUser);
-        print('informações salvas');
       });
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 }

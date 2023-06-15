@@ -19,6 +19,5 @@ class SaveCurrentUserRepositoryImp implements SaveCurrentUserRepository {
     );
 
     userEntityBox.put('user', newUser);
-    print(userEntityBox);
   }
 }

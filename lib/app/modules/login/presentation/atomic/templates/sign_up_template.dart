@@ -137,9 +137,9 @@ class _SignUpPage extends State<SignUpTemplate> {
                       });
                     },
                   ),
-                  Flexible(
+                  const Flexible(
                     child: Wrap(
-                      children: const [
+                      children: [
                         Text(
                           'Li e estou de acordo com o ',
                           style: TextStyle(

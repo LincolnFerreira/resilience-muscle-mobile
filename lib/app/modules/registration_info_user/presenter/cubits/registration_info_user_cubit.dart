@@ -98,7 +98,6 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
           emit(const RegistrationInfoUserFailure());
         },
         (createCollections) {
-          print('createCollections: $createCollections');
           emit(RegistrationInfoUserSuccess(
             createdNewColumns: createCollections,
             page: 4,
