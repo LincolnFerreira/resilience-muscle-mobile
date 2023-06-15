@@ -22,6 +22,7 @@ class _AppWidgetState extends State<AppWidget> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       bloc: cubit,
