@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/atom_default/logo_atom.dart';
-import '../../../../../core/organisms_default/button_organism.dart';
 import '../atomics/button_google_atom.dart';
 import '../atomics/or_atom.dart';
 import '../organisms/bottom_text_version_screen_organism.dart';
@@ -19,6 +18,8 @@ class SignInTemplate extends StatelessWidget {
   final String textOnTapSignIn;
   final VoidCallback onTapCreateSignUp;
   final VoidCallback onTapForgetPassword;
+  final String? Function(String?)? validatorEmail;
+  final String? Function(String?)? validatorPassword;
 
   const SignInTemplate({
     Key? key,
@@ -30,14 +31,16 @@ class SignInTemplate extends StatelessWidget {
     required this.textOnTapSignIn,
     required this.onTapCreateSignUp,
     required this.onTapForgetPassword,
+    this.validatorEmail,
+    this.validatorPassword,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        key: UniqueKey(),
         padding: const EdgeInsets.all(30.0),
         child: SizedBox(
           child: Column(
@@ -58,24 +61,18 @@ class SignInTemplate extends StatelessWidget {
                 color: Colors.transparent,
               ),
               FormSignInOrganism(
-                spaceBetweenInputOrganism: 32,
+                validatorEmail: validatorEmail,
+                spaceBetweenInputOrganism: 24,
                 onChangedEmail: onChangedEmail,
                 onChangedPassword: onChangedPassword,
                 emailController: emailController,
                 passwordController: passwordController,
-                onTapForgetPassword: () {},
-              ),
-              const Divider(
-                height: 56,
-                color: Colors.transparent,
+                onTapForgetPassword: onTapForgetPassword,
+                onTapSignIn: onTapSignIn,
+                validatorPassword: validatorPassword,
               ),
               Column(
                 children: [
-                  ButtonOrganism.primary(
-                    width: 232,
-                    onPressed: onTapSignIn,
-                    textButton: textOnTapSignIn,
-                  ),
                   const OrAtom(),
                   const ButtonGoogleAtom(),
                   const Divider(

@@ -23,7 +23,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess && state.createdNewUser == true) {
-          Modular.to.popAndPushNamed('/login/');
+          Modular.to.pushNamed('/login/');
         }
       },
       bloc: cubit,

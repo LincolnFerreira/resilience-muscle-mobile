@@ -37,7 +37,7 @@ class HomeUserPageState extends State<HomeUserPage> {
               appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(70),
                 child: NavbarTopUserOrganism(
-                  nameUser: cubit.userInfoEntity.name!,
+                  nameUser: cubit.userInfoEntity.name ?? '',
                   fraseInteligente: 'fraseInteligente',
                 ),
               ),

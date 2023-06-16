@@ -49,9 +49,11 @@ class SettingsTemplate extends StatelessWidget {
           onPressed: onTapBackPage,
         ),
       ),
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+        height: double.infinity,
         child: SingleChildScrollView(
+          key: UniqueKey(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

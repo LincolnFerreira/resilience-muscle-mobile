@@ -35,12 +35,12 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
         if (state is RegistrationInfoUserSuccess &&
             state.createdNewCollumns == true)
           {
-            Modular.to.popAndPushNamed('/home_user/'),
+            Modular.to.pushNamed('/home_user/'),
           }
       },
       builder: (context, state) => RegistrationInfoUserTemplate(
         onPressedBackPage: () {
-          Modular.to.popAndPushNamed('/login/');
+          Modular.to.pushNamed('/login/');
         },
         currentPage: state.page ?? 3,
         inputValues: inputValues,

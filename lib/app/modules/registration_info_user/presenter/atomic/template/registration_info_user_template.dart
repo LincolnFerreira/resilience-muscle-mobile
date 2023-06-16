@@ -46,6 +46,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
         elevation: 0,
       ),
       body: SingleChildScrollView(
+        key: UniqueKey(),
         child: Padding(
           padding: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
           child: Column(

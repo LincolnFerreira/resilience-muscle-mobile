@@ -29,12 +29,12 @@ class _SettingsPageState extends State<SettingsPage> {
           onTapToggleNotifications: cubit.onTapToggleNotifications,
           onTapContact: cubit.onTapContact,
           onTapSuggestions: cubit.onTapSuggestions,
-          imageUrl: cubit.userInfoEntity.image,
-          nameUser: cubit.userInfoEntity.name!,
-          emailUser: cubit.userEntity.email,
+          imageUrl: 'cubit.userInfoEntity.image',
+          nameUser: 'cubit.userInfoEntity.name!',
+          emailUser: 'cubit.userEntity.email',
           versionPoweredAuthor: 'versionPoweredAuthor',
           onTapBackPage: () {
-            Modular.to.navigate('/home_user/');
+            Modular.to.pushNamed('/home_user/');
           },
         );
       },

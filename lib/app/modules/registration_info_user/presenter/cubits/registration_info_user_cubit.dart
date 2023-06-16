@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_email_duplicate_usecase.dart';
@@ -8,6 +7,7 @@ import 'package:resilience_muscle/app/modules/registration_info_user/presenter/c
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/usecases/create_collections_info_user_usecase.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/usecases/create_new_user_with_email_usecase.dart';
 
+import '../../../../../app_cubit.dart';
 import '../../../../core/utils/date_format.dart';
 import '../../../login/domain/entities/user_entity.dart';
 
@@ -15,14 +15,16 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
   final IsEmailDuplicateUsecase isEmailDuplicateUsecase;
   final CreateNewUserWithEmailUsecase createNewUserWithEmail;
   final CreateCollectionsInfoUserUsecase createCollectionsInfoUserUsecase;
-  final Box<UserEntity> userEntityBox;
-
+  final AppCubit appCubit;
+  late UserEntity userEntity;
   RegistrationInfoUserCubit({
     required this.isEmailDuplicateUsecase,
     required this.createNewUserWithEmail,
     required this.createCollectionsInfoUserUsecase,
-    required this.userEntityBox,
-  }) : super(const RegistrationInfoUserInitial(pageInitial: 0));
+    required this.appCubit,
+  }) : super(const RegistrationInfoUserInitial(pageInitial: 0)) {
+    userEntity = appCubit.state.userEntity;
+  }
 
   void onTapButtonContinue() {
     emit(RegistrationInfoUserSuccess(page: state.page! + 1));
@@ -84,14 +86,10 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
       image: null,
     );
 
-    if (userEntityBox.get('user')?.uid == null) {
-      emit(const RegistrationInfoUserFailure());
-      return;
-    }
     try {
       final createCollectionsInfo = await createCollectionsInfoUserUsecase(
         userInfoEntity: userInfo,
-        uid: userEntityBox.get('user')!.uid,
+        uid: userEntity.uid,
       );
       createCollectionsInfo.fold(
         (failure) {

@@ -2,9 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/sign_out_usecase.dart';
 
 import '../usecases/upgrade_image_user_usecase.dart';
@@ -15,15 +13,11 @@ class SettingsCubit extends Cubit<SettingsState> {
   final ImagePicker imagePicker;
   final SignOutUsecase signOutUsecase;
   final UpgradeImageUserUsecase upgradeImageUserUsecase;
-  final UserInfoEntity userInfoEntity;
-  final UserEntity userEntity;
 
   SettingsCubit({
     required this.imagePicker,
     required this.signOutUsecase,
     required this.upgradeImageUserUsecase,
-    required this.userInfoEntity,
-    required this.userEntity,
   }) : super(SettingsInitial());
 
   Future<XFile?> getImage() async {

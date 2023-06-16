@@ -40,13 +40,13 @@ class SignInPageState extends State<SignInPage> {
 
         if (state is SignInSuccess) {
           asuka.AsukaSnackbar.success("sucesso").show();
-          state.isCreatedCollumnsInfoUser!
-              ? Modular.to.navigate('/home_user/')
-              : Modular.to.navigate('/registration_info_user/');
+          state.isCreatedCollumnsInfoUser
+              ? Modular.to.pushNamed('/home_user/')
+              : Modular.to.pushNamed('/registration_info_user/');
         }
 
         if (state is SignInFailure) {
-          asuka.AsukaSnackbar.alert("erro de login").show();
+          asuka.AsukaSnackbar.alert(state.message ?? "erro de login").show();
         }
       },
       builder: (context, state) {
@@ -55,6 +55,8 @@ class SignInPageState extends State<SignInPage> {
           passwordController: passwordController,
           onChangedEmail: (e) => email = e,
           onChangedPassword: (e) => password = e,
+          validatorEmail: cubit.validateEmail,
+          validatorPassword: cubit.validatePassword,
           onTapSignIn: () async {
             FocusManager.instance.primaryFocus?.unfocus();
             cubit.submitSignIn(
@@ -62,9 +64,9 @@ class SignInPageState extends State<SignInPage> {
               passwordController.text,
             );
           },
-          onTapCreateSignUp: () => Modular.to.popAndPushNamed('/login/sign_up'),
+          onTapCreateSignUp: () => Modular.to.pushNamed('/login/sign_up'),
           textOnTapSignIn: 'Entrar',
-          onTapForgetPassword: () => Modular.to.navigate('/forget_password'),
+          onTapForgetPassword: () => Modular.to.pushNamed('/forget_password'),
         );
       },
     );

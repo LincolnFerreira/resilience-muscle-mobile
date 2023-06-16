@@ -1,3 +1,9 @@
+import 'package:image_picker/image_picker.dart';
+import 'package:resilience_muscle/app/modules/login/data/datasources/remote_datasource.dart';
+import 'package:resilience_muscle/app/modules/login/data/repositories/sign_out_repository_imp.dart';
+import 'package:resilience_muscle/app/modules/login/domain/repositories/sign_out_repository.dart';
+import 'package:resilience_muscle/app/modules/login/domain/usecases/sign_out_usecase_imp.dart';
+import 'package:resilience_muscle/app/modules/login/presentation/usecase/sign_out_usecase.dart';
 import 'package:resilience_muscle/app/modules/settings/domain/repositories/upgrade_image_user_repository.dart';
 import 'package:resilience_muscle/app/modules/settings/presentation/pages/settings_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,21 +18,23 @@ class SettingsModule extends Module {
   List<Bind> get binds => [
         // repositories
         Bind<UpgradeImageUserRepository>((i) => UpgradeImageUserRepositoryImp(
-              localDataSource: i(),
-              remoteDataSource: i(),
+              remoteDataSource: i<RemoteDataSource>(),
             )),
 
         // usecases
         Bind<UpgradeImageUserUsecase>(
             (i) => UpgradeImageUserUsecaseImp(repository: i())),
-
+        Bind<SignOutUsecase>(
+          (i) => SignOutUseCaseImp(repository: i()),
+        ),
+        Bind<SignOutRepository>(
+          (i) => SignOutRepositoryImp(remoteDataSource: i()),
+        ),
         // cubits
-        Bind.lazySingleton<SettingsCubit>((i) => SettingsCubit(
-              userEntity: i(),
-              imagePicker: i(),
-              upgradeImageUserUsecase: i(),
-              signOutUsecase: i(),
-              userInfoEntity: i(),
+        Bind<SettingsCubit>((i) => SettingsCubit(
+              imagePicker: i<ImagePicker>(),
+              upgradeImageUserUsecase: i<UpgradeImageUserUsecase>(),
+              signOutUsecase: i<SignOutUsecase>(),
             )),
       ];
 

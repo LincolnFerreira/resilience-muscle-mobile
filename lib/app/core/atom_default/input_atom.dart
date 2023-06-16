@@ -58,6 +58,7 @@ class InputAtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      key: key ?? UniqueKey(),
       keyboardType: keyboardType,
       controller: controller,
       onChanged: onChanged,

@@ -9,6 +9,7 @@ import 'package:resilience_muscle/app/modules/login/domain/repositories/is_sign_
 import 'package:resilience_muscle/app/modules/login/domain/repositories/save_current_user_repository.dart';
 import 'package:resilience_muscle/app/modules/login/domain/repositories/sign_out_repository.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/get_current_uid_usecase.dart';
+import 'package:resilience_muscle/app/modules/login/presentation/usecase/get_info_user_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_sign_in_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/save_current_usecase.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/sign_out_usecase.dart';
@@ -20,9 +21,12 @@ import 'app/modules/home_user/home_user_module.dart';
 import 'app/modules/login/data/datasources/remote_datasource.dart';
 import 'app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
 import 'app/modules/login/data/repositories/get_current_uid_repository_imp.dart';
+import 'app/modules/login/data/repositories/get_info_user_repository_imp.dart';
 import 'app/modules/login/data/repositories/is_sign_in_repository_imp.dart';
 import 'app/modules/login/data/repositories/sign_out_repository_imp.dart';
+import 'app/modules/login/domain/repositories/get_info_user_repository.dart';
 import 'app/modules/login/domain/usecases/get_current_uid_usecase_imp.dart';
+import 'app/modules/login/domain/usecases/get_info_user_usecase_imp.dart';
 import 'app/modules/login/domain/usecases/is_sign_in_usecase_imp.dart';
 import 'app/modules/login/domain/usecases/save_current_usecase_imp.dart';
 import 'app/modules/login/domain/usecases/sign_out_usecase_imp.dart';
@@ -71,34 +75,55 @@ class AppModule extends Module {
             firebaseRemoteDataSource: i<FirebaseRemoteDataSourceImp>(),
           )),
       Bind<SignOutRepository>((i) => SignOutRepositoryImp(
-            firebaseRemoteDataSource: i<FirebaseRemoteDataSourceImp>(),
+            remoteDataSource: i<FirebaseRemoteDataSourceImp>(),
           )),
       Bind<SaveCurrentUserRepository>((i) => SaveCurrentUserRepositoryImp(
             userEntityBox: i<Box<UserEntity>>(),
           )),
+      Bind<GetInfoUserRepository>(
+        (i) => GetInfoUserRepositoryImp(
+          remoteDataSource: i<FirebaseRemoteDataSourceImp>(),
+        ),
+      ),
     ];
   }
 
   List<Bind> _getUseCaseBinds() {
     return [
-      Bind<SaveCurrentUserUseCase>((i) => SaveCurrentUserUseCaseImp(
-            repository: i<SaveCurrentUserRepository>(),
-          )),
-      Bind<IsSignInUseCase>((i) => IsSignInUseCaseImp(
-            isSignInRepository: i<IsSignInRepository>(),
-          )),
-      Bind<GetCurrentUIdUseCase>((i) => GetCurrentUIdUseCaseImp(
-            getCurrentUIdRepository: i<GetCurrentUIdRepository>(),
-          )),
-      Bind<SignOutUsecase>((i) => SignOutUseCaseImp(
-            repository: i<SignOutRepository>(),
-          )),
+      Bind<SaveCurrentUserUseCase>(
+        (i) => SaveCurrentUserUseCaseImp(
+          repository: i<SaveCurrentUserRepository>(),
+        ),
+      ),
+      Bind<IsSignInUseCase>(
+        (i) => IsSignInUseCaseImp(
+          isSignInRepository: i<IsSignInRepository>(),
+        ),
+      ),
+      Bind<GetCurrentUIdUseCase>(
+        (i) => GetCurrentUIdUseCaseImp(
+          getCurrentUIdRepository: i<GetCurrentUIdRepository>(),
+        ),
+      ),
+      Bind<SignOutUsecase>(
+        (i) => SignOutUseCaseImp(
+          repository: i<SignOutRepository>(),
+        ),
+      ),
+      Bind<GetInfoUserUsecase>(
+        (i) => GetInfoUserUsecaseImp(repository: i<GetInfoUserRepository>()),
+      ),
     ];
   }
 
   List<Bind> _getCubitBinds() {
     return [
-      Bind<AppCubit>((i) => AppCubit()),
+      Bind<AppCubit>((i) => AppCubit(
+            isSignInUseCase: i<IsSignInUseCase>(),
+            boxUserEntity: i<Box<UserEntity>>(),
+            boxUserInfoEntity: i<Box<UserInfoEntity>>(),
+            getInfoUserUsecase: i<GetInfoUserUsecase>(),
+          )),
     ];
   }
 

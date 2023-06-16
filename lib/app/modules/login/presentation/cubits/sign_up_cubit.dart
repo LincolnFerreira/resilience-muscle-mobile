@@ -88,6 +88,6 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void onPressedBackPage() {
-    Modular.to.popAndPushNamed('/login');
+    Modular.to.pushNamed('/login');
   }
 }

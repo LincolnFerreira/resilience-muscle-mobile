@@ -48,16 +48,18 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       } else if (e.code == 'wrong-password') {
         return Left(Failure(message: 'Senha incorreta!'));
       }
-      return Left(Failure(message: 'Erro durante o login: $e'));
+      return Left(Failure(message: 'Erro durante o login'));
     } catch (e) {
-      return Left(Failure(message: 'Erro durante o login: $e'));
+      return Left(Failure(message: 'Erro durante o login'));
     }
   }
 
   @override
   Future<Either<Failure, bool>> isSignIn() async {
     try {
-      return Right(auth.currentUser?.uid != null);
+      final bool res = auth.currentUser?.uid != null;
+
+      return Right(res);
     } catch (e) {
       return Left(Failure(message: 'Erro ao verificar status de login: $e'));
     }
@@ -76,7 +78,11 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, String>> getCurrentUId() async {
     try {
-      return Right(auth.currentUser!.uid);
+      final String? res = auth.currentUser?.uid;
+      if (res != null) {
+        return Right(res);
+      }
+      return Left(Failure(message: 'Usuário não encontrado'));
     } catch (e) {
       return Left(Failure(message: 'Erro ao obter o ID do usuário: $e'));
     }
@@ -199,8 +205,9 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       final tableSnapshot = await tableReferenceInfo.get();
 
       final data = tableSnapshot.data() as Map<String, dynamic>;
+
       final userInfo = UserInfoModel(
-        birthDate: data['birth_date'],
+        birthDate: (data['date_of_birth'] as Timestamp).toDate(),
         fitnessGoals: data['fitness_goals'],
         height: data['height'],
         image: data['image'],
@@ -208,6 +215,7 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
         trainingDivision: data['training_division'],
         weight: data['weight'],
       );
+
       return Right(userInfo);
     } catch (e) {
       return Left(

@@ -7,14 +7,14 @@ import '../../domain/repositories/sign_out_repository.dart';
 import '../datasources/remote_datasource.dart';
 
 class SignOutRepositoryImp implements SignOutRepository {
-  RemoteDataSource firebaseRemoteDataSource;
+  RemoteDataSource remoteDataSource;
 
   SignOutRepositoryImp({
-    required this.firebaseRemoteDataSource,
+    required this.remoteDataSource,
   });
 
   @override
   Future<Either<Failure, void>> call() {
-    return firebaseRemoteDataSource.signOut();
+    return remoteDataSource.signOut();
   }
 }

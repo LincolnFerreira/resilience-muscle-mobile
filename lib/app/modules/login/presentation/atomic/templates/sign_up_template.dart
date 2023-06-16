@@ -43,14 +43,13 @@ class SignUpTemplate extends StatefulWidget {
 }
 
 class _SignUpPage extends State<SignUpTemplate> {
-  final formKey = GlobalKey<FormState>();
-
   final passwordController = TextEditingController();
 
   bool onChangeCheckboxTerm = false;
 
   @override
   Widget build(BuildContext context) {
+    final formSignUpKey = GlobalKey<FormState>(debugLabel: 'formSignUpKey');
     bool isValidateConfirmPassword = false;
     return Scaffold(
       appBar: AppBar(
@@ -65,6 +64,7 @@ class _SignUpPage extends State<SignUpTemplate> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
+        key: UniqueKey(),
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
@@ -80,7 +80,7 @@ class _SignUpPage extends State<SignUpTemplate> {
                   ),
                   const SpaceWidgetAtom(height: 40),
                   Form(
-                    key: formKey,
+                    key: formSignUpKey,
                     child: Column(
                       children: [
                         InputAtom(
@@ -165,7 +165,7 @@ class _SignUpPage extends State<SignUpTemplate> {
                 disabled: !onChangeCheckboxTerm,
                 textButton: widget.textButton ?? 'Confirmar',
                 onPressed: () {
-                  if (formKey.currentState?.validate() == true ||
+                  if (formSignUpKey.currentState?.validate() == true ||
                       isValidateConfirmPassword == true) {
                     widget.onPressedButtonSubmitSignUp?.call();
                   }

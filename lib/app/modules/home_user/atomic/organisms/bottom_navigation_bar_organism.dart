@@ -11,6 +11,7 @@ class BottomNavigationBarOrganism extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      key: UniqueKey(),
       type: BottomNavigationBarType.fixed,
       selectedIconTheme: const IconThemeData(
         color: ColorsUI.primary,
@@ -20,7 +21,7 @@ class BottomNavigationBarOrganism extends StatelessWidget {
         BottomNavigationBarItem(
           icon: InkWell(
             onTap: () {
-              Modular.to.navigate('/home_user/');
+              Modular.to.pushNamed('/home_user/');
             },
             child: SvgPicture.asset(
               'assets/appIcons/dumble.svg',
@@ -54,7 +55,7 @@ class BottomNavigationBarOrganism extends StatelessWidget {
         BottomNavigationBarItem(
           icon: InkWell(
             onTap: () {
-              Modular.to.navigate('/settings/');
+              Modular.to.pushNamed('/settings/');
             },
             child: SvgPicture.asset(
               'assets/appIcons/user.svg',

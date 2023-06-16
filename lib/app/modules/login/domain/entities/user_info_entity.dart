@@ -56,6 +56,11 @@ class UserInfoEntity {
   String toString() {
     return 'UserInfoEntity(name: $name, birthDate: $birthDate, height: $height, weight: $weight, trainingDivision: $trainingDivision, fitnessGoals: $fitnessGoals)';
   }
+
+  factory UserInfoEntity.fromJson(Map<String, dynamic> json) =>
+      _$UserInfoEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserInfoEntityToJson(this);
 }
 
 enum TrainingDivision {

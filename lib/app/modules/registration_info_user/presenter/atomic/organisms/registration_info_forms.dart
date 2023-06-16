@@ -12,7 +12,6 @@ import '../../../../../core/organisms_default/button_organism.dart';
 class RegistrationInfoForms extends StatelessWidget {
   final VoidCallback? onPressed;
   final Function(String)? onChangeInput;
-  final formKey = GlobalKey<FormState>();
   final String? titleForm;
   final String? formSubtitle;
   final String inputLabelText;
@@ -21,7 +20,7 @@ class RegistrationInfoForms extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatter;
   final TextInputType? keyboardType;
 
-  RegistrationInfoForms({
+  const RegistrationInfoForms({
     Key? key,
     this.onPressed,
     this.onChangeInput,
@@ -36,6 +35,8 @@ class RegistrationInfoForms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formRegistrationInfo =
+        GlobalKey<FormState>(debugLabel: 'formRegistrationInfo');
     return Column(
       children: [
         const SpaceWidgetAtom(height: 40),
@@ -59,7 +60,7 @@ class RegistrationInfoForms extends StatelessWidget {
             ),
             const SpaceWidgetAtom(height: 20),
             Form(
-              key: formKey,
+              key: formRegistrationInfo,
               child: InputAtom(
                 inputFormatter: inputFormatter,
                 keyboardType: keyboardType,
@@ -75,7 +76,7 @@ class RegistrationInfoForms extends StatelessWidget {
         ButtonOrganism.primary(
           textButton: textButton ?? 'Confirmar',
           onPressed: () {
-            if (formKey.currentState?.validate() == true) {
+            if (formRegistrationInfo.currentState?.validate() == true) {
               onPressed?.call();
             }
           },
