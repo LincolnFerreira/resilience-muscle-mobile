@@ -11,7 +11,7 @@ import '../login/domain/usecases/get_info_user_usecase_imp.dart';
 import '../login/presentation/usecase/get_current_user_usecase.dart';
 import '../login/presentation/usecase/get_info_user_usecase.dart';
 import 'cubit/home_user_cubit.dart';
-import 'home_user_page.dart';
+import 'atomic/pages/home_user_page.dart';
 
 class HomeUserModule extends Module {
   @override

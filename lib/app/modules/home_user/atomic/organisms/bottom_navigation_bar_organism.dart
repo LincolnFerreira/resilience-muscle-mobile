@@ -5,62 +5,95 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../ui/colors.dart';
 import '../../../../../ui/resources/assets.dart';
 
-class BottomNavigationBarOrganism extends StatelessWidget {
-  const BottomNavigationBarOrganism({super.key});
+class BottomNavigationBarOrganism extends StatefulWidget {
+  const BottomNavigationBarOrganism({Key? key}) : super(key: key);
+
+  @override
+  _BottomNavigationBarOrganismState createState() =>
+      _BottomNavigationBarOrganismState();
+}
+
+class _BottomNavigationBarOrganismState
+    extends State<BottomNavigationBarOrganism> {
+  String getSelectItem = '/home_user/';
+
+  final String pushNamedHomeUser = '/home_user/';
+  final String pushNamedAttendance = '/attendance_user/';
+  final String pushNamedPerformance = '/performance_user/';
+  final String pushNamedAccount = '/settings/';
+
+  SvgPicture getSvgIcon(String assetName, String selectedItem) {
+    final isSelected = getSelectItem == selectedItem;
+    final color = isSelected ? ColorsUI.dark : ColorsUI.whiteGrey;
+
+    return SvgPicture.asset(
+      assetName,
+      height: 24,
+      color: color,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 1,
       key: UniqueKey(),
       type: BottomNavigationBarType.fixed,
       selectedIconTheme: const IconThemeData(
-        color: ColorsUI.primary,
+        color: ColorsUI.dark,
       ),
-      selectedItemColor: ColorsUI.primary,
+      selectedItemColor: ColorsUI.dark,
+      unselectedItemColor: ColorsUI.dark63,
+      unselectedIconTheme: IconThemeData(color: ColorsUI.dark63),
+      selectedFontSize: 16,
       items: [
         BottomNavigationBarItem(
           icon: InkWell(
             onTap: () {
-              Modular.to.pushNamed('/home_user/');
+              setState(() {
+                getSelectItem = pushNamedHomeUser;
+              });
+              Modular.to.pushNamed(pushNamedHomeUser);
             },
-            child: SvgPicture.asset(
-              'assets/appIcons/dumble.svg',
-              height: 24,
-            ),
+            child: getSvgIcon('assets/appIcons/dumble.svg', pushNamedHomeUser),
           ),
           label: 'Treino',
         ),
         BottomNavigationBarItem(
           icon: InkWell(
             onTap: () {
-              // Ação a ser executada ao clicar no ícone
+              setState(() {
+                getSelectItem = pushNamedAttendance;
+              });
+              Modular.to.pushNamed(pushNamedAttendance);
             },
-            child: SvgPicture.asset(
-              AssetsCollection.eventAvailableSvg(),
-              height: 24,
-            ),
+            child: getSvgIcon(
+                AssetsCollection.eventAvailableSvg(), pushNamedAttendance),
           ),
           label: 'Acompanhamento',
         ),
         BottomNavigationBarItem(
           icon: InkWell(
-            onTap: () {},
-            child: SvgPicture.asset(
-              'assets/appIcons/bar_chart.svg',
-              height: 24,
-            ),
+            onTap: () {
+              setState(() {
+                getSelectItem = pushNamedPerformance;
+              });
+              Modular.to.pushNamed(pushNamedPerformance);
+            },
+            child: getSvgIcon(
+                'assets/appIcons/bar_chart.svg', pushNamedPerformance),
           ),
           label: 'Performace',
         ),
         BottomNavigationBarItem(
           icon: InkWell(
             onTap: () {
-              Modular.to.pushNamed('/settings/');
+              setState(() {
+                getSelectItem = pushNamedAccount;
+              });
+              Modular.to.pushNamed(pushNamedAccount);
             },
-            child: SvgPicture.asset(
-              'assets/appIcons/user.svg',
-              height: 24,
-            ),
+            child: getSvgIcon('assets/appIcons/user.svg', pushNamedAccount),
           ),
           label: 'Conta',
         ),

@@ -6,9 +6,9 @@ import 'package:resilience_muscle/app/modules/home_user/atomic/organisms/navbar_
 
 import 'package:resilience_muscle/ui/colors.dart';
 
-import '../../../ui/box_text.dart';
-import 'atomic/organisms/bottom_navigation_bar_organism.dart';
-import 'cubit/home_user_cubit.dart';
+import '../../../../../ui/box_text.dart';
+import '../organisms/bottom_navigation_bar_organism.dart';
+import '../../cubit/home_user_cubit.dart';
 
 class HomeUserPage extends StatefulWidget {
   const HomeUserPage({super.key});
