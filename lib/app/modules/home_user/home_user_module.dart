@@ -16,34 +16,51 @@ import 'atomic/pages/home_user_page.dart';
 class HomeUserModule extends Module {
   @override
   List<Bind> get binds => [
-        //datasources
-
-        //repositories
-        Bind<GetCurrentUserRepository>((i) => GetCurrentUserRepositoryImp(
-            firebaseRemoteDataSourceImp: i<FirebaseRemoteDataSourceImp>())),
-        Bind<GetInfoUserRepository>((i) => GetInfoUserRepositoryImp(
-            remoteDataSource: i<FirebaseRemoteDataSourceImp>())),
-
-        //usecases
-        Bind<GetInfoUserUsecase>(
-          (i) => GetInfoUserUsecaseImp(repository: i<GetInfoUserRepository>()),
-        ),
-        Bind<GetCurrentUserUsecase>(
-          (i) => GetCurrentUserUsecaseImp(
-              repository: i<GetCurrentUserRepository>()),
-        ),
-
-        //cubits
-        Bind.singleton<HomeUserCubit>(
-          (i) => HomeUserCubit(
-            getCurrentUserUsecase: i<GetCurrentUserUsecase>(),
-            boxUserEntityBox: i(),
-            boxUserInfoEntity: i(),
-            getInfoUserUsecase: i(),
-            appCubit: Modular.get<AppCubit>(),
-          ),
-        ),
+        ..._getRepositoryBinds(),
+        ..._getUseCaseBinds(),
+        ..._getCubitBinds(),
       ];
+
+  List<Bind> _getRepositoryBinds() {
+    return [
+      Bind<GetCurrentUserRepository>(
+        (i) => GetCurrentUserRepositoryImp(
+          firebaseRemoteDataSourceImp: i<FirebaseRemoteDataSourceImp>(),
+        ),
+      ),
+      Bind<GetInfoUserRepository>(
+        (i) => GetInfoUserRepositoryImp(
+          remoteDataSource: i<FirebaseRemoteDataSourceImp>(),
+        ),
+      ),
+    ];
+  }
+
+  List<Bind> _getUseCaseBinds() {
+    return [
+      Bind<GetInfoUserUsecase>(
+        (i) => GetInfoUserUsecaseImp(repository: i<GetInfoUserRepository>()),
+      ),
+      Bind<GetCurrentUserUsecase>(
+        (i) =>
+            GetCurrentUserUsecaseImp(repository: i<GetCurrentUserRepository>()),
+      ),
+    ];
+  }
+
+  List<Bind> _getCubitBinds() {
+    return [
+      Bind.singleton<HomeUserCubit>(
+        (i) => HomeUserCubit(
+          getCurrentUserUsecase: i<GetCurrentUserUsecase>(),
+          boxUserEntityBox: i(),
+          boxUserInfoEntity: i(),
+          getInfoUserUsecase: i(),
+          appCubit: Modular.get<AppCubit>(),
+        ),
+      ),
+    ];
+  }
 
   @override
   final List<ModularRoute> routes = [

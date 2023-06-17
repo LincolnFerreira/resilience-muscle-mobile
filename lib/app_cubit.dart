@@ -90,6 +90,10 @@ class AppCubit extends Cubit<AppState> {
     emit(state.copyWith(userInfo: newUserInfoEntity));
   }
 
+  void updateUser(UserEntity newUserEntity) {
+    emit(state.copyWith(userEntity: newUserEntity));
+  }
+
   Future<void> clearCaches() async {
     await boxUserEntity.get('user')?.delete();
     await boxUserEntity.get('infoUser')?.delete();

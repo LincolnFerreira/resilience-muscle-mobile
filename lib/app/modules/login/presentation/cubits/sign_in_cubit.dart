@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_in_state.dart';
 
+import '../../../../../app_cubit.dart';
 import '../../domain/entities/user_entity.dart';
 import '../usecase/is_info_user_collections_exists_usecase.dart';
 import '../usecase/is_sign_in_usecase.dart';
@@ -11,11 +12,13 @@ class SignInCubit extends Cubit<SignInState> {
   final SignInUseCase signInUseCase;
   final IsSignInUseCase isSignInUseCase;
   final IsInfoUserCollectionsExistsUsecase isInfoUserCollectionsExistsUsecase;
+  final AppCubit appCubit;
 
   SignInCubit({
     required this.signInUseCase,
     required this.isSignInUseCase,
     required this.isInfoUserCollectionsExistsUsecase,
+    required this.appCubit,
   }) : super(SignInInitial());
 
   Future<void> submitSignIn(String email, String password) async {
@@ -32,6 +35,7 @@ class SignInCubit extends Cubit<SignInState> {
         },
         (right) async {
           await isCreatedCollumnsInfoUser(right.uid);
+          appCubit.updateUser(right);
         },
       );
     } catch (e) {

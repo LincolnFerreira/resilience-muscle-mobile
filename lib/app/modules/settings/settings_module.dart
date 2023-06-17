@@ -13,6 +13,7 @@ import 'package:resilience_muscle/app/modules/settings/presentation/cubit/settin
 import 'package:resilience_muscle/app/modules/settings/presentation/usecases/clear_all_cache_usecase.dart';
 import 'package:resilience_muscle/app/modules/settings/presentation/usecases/upgrade_image_user_usecase.dart';
 import 'package:resilience_muscle/app/shared/data/local_data.dart';
+import 'package:resilience_muscle/app_cubit.dart';
 
 import 'data/repositories/clear_all_cache_repository_imp.dart';
 import 'data/repositories/upgrade_image_user_repository_imp.dart';
@@ -21,39 +22,59 @@ import 'domain/usecases/upgrade_image_user_usecase_imp.dart';
 class SettingsModule extends Module {
   @override
   List<Bind> get binds => [
-        // repositories
-        Bind<UpgradeImageUserRepository>((i) => UpgradeImageUserRepositoryImp(
-              remoteDataSource: i<RemoteDataSource>(),
-            )),
-
-        // usecases
-        Bind<UpgradeImageUserUsecase>(
-            (i) => UpgradeImageUserUsecaseImp(repository: i())),
-        Bind<SignOutUsecase>(
-          (i) => SignOutUseCaseImp(repository: i()),
-        ),
-        Bind<SignOutRepository>(
-          (i) => SignOutRepositoryImp(remoteDataSource: i()),
-        ),
-
-        Bind<ClearAllCacheRepository>(
-          (i) => ClearAllCacheRepositoryImp(localData: i<LocalData>()),
-        ),
-        Bind<ClearAllUsecaseCache>(
-          (i) => ClearAllCacheUsecaseImp(
-            repository: i(),
-          ),
-        ),
-
-        // cubits
-        Bind<SettingsCubit>((i) => SettingsCubit(
-              imagePicker: i<ImagePicker>(),
-              upgradeImageUserUsecase: i<UpgradeImageUserUsecase>(),
-              signOutUsecase: i<SignOutUsecase>(),
-              clearAllUsecaseCache: i<ClearAllUsecaseCache>(),
-              appCubit: i(),
-            )),
+        ..._getRepositoryBinds(),
+        ..._getUseCaseBinds(),
+        ..._getCubitBinds(),
       ];
+  List<Bind> _getRepositoryBinds() {
+    return [
+      Bind<UpgradeImageUserRepository>((i) => UpgradeImageUserRepositoryImp(
+            remoteDataSource: i<RemoteDataSource>(),
+          )),
+      Bind<SignOutRepository>(
+        (i) => SignOutRepositoryImp(
+          remoteDataSource: i(),
+        ),
+      ),
+      Bind<ClearAllCacheRepository>(
+        (i) => ClearAllCacheRepositoryImp(
+          localData: i<LocalData>(),
+        ),
+      ),
+    ];
+  }
+
+  List<Bind> _getUseCaseBinds() {
+    return [
+      Bind<UpgradeImageUserUsecase>(
+        (i) => UpgradeImageUserUsecaseImp(
+          repository: i(),
+        ),
+      ),
+      Bind<SignOutUsecase>(
+        (i) => SignOutUseCaseImp(
+          repository: i(),
+        ),
+      ),
+      Bind<ClearAllUsecaseCache>(
+        (i) => ClearAllCacheUsecaseImp(
+          repository: i(),
+        ),
+      ),
+    ];
+  }
+
+  List<Bind> _getCubitBinds() {
+    return [
+      Bind<SettingsCubit>((i) => SettingsCubit(
+            imagePicker: i<ImagePicker>(),
+            upgradeImageUserUsecase: i<UpgradeImageUserUsecase>(),
+            signOutUsecase: i<SignOutUsecase>(),
+            clearAllUsecaseCache: i<ClearAllUsecaseCache>(),
+            appCubit: i<AppCubit>(),
+          )),
+    ];
+  }
 
   @override
   final List<ModularRoute> routes = [
