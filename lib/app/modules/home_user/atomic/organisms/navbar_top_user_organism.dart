@@ -5,15 +5,23 @@ import '../../../../../ui/box_text.dart';
 import '../../../../../ui/colors.dart';
 import '../atom/circle_avatar_user.dart';
 
-class NavbarTopUserOrganism extends StatelessWidget {
+class NavbarTopUserOrganism extends StatefulWidget {
   final String nameUser;
   final String fraseInteligente;
+  final String imageProfileUser;
+
   const NavbarTopUserOrganism({
     Key? key,
     required this.nameUser,
     required this.fraseInteligente,
+    required this.imageProfileUser,
   }) : super(key: key);
 
+  @override
+  State<NavbarTopUserOrganism> createState() => _NavbarTopUserOrganismState();
+}
+
+class _NavbarTopUserOrganismState extends State<NavbarTopUserOrganism> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -27,23 +35,22 @@ class NavbarTopUserOrganism extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const CircleAvatarUserAtom(
-                  imageProfileUser: 'assets/images/dev-training.jpeg'),
+              CircleAvatarUserAtom(imageProfileUser: widget.imageProfileUser),
               const SizedBox(
                 width: 8,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BoxText.body(
-                    'Bem vindo $nameUser',
+                  BoxText.bodyTwo(
+                    'Bem vindo ${widget.nameUser}',
                   ),
                   const Divider(
                     height: 4,
                     color: Colors.transparent,
                   ),
-                  BoxText.bodyTwo(
-                    fraseInteligente,
+                  BoxText.caption(
+                    widget.fraseInteligente,
                   ),
                 ],
               ),

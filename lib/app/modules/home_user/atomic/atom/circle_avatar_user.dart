@@ -1,8 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:resilience_muscle/ui/colors.dart';
+import 'package:resilience_muscle/ui/resources/assets.dart';
 
 class CircleAvatarUserAtom extends StatelessWidget {
-  final String imageProfileUser;
+  final String? imageProfileUser;
 
   const CircleAvatarUserAtom({
     Key? key,
@@ -12,9 +13,9 @@ class CircleAvatarUserAtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: Colors.amber,
+      backgroundColor: ColorsUI.whiteGrey,
       radius: 25,
-      backgroundImage: AssetImage(imageProfileUser),
+      backgroundImage: AssetImage(AssetsCollection.menCartoonImage()),
     );
   }
 }
