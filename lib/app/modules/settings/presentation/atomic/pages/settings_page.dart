@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resilience_muscle/app/modules/settings/presentation/atomic/templates/settings_template.dart';
 
-import '../cubit/settings_cubit.dart';
+import '../../cubit/settings_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -18,7 +18,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SettingsCubit, SettingsState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is SettingsSuccess && state.logout == true) {
+          Modular.to.navigate('/login/');
+        }
+      },
       bloc: cubit,
       builder: (context, state) {
         return SettingsTemplate(

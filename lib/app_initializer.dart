@@ -16,6 +16,7 @@ class AppInitializer {
   static Future<void> _initializeHive() async {
     await Hive.initFlutter();
     Hive.registerAdapter(UserEntityAdapter());
+    Hive.registerAdapter(UserInfoEntityAdapter());
     await Hive.openBox<UserEntity>(HiveBoxes.userBox);
     await Hive.openBox<UserInfoEntity>(HiveBoxes.infoUserBox);
   }

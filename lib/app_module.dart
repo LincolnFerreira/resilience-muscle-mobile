@@ -33,6 +33,8 @@ import 'app/modules/login/domain/usecases/sign_out_usecase_imp.dart';
 import 'app/modules/login/login_module.dart';
 import 'app/modules/registration_info_user/registration_info_user_module.dart';
 import 'app/modules/settings/settings_module.dart';
+import 'app/shared/data/hive/local_data_hive_imp.dart';
+import 'app/shared/data/local_data.dart';
 import 'app_initializer.dart';
 
 class AppModule extends Module {
@@ -63,6 +65,12 @@ class AppModule extends Module {
   List<Bind> _getFirebaseBinds() {
     return [
       Bind<RemoteDataSource>((i) => FirebaseRemoteDataSourceImp()),
+      Bind<LocalData>(
+        (i) => LocalDataHiveImp(
+          boxUserEntity: i(),
+          boxUserInfoEntity: i(),
+        ),
+      )
     ];
   }
 

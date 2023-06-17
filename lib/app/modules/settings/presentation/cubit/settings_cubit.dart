@@ -2,8 +2,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/sign_out_usecase.dart';
+import 'package:resilience_muscle/app/modules/settings/presentation/usecases/clear_all_cache_usecase.dart';
+import 'package:resilience_muscle/app_cubit.dart';
 
 import '../usecases/upgrade_image_user_usecase.dart';
 
@@ -13,13 +16,18 @@ class SettingsCubit extends Cubit<SettingsState> {
   final ImagePicker imagePicker;
   final SignOutUsecase signOutUsecase;
   final UpgradeImageUserUsecase upgradeImageUserUsecase;
+  final ClearAllUsecaseCache clearAllUsecaseCache;
+  final AppCubit appCubit;
 
   SettingsCubit({
     required this.imagePicker,
     required this.signOutUsecase,
     required this.upgradeImageUserUsecase,
+    required this.clearAllUsecaseCache,
+    required this.appCubit,
   }) : super(SettingsInitial());
 
+  Logger logger = Logger();
   Future<XFile?> getImage() async {
     XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
     return image;
@@ -50,9 +58,17 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> onTapLogout() async {
     try {
-      // await clearCacheUsecase();
-      await signOutUsecase();
-    } catch (e) {}
+      final res = await signOutUsecase();
+      res.fold((failure) {
+        // Tratamento de erro, se necessário
+      }, (signOut) async {
+        logger.i('deslogando...');
+        emit(const SettingsSuccess(logout: true));
+        await appCubit.clearCaches();
+      });
+    } catch (e) {
+      // Tratamento de exceção, se necessário
+    }
   }
 
   onTapEditProfile() {}

@@ -30,6 +30,7 @@ class AppCubit extends Cubit<AppState> {
     getCurrentUser();
     await getInfoUser();
     appStarted();
+    logger.i(state.userEntity.toJson());
   }
 
   Future<void> getCurrentUser() async {
@@ -54,6 +55,7 @@ class AppCubit extends Cubit<AppState> {
         (infoUser) {
           // boxUserInfoEntity.put('infoUser', infoUser);
           updateUserInfo(infoUser);
+          logger.i(state.userInfo.toJson());
         },
       );
     } catch (e) {
@@ -86,5 +88,10 @@ class AppCubit extends Cubit<AppState> {
 
   void updateUserInfo(UserInfoEntity newUserInfoEntity) {
     emit(state.copyWith(userInfo: newUserInfoEntity));
+  }
+
+  Future<void> clearCaches() async {
+    await boxUserEntity.get('user')?.delete();
+    await boxUserEntity.get('infoUser')?.delete();
   }
 }
