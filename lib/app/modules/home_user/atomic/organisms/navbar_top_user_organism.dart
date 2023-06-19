@@ -35,7 +35,9 @@ class _NavbarTopUserOrganismState extends State<NavbarTopUserOrganism> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CircleAvatarUserAtom(imageProfileUser: widget.imageProfileUser),
+              CircleAvatarUserAtom(
+                imageProfileUser: widget.imageProfileUser,
+              ),
               const SizedBox(
                 width: 8,
               ),
