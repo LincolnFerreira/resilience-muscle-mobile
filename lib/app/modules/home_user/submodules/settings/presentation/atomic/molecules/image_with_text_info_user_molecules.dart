@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../../ui/box_text.dart';
 import '../../../../../../../../ui/colors.dart';
+import '../../../../../../../core/utils/strings_format.dart';
 
 class ImageWithTextInfoUser extends StatelessWidget {
   final String imageUrl;
@@ -27,13 +28,15 @@ class ImageWithTextInfoUser extends StatelessWidget {
           onTap: onTapImageProfile,
           child: CircleAvatar(
             maxRadius: 40,
-            backgroundImage: NetworkImage(imageUrl),
+            backgroundImage: AssetImage(imageUrl),
           ),
         ),
-        BoxText.subheadingThree(nameUser),
+        BoxText.subheadingThree(
+          initialLetterUpperCase(nameUser)!,
+        ),
         BoxText.caption(
           emailUser,
-          color: ColorsUI.darkless,
+          color: ColorsUI.dark63,
         ),
       ],
     );

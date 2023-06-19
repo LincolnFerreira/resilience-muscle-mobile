@@ -3,10 +3,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
+import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/sign_out_usecase.dart';
 import 'package:resilience_muscle/app_cubit.dart';
 
+import '../../../../../login/domain/entities/user_info_entity.dart';
 import '../usecases/clear_all_cache_usecase.dart';
 import '../usecases/upgrade_image_user_usecase.dart';
 
@@ -19,13 +21,18 @@ class SettingsCubit extends Cubit<SettingsState> {
   final ClearAllUsecaseCache clearAllUsecaseCache;
   final AppCubit appCubit;
 
+  late UserEntity userEntity;
+  late UserInfoEntity userInfoEntity;
   SettingsCubit({
     required this.imagePicker,
     required this.signOutUsecase,
     required this.upgradeImageUserUsecase,
     required this.clearAllUsecaseCache,
     required this.appCubit,
-  }) : super(SettingsInitial());
+  }) : super(SettingsInitial()) {
+    userEntity = appCubit.state.userEntity;
+    userInfoEntity = appCubit.state.userInfo;
+  }
 
   Logger logger = Logger();
   Future<XFile?> getImage() async {

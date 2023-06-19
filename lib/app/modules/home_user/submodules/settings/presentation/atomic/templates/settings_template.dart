@@ -60,7 +60,7 @@ class SettingsTemplate extends StatelessWidget {
             children: [
               //TODO: verificar como preencher a tela sem precisar disso
               SizedBox(
-                height: 200,
+                height: 140,
                 child: Center(
                   child: ImageWithTextInfoUser(
                     imageUrl: imageUrl,
@@ -100,17 +100,19 @@ class SettingsTemplate extends StatelessWidget {
                     iconSellect: Icons.dark_mode,
                     onTap: onTapChangeThemeMode,
                     textSellect: 'Modo escuro',
+                    isToggle: true,
                   ),
                   SelectWithIconParams(
                     iconSellect: Icons.notifications,
                     onTap: onTapToggleNotifications,
                     textSellect: 'Notificações',
+                    isToggle: true,
                   ),
                 ],
               ),
               const Center(
                 child: FractionallySizedBox(
-                  widthFactor: 0.4, // Defina o fator de largura desejado aqui
+                  widthFactor: 0.4,
                   child: Divider(
                     height: 40,
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:resilience_muscle/ui/resources/assets.dart';
 
 import '../../cubit/settings_cubit.dart';
 import '../templates/settings_template.dart';
@@ -33,9 +34,12 @@ class _SettingsPageState extends State<SettingsPage> {
           onTapToggleNotifications: cubit.onTapToggleNotifications,
           onTapContact: cubit.onTapContact,
           onTapSuggestions: cubit.onTapSuggestions,
-          imageUrl: 'cubit.userInfoEntity.image',
-          nameUser: 'cubit.userInfoEntity.name!',
-          emailUser: 'cubit.userEntity.email',
+          imageUrl: cubit.userInfoEntity.image == '' ||
+                  cubit.userInfoEntity.image == null
+              ? AssetsCollection.menCartoonImage()
+              : cubit.userInfoEntity.image,
+          nameUser: cubit.userInfoEntity.name ?? '',
+          emailUser: cubit.userEntity.email,
           versionPoweredAuthor: 'versionPoweredAuthor',
           onTapBackPage: () {
             Modular.to.pushNamed('/home_user/');

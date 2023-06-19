@@ -6,6 +6,7 @@ import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_en
 
 import '../../../../../ui/box_text.dart';
 import '../../../../../ui/colors.dart';
+import '../../../../core/utils/strings_format.dart';
 import '../organisms/bottom_navigation_bar_organism.dart';
 import '../organisms/card_today_training_organism.dart';
 import '../organisms/navbar_top_user_organism.dart';
@@ -28,7 +29,7 @@ class HomeUserTemplate extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(70),
             child: NavbarTopUserOrganism(
-              nameUser: userInfo.name ?? '',
+              nameUser: initialLetterUpperCase(userInfo.name) ?? '',
               fraseInteligente: 'Sua evolução está acontecendo!',
               imageProfileUser: userInfo.image ?? '',
             ),
