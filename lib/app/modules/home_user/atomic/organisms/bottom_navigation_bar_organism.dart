@@ -5,25 +5,39 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../ui/colors.dart';
 import '../../../../../ui/resources/assets.dart';
 
+enum PageName {
+  home,
+  attendance,
+  performance,
+  account,
+}
+
 class BottomNavigationBarOrganism extends StatefulWidget {
-  const BottomNavigationBarOrganism({Key? key}) : super(key: key);
+  final PageName? currentPage;
+
+  const BottomNavigationBarOrganism({
+    Key? key,
+    required this.currentPage,
+  }) : super(key: key);
 
   @override
   _BottomNavigationBarOrganismState createState() =>
       _BottomNavigationBarOrganismState();
 }
 
+final pageRoutes = {
+  PageName.home: '/home_user/',
+  PageName.attendance: './attendance/',
+  PageName.performance: './performance/',
+  PageName.account: './settings/',
+};
+
 class _BottomNavigationBarOrganismState
     extends State<BottomNavigationBarOrganism> {
-  String getSelectItem = '/home_user/';
+  late PageName selectedItem = widget.currentPage ?? PageName.home;
 
-  final String pushNamedHomeUser = '/home_user/';
-  final String pushNamedAttendance = './attendance/';
-  final String pushNamedPerformance = './performance/';
-  final String pushNamedAccount = './settings/';
-
-  SvgPicture getSvgIcon(String assetName, String selectedItem) {
-    final isSelected = getSelectItem == selectedItem;
+  SvgPicture getSvgIcon(String assetName, PageName selectedItem) {
+    final isSelected = this.selectedItem == selectedItem;
     final color = isSelected ? ColorsUI.dark : ColorsUI.whiteGrey;
 
     return SvgPicture.asset(
@@ -31,6 +45,35 @@ class _BottomNavigationBarOrganismState
       height: 24,
       color: color,
     );
+  }
+
+  void updateSelectedItem(PageName selectedItem) {
+    setState(() {
+      this.selectedItem = selectedItem;
+    });
+    Modular.to.pushNamed(pageRoutes[selectedItem]!);
+  }
+
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      switch (index) {
+        case 0:
+          updateSelectedItem(PageName.home);
+          break;
+        case 1:
+          updateSelectedItem(PageName.attendance);
+          break;
+        case 2:
+          updateSelectedItem(PageName.performance);
+          break;
+        case 3:
+          updateSelectedItem(PageName.account);
+          break;
+      }
+    });
   }
 
   @override
@@ -46,55 +89,25 @@ class _BottomNavigationBarOrganismState
       unselectedItemColor: ColorsUI.dark63,
       unselectedIconTheme: IconThemeData(color: ColorsUI.dark63),
       selectedFontSize: 16,
+      onTap: _onItemTapped,
+      currentIndex: _selectedIndex,
       items: [
         BottomNavigationBarItem(
-          icon: InkWell(
-            onTap: () {
-              setState(() {
-                getSelectItem = pushNamedHomeUser;
-              });
-              Modular.to.pushNamed(pushNamedHomeUser);
-            },
-            child: getSvgIcon('assets/appIcons/dumble.svg', pushNamedHomeUser),
-          ),
+          icon: getSvgIcon('assets/appIcons/dumble.svg', PageName.home),
           label: 'Treino',
         ),
         BottomNavigationBarItem(
-          icon: InkWell(
-            onTap: () {
-              setState(() {
-                getSelectItem = pushNamedAttendance;
-              });
-              Modular.to.pushNamed(pushNamedAttendance);
-            },
-            child: getSvgIcon(
-                AssetsCollection.eventAvailableSvg(), pushNamedAttendance),
-          ),
+          icon: getSvgIcon(
+              AssetsCollection.eventAvailableSvg(), PageName.attendance),
           label: 'Acompanhamento',
         ),
         BottomNavigationBarItem(
-          icon: InkWell(
-            onTap: () {
-              setState(() {
-                getSelectItem = pushNamedPerformance;
-              });
-              Modular.to.pushNamed(pushNamedPerformance);
-            },
-            child: getSvgIcon(
-                'assets/appIcons/bar_chart.svg', pushNamedPerformance),
-          ),
+          icon:
+              getSvgIcon('assets/appIcons/bar_chart.svg', PageName.performance),
           label: 'Performace',
         ),
         BottomNavigationBarItem(
-          icon: InkWell(
-            onTap: () {
-              setState(() {
-                getSelectItem = pushNamedAccount;
-              });
-              Modular.to.pushNamed(pushNamedAccount);
-            },
-            child: getSvgIcon('assets/appIcons/user.svg', pushNamedAccount),
-          ),
+          icon: getSvgIcon('assets/appIcons/user.svg', PageName.account),
           label: 'Conta',
         ),
       ],

@@ -9,7 +9,9 @@ class AttendanceTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(),
-      bottomNavigationBar: const BottomNavigationBarOrganism(),
+      bottomNavigationBar: const BottomNavigationBarOrganism(
+        currentPage: PageName.attendance,
+      ),
     );
   }
 }

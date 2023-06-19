@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resilience_muscle/app/modules/home_user/atomic/templates/home_user_template.dart';
 
 import '../../cubit/home_user_cubit.dart';
+import '../organisms/bottom_navigation_bar_organism.dart';
 
 class HomeUserPage extends StatefulWidget {
   const HomeUserPage({super.key});
@@ -29,6 +30,9 @@ class HomeUserPageState extends State<HomeUserPage> {
         return HomeUserTemplate(
           user: cubit.userEntity,
           userInfo: cubit.userInfoEntity,
+          bottomNavigationBarOrganism: const BottomNavigationBarOrganism(
+            currentPage: PageName.home,
+          ),
         );
       },
     );

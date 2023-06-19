@@ -14,11 +14,13 @@ import '../organisms/navbar_top_user_organism.dart';
 class HomeUserTemplate extends StatelessWidget {
   final UserEntity user;
   final UserInfoEntity userInfo;
+  final BottomNavigationBarOrganism bottomNavigationBarOrganism;
 
   const HomeUserTemplate({
     Key? key,
     required this.user,
     required this.userInfo,
+    required this.bottomNavigationBarOrganism,
   }) : super(key: key);
 
   @override
@@ -133,7 +135,7 @@ class HomeUserTemplate extends StatelessWidget {
               ),
             ],
           ),
-          bottomNavigationBar: const BottomNavigationBarOrganism(),
+          bottomNavigationBar: bottomNavigationBarOrganism,
         );
       },
     );

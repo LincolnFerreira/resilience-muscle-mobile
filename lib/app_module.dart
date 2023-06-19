@@ -18,7 +18,6 @@ import 'package:resilience_muscle/app_cubit.dart';
 
 import 'app/modules/forget_password/forget_password_module.dart';
 import 'app/modules/home_user/home_user_module.dart';
-import 'app/modules/home_user/submodules/settings/settings_module.dart';
 import 'app/modules/login/data/datasources/remote_datasource.dart';
 import 'app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
 import 'app/modules/login/data/repositories/get_current_uid_repository_imp.dart';
