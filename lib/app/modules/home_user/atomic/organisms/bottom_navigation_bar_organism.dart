@@ -13,7 +13,7 @@ enum PageName {
 }
 
 class BottomNavigationBarOrganism extends StatefulWidget {
-  final PageName? currentPage;
+  final PageName currentPage;
 
   const BottomNavigationBarOrganism({
     Key? key,
@@ -27,14 +27,14 @@ class BottomNavigationBarOrganism extends StatefulWidget {
 
 final pageRoutes = {
   PageName.home: '/home_user/',
-  PageName.attendance: './attendance/',
-  PageName.performance: './performance/',
-  PageName.account: './settings/',
+  PageName.attendance: '/home_user/attendance/',
+  PageName.performance: '/home_user/performance/',
+  PageName.account: '/home_user/settings/',
 };
 
 class _BottomNavigationBarOrganismState
     extends State<BottomNavigationBarOrganism> {
-  late PageName selectedItem = widget.currentPage ?? PageName.home;
+  late PageName selectedItem = widget.currentPage;
 
   SvgPicture getSvgIcon(String assetName, PageName selectedItem) {
     final isSelected = this.selectedItem == selectedItem;
@@ -54,7 +54,7 @@ class _BottomNavigationBarOrganismState
     Modular.to.pushNamed(pageRoutes[selectedItem]!);
   }
 
-  int _selectedIndex = 0;
+  late int _selectedIndex = widget.currentPage.index;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -88,7 +88,6 @@ class _BottomNavigationBarOrganismState
       selectedItemColor: ColorsUI.dark,
       unselectedItemColor: ColorsUI.dark63,
       unselectedIconTheme: IconThemeData(color: ColorsUI.dark63),
-      selectedFontSize: 16,
       onTap: _onItemTapped,
       currentIndex: _selectedIndex,
       items: [
