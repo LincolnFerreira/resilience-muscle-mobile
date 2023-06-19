@@ -18,9 +18,9 @@ class _BottomNavigationBarOrganismState
   String getSelectItem = '/home_user/';
 
   final String pushNamedHomeUser = '/home_user/';
-  final String pushNamedAttendance = '/attendance_user/';
-  final String pushNamedPerformance = '/performance_user/';
-  final String pushNamedAccount = '/settings/';
+  final String pushNamedAttendance = './attendance/';
+  final String pushNamedPerformance = './performance/';
+  final String pushNamedAccount = './settings/';
 
   SvgPicture getSvgIcon(String assetName, String selectedItem) {
     final isSelected = getSelectItem == selectedItem;

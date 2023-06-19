@@ -18,6 +18,7 @@ import 'package:resilience_muscle/app_cubit.dart';
 
 import 'app/modules/forget_password/forget_password_module.dart';
 import 'app/modules/home_user/home_user_module.dart';
+import 'app/modules/home_user/submodules/settings/settings_module.dart';
 import 'app/modules/login/data/datasources/remote_datasource.dart';
 import 'app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
 import 'app/modules/login/data/repositories/get_current_uid_repository_imp.dart';
@@ -32,7 +33,6 @@ import 'app/modules/login/domain/usecases/save_current_usecase_imp.dart';
 import 'app/modules/login/domain/usecases/sign_out_usecase_imp.dart';
 import 'app/modules/login/login_module.dart';
 import 'app/modules/registration_info_user/registration_info_user_module.dart';
-import 'app/modules/settings/settings_module.dart';
 import 'app/shared/data/hive/local_data_hive_imp.dart';
 import 'app/shared/data/local_data.dart';
 import 'app_initializer.dart';
@@ -167,23 +167,11 @@ class AppModule extends Module {
         duration: const Duration(milliseconds: 300),
       ),
       ModuleRoute(
-        '/settings',
-        module: SettingsModule(),
-        transition: TransitionType.defaultTransition,
-        duration: const Duration(milliseconds: 300),
-      ),
-      ModuleRoute(
         '/registration_info_user',
         module: RegistrationInfoUserModule(),
         transition: TransitionType.defaultTransition,
         duration: const Duration(milliseconds: 300),
       ),
-      ModuleRoute(
-        '/home_user',
-        module: HomeUserModule(),
-        transition: TransitionType.defaultTransition,
-        duration: const Duration(milliseconds: 300),
-      )
     ];
   }
 }

@@ -88,10 +88,12 @@ class AppCubit extends Cubit<AppState> {
 
   void updateUserInfo(UserInfoEntity newUserInfoEntity) {
     emit(state.copyWith(userInfo: newUserInfoEntity));
+    boxUserInfoEntity.put('userInfo', newUserInfoEntity);
   }
 
   void updateUser(UserEntity newUserEntity) {
     emit(state.copyWith(userEntity: newUserEntity));
+    boxUserEntity.put('user', newUserEntity);
   }
 
   Future<void> clearCaches() async {

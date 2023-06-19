@@ -1,4 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:resilience_muscle/app/modules/home_user/submodules/attendance/attendance_module.dart';
+import 'package:resilience_muscle/app/modules/home_user/submodules/performance/performance_module.dart';
+import 'package:resilience_muscle/app/modules/home_user/submodules/settings/settings_module.dart';
 import 'package:resilience_muscle/app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
 import 'package:resilience_muscle/app_cubit.dart';
 
@@ -65,5 +68,13 @@ class HomeUserModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => const HomeUserPage()),
+    ModuleRoute('/performance', module: PerformanceModule()),
+    ModuleRoute(
+      '/settings',
+      module: SettingsModule(),
+      transition: TransitionType.defaultTransition,
+      duration: const Duration(milliseconds: 300),
+    ),
+    ModuleRoute('/attendance', module: AttendanceModule()),
   ];
 }
