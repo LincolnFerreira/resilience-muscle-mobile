@@ -42,7 +42,7 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
         onPressedBackPage: () {
           Modular.to.pushNamed('/login/');
         },
-        currentPage: state.page ?? 3,
+        currentPage: state.page ?? 4,
         inputValues: inputValues,
         onTapButtonContinue: cubit.onTapButtonContinue,
         onPressedRegisterInfoUser: () => cubit.registerInfoUser(

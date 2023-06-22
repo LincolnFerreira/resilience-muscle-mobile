@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/organisms/registration_info_training.dart';
 
 import '../../../../../../ui/colors.dart';
 import '../../../../../core/atom_default/dot_atom.dart';
@@ -110,6 +111,8 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       titleInfo: 'Qual o seu peso?',
                       textButton: 'Continuar ${currentPage + 1} /4',
                     )
+                  else if (currentPage == 4)
+                    RegistrationInfoTraining()
                   else
                     const SizedBox(
                       child: Text('Erro!'),

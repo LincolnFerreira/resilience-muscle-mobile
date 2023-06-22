@@ -184,13 +184,35 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
           FirebaseFirestore.instance.collection('users').doc(uid);
       final tableReferenceInfo =
           tableReferenceUser.collection('information').doc(uid);
-      final tableSnapshot = await tableReferenceInfo.get();
+      final documentInfo = await tableReferenceInfo.get();
 
-      return Right(tableSnapshot.exists);
+      if (documentInfo.exists) {
+        final subcollections = [
+          'date_of_birth',
+          'fitness_goals',
+          'height',
+          'image',
+          'name',
+          'training_division',
+          'weight'
+        ];
+
+        final subcollectionsSnapshots = await Future.wait(subcollections.map(
+            (subcollection) =>
+                tableReferenceInfo.collection(subcollection).limit(1).get()));
+
+        final allExist = subcollectionsSnapshots
+            .every((snapshot) => snapshot.docs.isNotEmpty);
+
+        return Right(allExist);
+      } else {
+        return const Right(false);
+      }
     } catch (e) {
       return Left(
         Failure(
-            message: 'Erro ao criar coleções de informações do usuário: $e'),
+            message:
+                'Erro ao verificar a existência das coleções de informações do usuário: $e'),
       );
     }
   }
