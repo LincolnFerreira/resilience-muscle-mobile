@@ -46,6 +46,7 @@ dependencies:
   firebase_storage:
   shimmer: ^3.0.0
   date_picker_timeline: ^1.2.3
+  scaffold_gradient_background: ^1.0.3+1
 
 dev_dependencies:
   flutter_test:

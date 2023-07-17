@@ -1,5 +1,6 @@
 import 'package:resilience_muscle/app/modules/login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
 import 'package:resilience_muscle/app/modules/login/domain/usecases/is_email_duplicate_usecase_imp.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/template/onboarding_essential_information.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/cubits/registration_info_user_cubit.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/pages/registration_info_user_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -58,6 +59,10 @@ class RegistrationInfoUserModule extends Module {
     ChildRoute(
       '/',
       child: (_, args) => const RegistrationInfoUserPage(),
+    ),
+    ChildRoute(
+      '/onboarding_essential_information',
+      child: (_, args) => const OnboardingEssentialInformation(),
     ),
   ];
 }

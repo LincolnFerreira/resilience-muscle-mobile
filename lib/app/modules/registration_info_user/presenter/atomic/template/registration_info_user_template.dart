@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/organisms/registration_info_image_profile.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/organisms/registration_info_training.dart';
 
 import '../../../../../../ui/colors.dart';
@@ -112,7 +113,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       textButton: 'Continuar ${currentPage + 1} /4',
                     )
                   else if (currentPage == 4)
-                    RegistrationInfoTraining()
+                    RegistrationInfoImageProfile()
                   else
                     const SizedBox(
                       child: Text('Erro!'),

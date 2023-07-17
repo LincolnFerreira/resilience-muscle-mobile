@@ -42,7 +42,8 @@ class SignInPageState extends State<SignInPage> {
           asuka.AsukaSnackbar.success("sucesso").show();
           state.isCreatedCollumnsInfoUser
               ? Modular.to.pushNamed('/home_user/')
-              : Modular.to.pushNamed('/registration_info_user/');
+              : Modular.to.pushNamed(
+                  '/registration_info_user/onboarding_essential_information');
         }
 
         if (state is SignInFailure) {
