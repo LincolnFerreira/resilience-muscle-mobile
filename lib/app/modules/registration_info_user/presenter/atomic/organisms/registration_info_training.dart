@@ -50,7 +50,7 @@ class _RegistrationInfoTrainingState extends State<RegistrationInfoTraining> {
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             isSelected: _selections,
             onPressed: _onPressed,
-            children: [],
+            children: const [],
           ),
         ],
       )
