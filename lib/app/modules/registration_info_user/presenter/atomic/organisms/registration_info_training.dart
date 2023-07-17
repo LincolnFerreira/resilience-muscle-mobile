@@ -46,14 +46,46 @@ class _RegistrationInfoTrainingState extends State<RegistrationInfoTraining> {
             padding: const EdgeInsets.all(8.0),
             child: BoxText.caption('Movimentos'),
           ),
-          ToggleButtons(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            isSelected: _selections,
-            onPressed: _onPressed,
-            children: [],
+        ],
+      ),
+      ToggleButtons(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        isSelected: _selections,
+        onPressed: _onPressed,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BoxText.caption('Grupos musculares'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BoxText.caption('Partes do corpo'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BoxText.caption('Movimentos'),
           ),
         ],
-      )
+      ),
+      ToggleButtons(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        isSelected: _selections,
+        onPressed: _onPressed,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BoxText.caption('Grupos musculares'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BoxText.caption('Partes do corpo'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BoxText.caption('Movimentos'),
+          ),
+        ],
+      ),
     ]);
   }
 }

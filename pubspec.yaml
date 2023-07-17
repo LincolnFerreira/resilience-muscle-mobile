@@ -45,6 +45,7 @@ dependencies:
   image_picker:
   firebase_storage:
   shimmer: ^3.0.0
+  scaffold_gradient_background: ^1.0.3+1
 
 dev_dependencies:
   flutter_test:
