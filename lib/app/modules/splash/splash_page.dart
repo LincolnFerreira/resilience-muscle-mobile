@@ -2,7 +2,8 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
-import 'package:resilience_muscle/app_cubit.dart';
+
+import '../../../app_cubit.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});

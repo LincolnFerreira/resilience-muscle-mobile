@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:resilience_muscle/app/modules/home_user/submodules/performance/presentation/atomic/templates/performance_template.dart';
 
 import '../../../../../atomic/organisms/bottom_navigation_bar_organism.dart';
+import '../templates/performance_template.dart';
 
 class PerformancePage extends StatefulWidget {
   const PerformancePage({super.key});

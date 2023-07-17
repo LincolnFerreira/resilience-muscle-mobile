@@ -3,12 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 
-import 'package:resilience_muscle/app/modules/login/presentation/usecase/get_current_user_usecase.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/usecase/get_info_user_usecase.dart';
-import 'package:resilience_muscle/app_cubit.dart';
-
+import '../../../../app_cubit.dart';
 import '../../login/domain/entities/user_entity.dart';
 import '../../login/domain/entities/user_info_entity.dart';
+import '../../login/presentation/usecase/get_current_user_usecase.dart';
+import '../../login/presentation/usecase/get_info_user_usecase.dart';
 
 part 'home_user_state.dart';
 

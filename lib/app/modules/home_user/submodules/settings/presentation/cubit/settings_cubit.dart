@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
-
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/sign_out_usecase.dart';
 import 'package:resilience_muscle/app_cubit.dart';
 

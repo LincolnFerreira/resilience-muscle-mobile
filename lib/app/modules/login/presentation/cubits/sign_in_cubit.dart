@@ -1,12 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:resilience_muscle/app/modules/login/presentation/cubits/sign_in_state.dart';
-
 import '../../../../../app_cubit.dart';
 import '../../domain/entities/user_entity.dart';
 import '../usecase/is_info_user_collections_exists_usecase.dart';
 import '../usecase/is_sign_in_usecase.dart';
 import '../usecase/sign_in_usecase.dart';
+import 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   final SignInUseCase signInUseCase;

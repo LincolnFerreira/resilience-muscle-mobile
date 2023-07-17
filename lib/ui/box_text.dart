@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:resilience_muscle/ui/typography.dart';
-
 import 'package:google_fonts/google_fonts.dart';
+
+import 'typography.dart';
 
 class BoxText extends StatelessWidget {
   final String text;

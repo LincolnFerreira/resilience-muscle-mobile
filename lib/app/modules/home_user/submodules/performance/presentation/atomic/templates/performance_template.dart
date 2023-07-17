@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:resilience_muscle/app/modules/home_user/atomic/organisms/bottom_navigation_bar_organism.dart';
-import 'package:resilience_muscle/app/modules/home_user/submodules/performance/presentation/atomic/atom/calendar_horizontal_atom.dart';
-import 'package:resilience_muscle/ui/box_text.dart';
-import 'package:resilience_muscle/ui/colors.dart';
+import '../../../../../atomic/organisms/bottom_navigation_bar_organism.dart';
+import '../atom/calendar_horizontal_atom.dart';
+import '../../../../../../../../ui/box_text.dart';
+import '../../../../../../../../ui/colors.dart';
 
 class PerformanceTemplate extends StatefulWidget {
   final BottomNavigationBarOrganism bottomNavigationBarOrganism;

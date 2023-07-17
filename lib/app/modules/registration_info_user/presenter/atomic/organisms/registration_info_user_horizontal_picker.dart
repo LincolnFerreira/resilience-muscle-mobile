@@ -1,11 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:horizontal_picker/horizontal_picker.dart';
-
 import 'package:resilience_muscle/app/core/atom_default/space_widget_atom.dart';
 import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-import '../../../../../../ui/colors.dart';
 
+import '../../../../../../ui/colors.dart';
 import '../../../../../core/organisms_default/button_organism.dart';
 
 class RegistrationInfoUserHorizontalPicker extends StatefulWidget {

@@ -1,5 +1,6 @@
-import 'package:resilience_muscle/app/modules/forget_password/forget_password_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'forget_password_page.dart';
 
 class ForgetPasswordModule extends Module {
   @override

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
-import 'package:resilience_muscle/app/shared/data/local_data.dart';
 
 import '../../../core/failure.dart';
+import '../../../modules/login/domain/entities/user_entity.dart';
 import '../../../modules/login/domain/entities/user_info_entity.dart';
+import '../local_data.dart';
 
 class LocalDataHiveImp implements LocalData {
   final Box<UserEntity> boxUserEntity;

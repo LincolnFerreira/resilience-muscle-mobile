@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:image_picker/image_picker.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_email_duplicate_usecase.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/cubits/registration_info_user_state.dart';
@@ -16,12 +16,16 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
   final CreateNewUserWithEmailUsecase createNewUserWithEmail;
   final CreateCollectionsInfoUserUsecase createCollectionsInfoUserUsecase;
   final AppCubit appCubit;
+  final ImagePicker imagePicker;
+
   late UserEntity userEntity;
+
   RegistrationInfoUserCubit({
     required this.isEmailDuplicateUsecase,
     required this.createNewUserWithEmail,
     required this.createCollectionsInfoUserUsecase,
     required this.appCubit,
+    required this.imagePicker,
   }) : super(const RegistrationInfoUserInitial(pageInitial: 0)) {
     userEntity = appCubit.state.userEntity;
   }
@@ -103,5 +107,17 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
         },
       );
     } catch (e) {}
+  }
+
+  Future<XFile?> getImage() async {
+    XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
+    return image;
+  }
+
+  void onTapImageProfile() async {
+    final XFile? newImageProfile = await getImage();
+    if (newImageProfile != null) {
+      return;
+    } else {}
   }
 }

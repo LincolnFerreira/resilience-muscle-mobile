@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/template/registration_info_user_template.dart';
-import 'package:flutter/material.dart';
 
+import '../atomic/template/registration_info_user_template.dart';
 import '../cubits/registration_info_user_cubit.dart';
 import '../cubits/registration_info_user_state.dart';
 
@@ -53,6 +53,9 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
         ),
         validatorName: cubit.validateName,
         validatorBirthDate: cubit.validateBirthDate,
+        //TODO: ALTERAR PARA STATE DE IMAGEM
+        imageUrl: '',
+        onTapImageProfile: cubit.onTapImageProfile,
       ),
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
-import 'package:resilience_muscle/app/core/organisms_default/button_organism.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/atoms/onboarding_screen_atom.dart';
-import 'package:resilience_muscle/ui/box_text.dart';
 
+import '../../../../../../ui/box_text.dart';
 import '../../../../../../ui/colors.dart';
+import '../../../../../core/organisms_default/button_organism.dart';
+import '../atoms/onboarding_screen_atom.dart';
 
 class OnboardingEssentialInformation extends StatelessWidget {
   const OnboardingEssentialInformation({super.key});

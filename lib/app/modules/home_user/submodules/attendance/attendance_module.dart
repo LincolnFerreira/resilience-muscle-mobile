@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/home_user/submodules/attendance/presentation/atomic/pages/attendance_page.dart';
+
+import 'presentation/atomic/pages/attendance_page.dart';
 
 class AttendanceModule extends Module {
   @override

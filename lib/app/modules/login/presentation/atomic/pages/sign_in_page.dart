@@ -2,10 +2,10 @@ import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/atomic/templates/sign_in_template.dart';
 
 import '../../cubits/sign_in_cubit.dart';
 import '../../cubits/sign_in_state.dart';
+import '../templates/sign_in_template.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({

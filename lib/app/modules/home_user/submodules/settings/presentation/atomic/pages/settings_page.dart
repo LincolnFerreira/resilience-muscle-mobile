@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/ui/resources/assets.dart';
 
+import '../../../../../../../../ui/resources/assets.dart';
 import '../../cubit/settings_cubit.dart';
 import '../templates/settings_template.dart';
 

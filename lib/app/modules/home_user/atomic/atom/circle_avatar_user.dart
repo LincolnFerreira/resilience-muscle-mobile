@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:resilience_muscle/ui/colors.dart';
-import 'package:resilience_muscle/ui/resources/assets.dart';
+
+import '../../../../../ui/colors.dart';
+import '../../../../../ui/resources/assets.dart';
 
 class CircleAvatarUserAtom extends StatelessWidget {
   final String? imageProfileUser;

@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/modules/splash/splash_page.dart';
+
+import 'splash_page.dart';
 
 class SplashModule extends Module {
   @override

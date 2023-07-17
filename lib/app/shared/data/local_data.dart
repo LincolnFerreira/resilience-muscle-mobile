@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:resilience_muscle/app/core/failure.dart';
+
+import '../../core/failure.dart';
 
 abstract class LocalData {
   Future<Either<Failure, void>> clearAllBoxes();

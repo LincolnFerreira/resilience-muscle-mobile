@@ -1,5 +1,5 @@
-import 'package:flutter/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app/modules/login/domain/entities/user_entity.dart';

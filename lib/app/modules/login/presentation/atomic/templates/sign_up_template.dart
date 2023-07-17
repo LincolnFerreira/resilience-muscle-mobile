@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:resilience_muscle/ui/box_text.dart';
+import '../../../../../../ui/box_text.dart';
 
 import '../../../../../../ui/colors.dart';
 import '../../../../../core/atom_default/input_atom.dart';

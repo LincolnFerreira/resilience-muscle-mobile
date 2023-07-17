@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-
 import 'package:resilience_muscle/app/modules/login/domain/repositories/is_info_user_collections_exists_repository.dart';
 
 import '../../../../core/failure.dart';

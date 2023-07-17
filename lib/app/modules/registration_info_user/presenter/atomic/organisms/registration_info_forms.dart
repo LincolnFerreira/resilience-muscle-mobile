@@ -3,10 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:resilience_muscle/app/core/atom_default/input_atom.dart';
-import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-
+import '../../../../../core/atom_default/input_atom.dart';
 import '../../../../../core/atom_default/space_widget_atom.dart';
+import '../../../../../core/atom_default/text_atom.dart';
 import '../../../../../core/organisms_default/button_organism.dart';
 
 class RegistrationInfoForms extends StatelessWidget {

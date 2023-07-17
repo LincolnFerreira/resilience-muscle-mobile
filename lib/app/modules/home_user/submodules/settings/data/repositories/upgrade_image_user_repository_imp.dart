@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:resilience_muscle/app/modules/login/data/datasources/remote_datasource.dart';
 
 import '../../../../../../core/failure.dart';
+import '../../../../../login/data/datasources/remote_datasource.dart';
 import '../../domain/repositories/upgrade_image_user_repository.dart';
 
 class UpgradeImageUserRepositoryImp extends UpgradeImageUserRepository {

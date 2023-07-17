@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:resilience_muscle/app/modules/login/data/datasources/remote_datasource.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/domain/repositories/create_new_user_with_email_repository.dart';
 
 import '../../../../core/failure.dart';
+import '../../../login/data/datasources/remote_datasource.dart';
+import '../../domain/repositories/create_new_user_with_email_repository.dart';
 
 class CreateNewUserWithEmailRepositoryImp
     implements CreateNewUserWithEmailRepository {

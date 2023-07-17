@@ -1,7 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/organisms/registration_info_image_profile.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/organisms/registration_info_training.dart';
 
 import '../../../../../../ui/colors.dart';
 import '../../../../../core/atom_default/dot_atom.dart';
@@ -14,7 +14,7 @@ import '../organisms/registration_info_user_horizontal_picker.dart';
 class RegistrationInfoUserTemplate extends StatelessWidget {
   final VoidCallback onPressedBackPage;
   final int currentPage;
-  final int totalPage = 4;
+  final int totalPage = 5;
   final Map<String, dynamic> inputValues;
   final VoidCallback onTapButtonContinue;
   final String? Function(String?)? validatorName;
@@ -22,8 +22,11 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
   final String? Function(String?)? validatorBirthDate;
   final VoidCallback onPressedRegisterInfoUser;
 
+  final String imageUrl;
+  final VoidCallback onTapImageProfile;
+
   const RegistrationInfoUserTemplate({
-    super.key,
+    Key? key,
     required this.onPressedBackPage,
     required this.currentPage,
     required this.inputValues,
@@ -32,7 +35,9 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
     this.validatorPassword,
     this.validatorBirthDate,
     required this.onPressedRegisterInfoUser,
-  });
+    required this.imageUrl,
+    required this.onTapImageProfile,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +118,11 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                       textButton: 'Continuar ${currentPage + 1} /4',
                     )
                   else if (currentPage == 4)
-                    RegistrationInfoImageProfile()
+                    RegistrationInfoImageProfile(
+                      imageUrl: imageUrl,
+                      onTapImageProfile: onTapImageProfile,
+                      onPressed: onPressedRegisterInfoUser,
+                    )
                   else
                     const SizedBox(
                       child: Text('Erro!'),

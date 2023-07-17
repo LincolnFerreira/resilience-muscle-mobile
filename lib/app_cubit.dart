@@ -3,11 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/usecase/get_info_user_usecase.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_sign_in_usecase.dart';
-
+import 'app/modules/login/domain/entities/user_entity.dart';
+import 'app/modules/login/domain/entities/user_info_entity.dart';
+import 'app/modules/login/presentation/usecase/get_info_user_usecase.dart';
+import 'app/modules/login/presentation/usecase/is_sign_in_usecase.dart';
 import 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {

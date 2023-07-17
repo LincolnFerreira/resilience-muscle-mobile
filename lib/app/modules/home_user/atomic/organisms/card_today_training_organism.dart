@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:resilience_muscle/ui/box_text.dart';
-import 'package:resilience_muscle/ui/colors.dart';
+import '../../../../../ui/box_text.dart';
+import '../../../../../ui/colors.dart';
 
 class CardTodayTrainingOrganism extends StatelessWidget {
   final String textTrainingDay;

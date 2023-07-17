@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
+
+import '../../domain/entities/user_info_entity.dart';
 
 part 'user_info_model.g.dart';
 

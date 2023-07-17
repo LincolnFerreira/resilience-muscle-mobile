@@ -1,23 +1,23 @@
-import 'package:image_picker/image_picker.dart';
-import 'package:resilience_muscle/app/modules/home_user/submodules/settings/presentation/atomic/pages/settings_page.dart';
-import 'package:resilience_muscle/app/modules/home_user/submodules/settings/presentation/cubit/settings_cubit.dart';
-import 'package:resilience_muscle/app/modules/home_user/submodules/settings/presentation/usecases/clear_all_cache_usecase.dart';
-import 'package:resilience_muscle/app/modules/home_user/submodules/settings/presentation/usecases/upgrade_image_user_usecase.dart';
-import 'package:resilience_muscle/app/modules/login/data/datasources/remote_datasource.dart';
-import 'package:resilience_muscle/app/modules/login/data/repositories/sign_out_repository_imp.dart';
-import 'package:resilience_muscle/app/modules/login/domain/repositories/sign_out_repository.dart';
-import 'package:resilience_muscle/app/modules/login/domain/usecases/sign_out_usecase_imp.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/usecase/sign_out_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app/shared/data/local_data.dart';
-import 'package:resilience_muscle/app_cubit.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../../../../../app_cubit.dart';
+import '../../../../shared/data/local_data.dart';
+import '../../../login/data/datasources/remote_datasource.dart';
+import '../../../login/data/repositories/sign_out_repository_imp.dart';
+import '../../../login/domain/repositories/sign_out_repository.dart';
+import '../../../login/domain/usecases/sign_out_usecase_imp.dart';
+import '../../../login/presentation/usecase/sign_out_usecase.dart';
 import 'data/repositories/clear_all_cache_repository_imp.dart';
 import 'data/repositories/upgrade_image_user_repository_imp.dart';
 import 'domain/repositories/clear_all_cache_repository.dart';
 import 'domain/repositories/upgrade_image_user_repository.dart';
 import 'domain/usecases/clear_all_cache_imp.dart';
 import 'domain/usecases/upgrade_image_user_usecase_imp.dart';
+import 'presentation/atomic/pages/settings_page.dart';
+import 'presentation/cubit/settings_cubit.dart';
+import 'presentation/usecases/clear_all_cache_usecase.dart';
+import 'presentation/usecases/upgrade_image_user_usecase.dart';
 
 class SettingsModule extends Module {
   @override

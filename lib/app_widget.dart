@@ -2,10 +2,10 @@ import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resilience_muscle/app_cubit.dart';
-import 'package:resilience_muscle/ui/colors.dart';
 
+import 'app_cubit.dart';
 import 'app_state.dart';
+import 'ui/colors.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);

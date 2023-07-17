@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:resilience_muscle/app/core/failure.dart';
-import 'package:resilience_muscle/app/modules/login/data/datasources/remote_datasource.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/domain/repositories/create_collections_info_user_repository.dart';
 
+import '../../../../core/failure.dart';
+import '../../../login/data/datasources/remote_datasource.dart';
 import '../../../login/domain/entities/user_info_entity.dart';
+import '../../domain/repositories/create_collections_info_user_repository.dart';
 
 class CreateCollectionsInfoUserRepositoryImp
     implements CreateCollectionsInfoUserRepository {

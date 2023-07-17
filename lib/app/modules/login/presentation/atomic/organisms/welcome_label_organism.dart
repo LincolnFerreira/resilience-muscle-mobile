@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:resilience_muscle/ui/typography.dart';
 
+import '../../../../../../ui/typography.dart';
 import '../../../../../core/atom_default/text_atom.dart';
 
 class WelcomeLabelOrganism extends StatelessWidget {

@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_entity.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 

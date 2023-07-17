@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:resilience_muscle/app/core/atom_default/input_atom.dart';
-import 'package:resilience_muscle/app/core/atom_default/text_atom.dart';
-
 import '../../../../../../ui/colors.dart';
+import '../../../../../core/atom_default/input_atom.dart';
+import '../../../../../core/atom_default/text_atom.dart';
 import '../../../../../core/organisms_default/button_organism.dart';
 
 class FormSignInOrganism extends StatefulWidget {

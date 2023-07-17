@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:resilience_muscle/app/modules/login/data/models/user_info_model.dart';
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 
 import '../../../../../../core/failure.dart';
 import '../../../../domain/entities/user_entity.dart';
+import '../../../../domain/entities/user_info_entity.dart';
+import '../../../models/user_info_model.dart';
 import '../../../models/user_model.dart';
 import '../../remote_datasource.dart';
 
