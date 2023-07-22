@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/organisms/registration_info_image_profile.dart';
 
 import '../../../../../../ui/colors.dart';
@@ -21,6 +22,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
   final String? Function(String?)? validatorPassword;
   final String? Function(String?)? validatorBirthDate;
   final VoidCallback onPressedRegisterInfoUser;
+  final VoidCallback onPressedContinueToTraining;
 
   final String imageUrl;
   final VoidCallback onTapImageProfile;
@@ -35,6 +37,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
     this.validatorPassword,
     this.validatorBirthDate,
     required this.onPressedRegisterInfoUser,
+    required this.onPressedContinueToTraining,
     required this.imageUrl,
     required this.onTapImageProfile,
   }) : super(key: key);
@@ -110,7 +113,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                     )
                   else if (currentPage == 3)
                     RegistrationInfoUserHorizontalPicker(
-                      onPressed: onPressedRegisterInfoUser,
+                      onPressed: onTapButtonContinue,
                       onChangeInputHeight: (e) => inputValues['weight'] = e,
                       currentValueHorizontalPicker: 80.0,
                       suffix: ' Kg',
@@ -121,7 +124,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                     RegistrationInfoImageProfile(
                       imageUrl: imageUrl,
                       onTapImageProfile: onTapImageProfile,
-                      onPressed: onPressedRegisterInfoUser,
+                      onPressed: onPressedContinueToTraining,
                     )
                   else
                     const SizedBox(

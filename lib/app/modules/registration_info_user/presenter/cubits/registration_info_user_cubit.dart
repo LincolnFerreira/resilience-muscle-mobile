@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_email_duplicate_usecase.dart';
@@ -102,11 +103,13 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
         (createCollections) {
           emit(RegistrationInfoUserSuccess(
             createdNewColumns: createCollections,
-            page: 4,
+            page: 5,
           ));
         },
       );
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<XFile?> getImage() async {
@@ -119,5 +122,10 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
     if (newImageProfile != null) {
       return;
     } else {}
+  }
+
+  void onTapContinueToTraing() {
+    Modular.to
+        .pushNamed('/registration_info_user/onboarding_registration_training');
   }
 }

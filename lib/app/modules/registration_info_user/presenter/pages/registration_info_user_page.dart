@@ -56,6 +56,7 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
         //TODO: ALTERAR PARA STATE DE IMAGEM
         imageUrl: '',
         onTapImageProfile: cubit.onTapImageProfile,
+        onPressedContinueToTraining: cubit.onTapContinueToTraing,
       ),
     );
   }
