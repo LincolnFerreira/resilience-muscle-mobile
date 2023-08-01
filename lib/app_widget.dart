@@ -24,6 +24,9 @@ class _AppWidgetState extends State<AppWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // ajuda a identificar imagens com tamanhos que poderiam ser menores para otimização
+    // debugInvertOversizedImages = true;
+
     return BlocConsumer<AppCubit, AppState>(
       bloc: cubit,
       listener: (context, state) {},

@@ -54,7 +54,7 @@ class UserInfoEntity {
 
   @override
   String toString() {
-    return 'UserInfoEntity(name: $name, birthDate: $birthDate, height: $height, weight: $weight, trainingDivision: $trainingDivision, fitnessGoals: $fitnessGoals)';
+    return 'UserInfoEntity(name: $name, birthDate: $birthDate, height: $height, weight: $weight, trainingDivision: $trainingDivision, fitnessGoals: $fitnessGoals, image: $image)';
   }
 
   factory UserInfoEntity.fromJson(Map<String, dynamic> json) =>

@@ -54,9 +54,10 @@ class RegistrationInfoUserPageState extends State<RegistrationInfoUserPage> {
         validatorName: cubit.validateName,
         validatorBirthDate: cubit.validateBirthDate,
         //TODO: ALTERAR PARA STATE DE IMAGEM
-        imageUrl: '',
+        imageUrl: state.imageSelectedProfile,
         onTapImageProfile: cubit.onTapImageProfile,
         onPressedContinueToTraining: cubit.onTapContinueToTraing,
+        onClickImageSelected: cubit.changeImageSelected,
       ),
     );
   }

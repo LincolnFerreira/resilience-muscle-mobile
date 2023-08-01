@@ -23,8 +23,9 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
   final String? Function(String?)? validatorBirthDate;
   final VoidCallback onPressedRegisterInfoUser;
   final VoidCallback onPressedContinueToTraining;
+  final Function(dynamic) onClickImageSelected;
 
-  final String imageUrl;
+  final dynamic imageUrl;
   final VoidCallback onTapImageProfile;
 
   const RegistrationInfoUserTemplate({
@@ -38,6 +39,7 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
     this.validatorBirthDate,
     required this.onPressedRegisterInfoUser,
     required this.onPressedContinueToTraining,
+    required this.onClickImageSelected,
     required this.imageUrl,
     required this.onTapImageProfile,
   }) : super(key: key);
@@ -124,7 +126,8 @@ class RegistrationInfoUserTemplate extends StatelessWidget {
                     RegistrationInfoImageProfile(
                       imageUrl: imageUrl,
                       onTapImageProfile: onTapImageProfile,
-                      onPressed: onPressedContinueToTraining,
+                      onPressed: onPressedRegisterInfoUser,
+                      onClickImage: onClickImageSelected,
                     )
                   else
                     const SizedBox(

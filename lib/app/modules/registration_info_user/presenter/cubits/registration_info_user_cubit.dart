@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
 import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_email_duplicate_usecase.dart';
@@ -88,32 +86,36 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
       birthDate: convertStringToDate,
       height: height,
       weight: weight,
-      image: null,
+      image: state.imageSelectedProfile,
     );
+    print(state.imageSelectedProfile);
+    print(userInfo.toString());
 
-    try {
-      final createCollectionsInfo = await createCollectionsInfoUserUsecase(
-        userInfoEntity: userInfo,
-        uid: userEntity.uid,
-      );
-      createCollectionsInfo.fold(
-        (failure) {
-          emit(const RegistrationInfoUserFailure());
-        },
-        (createCollections) {
-          emit(RegistrationInfoUserSuccess(
-            createdNewColumns: createCollections,
-            page: 5,
-          ));
-        },
-      );
-    } catch (e) {
-      print(e);
-    }
+    // try {
+    //   final createCollectionsInfo = await createCollectionsInfoUserUsecase(
+    //     userInfoEntity: userInfo,
+    //     uid: userEntity.uid,
+    //   );
+    //   createCollectionsInfo.fold(
+    //     (failure) {
+    //       emit(const RegistrationInfoUserFailure());
+    //     },
+    //     (createCollections) {
+    //       emit(RegistrationInfoUserSuccess(
+    //         createdNewColumns: createCollections,
+    //         page: 5,
+    //       ));
+    //     },
+    //   );
+    // } catch (e) {
+    //   print(e);
+    // }
   }
 
   Future<XFile?> getImage() async {
     XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
+    emit(RegistrationInfoUserSuccess(imageSelectedProfile: image?.path));
+    print('imagem: $image');
     return image;
   }
 
@@ -125,7 +127,14 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
   }
 
   void onTapContinueToTraing() {
-    Modular.to
-        .pushNamed('/registration_info_user/onboarding_registration_training');
+    updateImageProfile(state.imageSelectedProfile);
+    // Modular.to
+    //     .pushNamed('/registration_info_user/onboarding_registration_training');
+  }
+
+  updateImageProfile(XFile imageProfile) {}
+
+  changeImageSelected(dynamic imageSelected) {
+    emit(RegistrationInfoUserSuccess(imageSelectedProfile: imageSelected));
   }
 }
