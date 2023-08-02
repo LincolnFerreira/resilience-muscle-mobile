@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/template/onboarding_registration_training.dart';
+import 'presenter/atomic/template/onboarding_registration_training.dart';
 
 import '../../../app_cubit.dart';
 import '../login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';

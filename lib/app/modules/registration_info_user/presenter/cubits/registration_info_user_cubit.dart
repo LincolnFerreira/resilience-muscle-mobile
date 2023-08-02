@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
-import 'package:resilience_muscle/app/modules/login/presentation/usecase/is_email_duplicate_usecase.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/cubits/registration_info_user_state.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/usecases/create_collections_info_user_usecase.dart';
-import 'package:resilience_muscle/app/modules/registration_info_user/presenter/usecases/create_new_user_with_email_usecase.dart';
+import '../../../login/domain/entities/user_info_entity.dart';
+import '../../../login/presentation/usecase/is_email_duplicate_usecase.dart';
+import 'registration_info_user_state.dart';
+import '../usecases/create_collections_info_user_usecase.dart';
+import '../usecases/create_new_user_with_email_usecase.dart';
 
 import '../../../../../app_cubit.dart';
 import '../../../../core/utils/date_format.dart';

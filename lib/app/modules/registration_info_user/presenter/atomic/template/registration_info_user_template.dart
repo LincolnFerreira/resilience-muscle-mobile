@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:resilience_muscle/app/modules/registration_info_user/presenter/atomic/organisms/registration_info_image_profile.dart';
 
 import '../../../../../../ui/colors.dart';
