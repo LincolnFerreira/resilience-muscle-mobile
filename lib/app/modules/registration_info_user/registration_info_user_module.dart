@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
-import 'presenter/atomic/template/onboarding_registration_training.dart';
 
 import '../../../app_cubit.dart';
 import '../login/data/datasources/remote/firebase/firebase_remote_datasource_imp.dart';
@@ -9,6 +8,7 @@ import 'data/repositories/create_collections_info_user_repository_imp.dart';
 import 'domain/repositories/create_collections_info_user_repository.dart';
 import 'domain/usecases/create_collections_info_user_usecase_imp.dart';
 import 'presenter/atomic/template/onboarding_essential_information.dart';
+import 'presenter/atomic/template/onboarding_registration_training.dart';
 import 'presenter/cubits/registration_info_user_cubit.dart';
 import 'presenter/pages/registration_info_user_page.dart';
 import 'presenter/usecases/create_collections_info_user_usecase.dart';

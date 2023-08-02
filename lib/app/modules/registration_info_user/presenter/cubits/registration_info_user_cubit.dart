@@ -1,16 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../login/domain/entities/user_info_entity.dart';
-import '../../../login/presentation/usecase/is_email_duplicate_usecase.dart';
-import 'registration_info_user_state.dart';
-import '../usecases/create_collections_info_user_usecase.dart';
-import '../usecases/create_new_user_with_email_usecase.dart';
 
 import '../../../../../app_cubit.dart';
 import '../../../../core/utils/date_format.dart';
 import '../../../login/domain/entities/user_entity.dart';
+import '../../../login/domain/entities/user_info_entity.dart';
+import '../../../login/presentation/usecase/is_email_duplicate_usecase.dart';
+import '../usecases/create_collections_info_user_usecase.dart';
+import '../usecases/create_new_user_with_email_usecase.dart';
+import 'registration_info_user_state.dart';
 
 class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
   final IsEmailDuplicateUsecase isEmailDuplicateUsecase;

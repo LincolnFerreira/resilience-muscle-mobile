@@ -14,14 +14,14 @@ import '../../../models/user_model.dart';
 import '../../remote_datasource.dart';
 
 class FirebaseRemoteDataSourceImp implements RemoteDataSource {
-  late final FirebaseAuth auth = FirebaseAuth.instance;
-  late final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  late final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+  late final FirebaseAuth _auth = FirebaseAuth.instance;
+  late final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  late final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
   @override
   Future<Either<Failure, void>> signUp(UserEntity user) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
         email: user.email,
         password: user.password,
       );
@@ -34,18 +34,18 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, UserEntity>> signIn(UserEntity user) async {
     try {
-      final res = await auth.signInWithEmailAndPassword(
+      final res = await _auth.signInWithEmailAndPassword(
         email: user.email,
         password: user.password,
       );
 
-      final changeUser = UserModel(
+      final updatedUser = UserModel(
         uid: res.user?.uid,
         email: user.email,
         password: user.password,
       );
 
-      return Right(changeUser);
+      return Right(updatedUser);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return Left(Failure(message: 'Usuário não encontrado!'));
@@ -61,9 +61,8 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, bool>> isSignIn() async {
     try {
-      final bool res = auth.currentUser?.uid != null;
-
-      return Right(res);
+      final bool isSignedIn = _auth.currentUser?.uid != null;
+      return Right(isSignedIn);
     } catch (e) {
       return Left(Failure(message: 'Erro ao verificar status de login: $e'));
     }
@@ -72,7 +71,7 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, void>> signOut() async {
     try {
-      await auth.signOut();
+      await _auth.signOut();
       return const Right(null);
     } catch (e) {
       return Left(Failure(message: 'Erro ao tentar sair da conta: $e'));
@@ -82,9 +81,9 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, String>> getCurrentUId() async {
     try {
-      final String? res = auth.currentUser?.uid;
-      if (res != null) {
-        return Right(res);
+      final uid = _auth.currentUser?.uid;
+      if (uid != null) {
+        return Right(uid);
       }
       return Left(Failure(message: 'Usuário não encontrado'));
     } catch (e) {
@@ -92,12 +91,12 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
     }
   }
 
+//TODO: VERIFICAR UTILIZAÇÃO DESTA FUNÇÃO
   @override
   Future<Either<Failure, UserEntity>> getCurrentUser(String uid) async {
     try {
       final userEntity = UserEntity();
-      final tableReference =
-          FirebaseFirestore.instance.collection('users').doc(uid);
+      final tableReference = _firebaseFirestore.collection('users').doc(uid);
 
       final tableSnapshot = await tableReference.get();
       return Right(userEntity);
@@ -119,15 +118,12 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {
-        // O formato do email é inválido
         print('Formato de email inválido.');
       } else {
-        // Outro erro relacionado ao Firebase Authentication
         print('Erro ao verificar o email: ${e.message}');
       }
       return const Right(true);
     } catch (e) {
-      // Outros erros
       print('Erro ao verificar o email: $e');
       return const Right(true);
     }
@@ -139,7 +135,7 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
     required String password,
   }) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -155,34 +151,35 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
     required String uid,
   }) async {
     try {
-      final tableReferenceUser =
-          FirebaseFirestore.instance.collection('users').doc(uid);
-      final tableReferenceInfo =
-          tableReferenceUser.collection('information').doc(uid);
-      final tableSnapshot = await tableReferenceInfo.get();
+      final userReference = _firebaseFirestore.collection('users').doc(uid);
+      final infoReference = userReference.collection('information').doc(uid);
 
-      final imageProfile = userInfoEntity.image;
-      final ref = 'users/$uid/profile.jpg';
-      if (imageProfile is String) {
-        await firebaseStorage.ref(ref).putFile(userInfoEntity.image);
-      } else {
-        final XFile imageProfileFile = imageProfile;
-        File path = File(imageProfileFile.path);
-        await firebaseStorage.ref(ref).putFile(path);
+      if (userInfoEntity.image != null) {
+        String imagePath = 'users/$uid/profile.jpg';
+        if (userInfoEntity.image is String) {
+          await _firebaseStorage
+              .ref(imagePath)
+              .putFile(File(userInfoEntity.image));
+        } else if (userInfoEntity.image is XFile) {
+          await _firebaseStorage
+              .ref(imagePath)
+              .putFile(File(userInfoEntity.image.path));
+        }
       }
+      final infoSnapshot = await infoReference.get();
+      if (infoSnapshot.exists) {
+        return const Right(false);
+      }
+      await infoReference.set({
+        'date_of_birth': userInfoEntity.birthDate,
+        'height': userInfoEntity.height,
+        'name': userInfoEntity.name,
+        'weight': userInfoEntity.weight,
+        'training_division': userInfoEntity.trainingDivision,
+        'fitness_goal': userInfoEntity.fitnessGoals,
+      });
 
-      if (!tableSnapshot.exists) {
-        await tableReferenceInfo.set({
-          'date_of_birth': userInfoEntity.birthDate,
-          'height': userInfoEntity.height,
-          'name': userInfoEntity.name,
-          'weight': userInfoEntity.weight,
-          'training_division': userInfoEntity.trainingDivision,
-          'fitness_goal': userInfoEntity.fitnessGoals
-        });
-        return const Right(true);
-      }
-      return const Right(false);
+      return const Right(true);
     } catch (e) {
       print(e);
       return Left(
@@ -195,34 +192,32 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, bool>> isInfoUserCollectionsExists(String uid) async {
     try {
-      final tableReferenceUser =
-          FirebaseFirestore.instance.collection('users').doc(uid);
-      final tableReferenceInfo =
-          tableReferenceUser.collection('information').doc(uid);
-      final documentInfo = await tableReferenceInfo.get();
+      final userReference = _firebaseFirestore.collection('users').doc(uid);
+      final infoReference = userReference.collection('information').doc(uid);
+      final infoSnapshot = await infoReference.get();
 
-      if (documentInfo.exists) {
-        final subcollections = [
-          'date_of_birth',
-          'fitness_goals',
-          'height',
-          'image',
-          'name',
-          'training_division',
-          'weight'
-        ];
-
-        final subcollectionsSnapshots = await Future.wait(subcollections.map(
-            (subcollection) =>
-                tableReferenceInfo.collection(subcollection).limit(1).get()));
-
-        final allExist = subcollectionsSnapshots
-            .every((snapshot) => snapshot.docs.isNotEmpty);
-
-        return Right(allExist);
-      } else {
+      if (!infoSnapshot.exists) {
         return const Right(false);
       }
+
+      final subcollections = [
+        'date_of_birth',
+        'fitness_goals',
+        'height',
+        'image',
+        'name',
+        'training_division',
+        'weight'
+      ];
+
+      final subcollectionsSnapshots = await Future.wait(subcollections.map(
+          (subcollection) =>
+              infoReference.collection(subcollection).limit(1).get()));
+
+      final allExist =
+          subcollectionsSnapshots.every((snapshot) => snapshot.docs.isNotEmpty);
+
+      return Right(allExist);
     } catch (e) {
       return Left(
         Failure(
@@ -235,18 +230,19 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<Either<Failure, UserInfoEntity>> getInfoUser(String uid) async {
     try {
-      final tableReferenceUser =
-          FirebaseFirestore.instance.collection('users').doc(uid);
-      final tableReferenceInfo =
-          tableReferenceUser.collection('information').doc(uid);
-      final tableSnapshot = await tableReferenceInfo.get();
+      final userReference = _firebaseFirestore.collection('users').doc(uid);
+      final infoReference = userReference.collection('information').doc(uid);
+      final infoSnapshot = await infoReference.get();
 
-      final data = tableSnapshot.data() as Map<String, dynamic>;
+      if (!infoSnapshot.exists) {
+        return Left(Failure(message: 'Usuário não encontrado'));
+      }
 
-      final getProfileImage = await firebaseStorage
-          .ref()
-          .child('users/$uid/profile.jpg')
-          .getDownloadURL();
+      final data = infoSnapshot.data() as Map<String, dynamic>;
+
+      final profileImageRef =
+          _firebaseStorage.ref().child('users/$uid/profile.jpg');
+      final getProfileImage = await profileImageRef.getDownloadURL();
 
       final userInfo = UserInfoModel(
         birthDate: (data['date_of_birth'] as Timestamp).toDate(),
@@ -263,7 +259,7 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       return Right(userInfo);
     } catch (e) {
       return Left(
-          Failure(message: 'Erro ao tentar pegar infomações de usuário'));
+          Failure(message: 'Erro ao tentar pegar informações de usuário: $e'));
     }
   }
 }
