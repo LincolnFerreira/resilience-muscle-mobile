@@ -103,6 +103,6 @@ ImageProvider<Object>? _getImageProvider(dynamic imageUrl) {
   } else if (imageUrl is XFile) {
     return FileImage(File(imageUrl.path));
   } else {
-    throw ArgumentError('Tipo de imagem não suportado.');
+    return AssetImage('');
   }
 }

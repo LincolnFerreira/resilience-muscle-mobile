@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:resilience_muscle/app/modules/login/domain/entities/user_info_entity.dart';
@@ -72,14 +74,12 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
     return null; // Retorna null se o valor for válido
   }
 
-  registerInfoUser({
+  Future<void> registerInfoUser({
     required String birthDate,
     required double height,
     required String name,
     required double weight,
   }) async {
-    emit(const RegistrationInfoUserLoading());
-
     final convertStringToDate = convertStringToDateTime(birthDate);
     UserInfoEntity userInfo = UserInfoEntity(
       name: name,
@@ -88,34 +88,31 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
       weight: weight,
       image: state.imageSelectedProfile,
     );
-    print(state.imageSelectedProfile);
-    print(userInfo.toString());
 
-    // try {
-    //   final createCollectionsInfo = await createCollectionsInfoUserUsecase(
-    //     userInfoEntity: userInfo,
-    //     uid: userEntity.uid,
-    //   );
-    //   createCollectionsInfo.fold(
-    //     (failure) {
-    //       emit(const RegistrationInfoUserFailure());
-    //     },
-    //     (createCollections) {
-    //       emit(RegistrationInfoUserSuccess(
-    //         createdNewColumns: createCollections,
-    //         page: 5,
-    //       ));
-    //     },
-    //   );
-    // } catch (e) {
-    //   print(e);
-    // }
+    try {
+      final createCollectionsInfo = await createCollectionsInfoUserUsecase(
+        userInfoEntity: userInfo,
+        uid: userEntity.uid,
+      );
+      createCollectionsInfo.fold(
+        (failure) {
+          emit(const RegistrationInfoUserFailure());
+        },
+        (createCollections) {
+          emit(RegistrationInfoUserSuccess(
+            createdNewColumns: createCollections,
+            page: 5,
+          ));
+        },
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<XFile?> getImage() async {
     XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
-    emit(RegistrationInfoUserSuccess(imageSelectedProfile: image?.path));
-    print('imagem: $image');
+    changeImageSelected(image);
     return image;
   }
 
@@ -136,5 +133,7 @@ class RegistrationInfoUserCubit extends Cubit<RegistrationInfoUserState> {
 
   changeImageSelected(dynamic imageSelected) {
     emit(RegistrationInfoUserSuccess(imageSelectedProfile: imageSelected));
+    print('imagem selecionada: $imageSelected');
+    print('state: ${state.imageSelectedProfile}');
   }
 }

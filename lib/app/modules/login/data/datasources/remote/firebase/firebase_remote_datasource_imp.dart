@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../core/failure.dart';
 import '../../../../domain/entities/user_entity.dart';
@@ -12,6 +16,7 @@ import '../../remote_datasource.dart';
 class FirebaseRemoteDataSourceImp implements RemoteDataSource {
   late final FirebaseAuth auth = FirebaseAuth.instance;
   late final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  late final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
   @override
   Future<Either<Failure, void>> signUp(UserEntity user) async {
@@ -40,7 +45,6 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
         password: user.password,
       );
 
-      user = changeUser;
       return Right(changeUser);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -157,6 +161,16 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
           tableReferenceUser.collection('information').doc(uid);
       final tableSnapshot = await tableReferenceInfo.get();
 
+      final imageProfile = userInfoEntity.image;
+      final ref = 'users/$uid/profile.jpg';
+      if (imageProfile is String) {
+        await firebaseStorage.ref(ref).putFile(userInfoEntity.image);
+      } else {
+        final XFile imageProfileFile = imageProfile;
+        File path = File(imageProfileFile.path);
+        await firebaseStorage.ref(ref).putFile(path);
+      }
+
       if (!tableSnapshot.exists) {
         await tableReferenceInfo.set({
           'date_of_birth': userInfoEntity.birthDate,
@@ -170,6 +184,7 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
       }
       return const Right(false);
     } catch (e) {
+      print(e);
       return Left(
         Failure(
             message: 'Erro ao criar coleções de informações do usuário: $e'),
@@ -228,15 +243,22 @@ class FirebaseRemoteDataSourceImp implements RemoteDataSource {
 
       final data = tableSnapshot.data() as Map<String, dynamic>;
 
+      final getProfileImage = await firebaseStorage
+          .ref()
+          .child('users/$uid/profile.jpg')
+          .getDownloadURL();
+
       final userInfo = UserInfoModel(
         birthDate: (data['date_of_birth'] as Timestamp).toDate(),
         fitnessGoals: data['fitness_goals'],
         height: data['height'],
-        image: data['image'],
+        image: getProfileImage,
         name: data['name'],
         trainingDivision: data['training_division'],
         weight: data['weight'],
       );
+
+      print('usuário atual: ${getProfileImage}');
 
       return Right(userInfo);
     } catch (e) {

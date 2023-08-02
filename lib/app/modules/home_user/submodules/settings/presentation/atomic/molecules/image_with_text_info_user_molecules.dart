@@ -28,7 +28,7 @@ class ImageWithTextInfoUser extends StatelessWidget {
           onTap: onTapImageProfile,
           child: CircleAvatar(
             maxRadius: 40,
-            backgroundImage: AssetImage(imageUrl),
+            backgroundImage: NetworkImage(imageUrl),
           ),
         ),
         BoxText.subheadingThree(

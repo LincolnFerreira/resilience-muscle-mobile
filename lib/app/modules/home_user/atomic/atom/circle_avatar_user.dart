@@ -16,7 +16,8 @@ class CircleAvatarUserAtom extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: ColorsUI.whiteGrey,
       radius: 25,
-      backgroundImage: AssetImage(AssetsCollection.menCartoonImage()),
+      backgroundImage:
+          NetworkImage(imageProfileUser ?? AssetsCollection.menCartoonImage()),
     );
   }
 }

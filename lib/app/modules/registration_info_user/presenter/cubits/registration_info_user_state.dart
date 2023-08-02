@@ -60,7 +60,7 @@ class RegistrationInfoUserSuccess extends RegistrationInfoUserState {
   const RegistrationInfoUserSuccess({
     this.page = 4,
     this.createdNewColumns,
-    this.imageSelectedProfile = '',
+    this.imageSelectedProfile,
   }) : super(
           page: page,
           createdNewCollumns: createdNewColumns,
@@ -73,6 +73,7 @@ class RegistrationInfoUserSuccess extends RegistrationInfoUserState {
     return RegistrationInfoUserSuccess(
       page: page ?? page,
       createdNewColumns: createdNewColumns ?? this.createdNewColumns,
+      imageSelectedProfile: imageSelectedProfile ?? this.imageSelectedProfile,
     );
   }
 }
